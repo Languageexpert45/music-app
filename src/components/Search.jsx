@@ -1,12 +1,11 @@
 import React from 'react';
+import search from '../img/icon/search.svg';
 
 const Search = () => {
     return (
-        <div class="centerblock__search search">
-                <svg class="search__svg">
-                    <use xlink:href="img/icon/sprite.svg#icon-search"></use>
-                </svg>
-                <input class="search__text" type="search" placeholder="Поиск" name="search"></input>
+        <div className="centerblock__search search">
+                <img className="search__svg" src = {search}></img>
+                <input className="search__text" type="search" placeholder="Поиск" name="search"/>
         </div>
     )
 }

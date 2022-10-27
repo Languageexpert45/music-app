@@ -2,77 +2,77 @@ import React from 'react';
 
 const Bar = () => {
     return (
-        <div class="bar">
-            <div class="bar__content">
-                <div class="bar__player-progress"></div>
-                <div class="bar__player-block">
-                    <div class="bar__player player">
-                        <div class="player__controls">
-                            <div class="player__btn-prev">
-                                <svg class="player__btn-prev-svg" alt="prev">
-                                    <use xlink:href="img/icon/sprite.svg#icon-prev"></use>
+        <div className="bar">
+            <div className="bar__content">
+                <div className="bar__player-progress"></div>
+                <div className="bar__player-block">
+                    <div className="bar__player player">
+                        <div className="player__controls">
+                            <div className="player__btn-prev">
+                                <svg className="player__btn-prev-svg" alt="prev">
+                                    <use href="img/icon/sprite.svg#icon-prev"></use>
                                 </svg>
                             </div>
-                            <div class="player__btn-play _btn">
-                                <svg class="player__btn-play-svg" alt="play">
-                                    <use xlink:href="img/icon/sprite.svg#icon-play"></use>
+                            <div className="player__btn-play _btn">
+                                <svg className="player__btn-play-svg" alt="play">
+                                    <use href="img/icon/sprite.svg#icon-play"></use>
                                 </svg>
                             </div>
-                            <div class="player__btn-next">
-                                <svg class="player__btn-next-svg" alt="next">
-                                    <use xlink:href="img/icon/sprite.svg#icon-next"></use>
+                            <div className="player__btn-next">
+                                <svg className="player__btn-next-svg" alt="next">
+                                    <use href="img/icon/sprite.svg#icon-next"></use>
                                 </svg>
                             </div>
-                            <div class="player__btn-repeat _btn-icon">
-                                <svg class="player__btn-repeat-svg" alt="repeat">
-                                    <use xlink:href="img/icon/sprite.svg#icon-repeat"></use>
+                            <div className="player__btn-repeat _btn-icon">
+                                <svg className="player__btn-repeat-svg" alt="repeat">
+                                    <use href="img/icon/sprite.svg#icon-repeat"></use>
                                 </svg>
                             </div>
-                            <div class="player__btn-shuffle _btn-icon">
-                                <svg class="player__btn-shuffle-svg" alt="shuffle">
-                                    <use xlink:href="img/icon/sprite.svg#icon-shuffle"></use>
+                            <div className="player__btn-shuffle _btn-icon">
+                                <svg className="player__btn-shuffle-svg" alt="shuffle">
+                                    <use href="img/icon/sprite.svg#icon-shuffle"></use>
                                 </svg>
                             </div>
                         </div>
                         
-                        <div class="player__track-play track-play">
-                            <div class="track-play__contain">
-                                <div class="track-play__image">
-                                    <svg class="track-play__svg" alt="music">
-                                        <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                        <div className="player__track-play track-play">
+                            <div className="track-play__contain">
+                                <div className="track-play__image">
+                                    <svg className="track-play__svg" alt="music">
+                                        <use href="img/icon/sprite.svg#icon-note"></use>
                                     </svg>
                                 </div>
-                                <div class="track-play__author">
-                                    <a class="track-play__author-link" href="http://">"Ты та..."</a>
+                                <div className="track-play__author">
+                                    <a className="track-play__author-link" href="http://">Ты та...</a>
                                 </div>
-                                <div class="track-play__album">
-                                    <a class="track-play__album-link" href="http://">"Баста"</a>
+                                <div className="track-play__album">
+                                    <a className="track-play__album-link" href="http://">Баста</a>
                                 </div>
                             </div>
 
-                            <div class="track-play__like-dis">
-                                <div class="track-play__like _btn-icon">
-                                    <svg class="track-play__like-svg" alt="like">
-                                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                            <div className="track-play__like-dis">
+                                <div className="track-play__like _btn-icon">
+                                    <svg className="track-play__like-svg" alt="like">
+                                        <use href="img/icon/sprite.svg#icon-like"></use>
                                     </svg>
                                 </div>
-                                <div class="track-play__dislike _btn-icon">
-                                    <svg class="track-play__dislike-svg" alt="dislike">
-                                        <use xlink:href="img/icon/sprite.svg#icon-dislike"></use>
+                                <div className="track-play__dislike _btn-icon">
+                                    <svg className="track-play__dislike-svg" alt="dislike">
+                                        <use href="img/icon/sprite.svg#icon-dislike"></use>
                                     </svg>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="bar__volume-block volume">
-                        <div class="volume__content">
-                            <div class="volume__image">
-                                <svg class="volume__svg" alt="volume">
-                                    <use xlink:href="img/icon/sprite.svg#icon-volume"></use>
+                    <div className="bar__volume-block volume">
+                        <div className="volume__content">
+                            <div className="volume__image">
+                                <svg className="volume__svg" alt="volume">
+                                    <use href="img/icon/sprite.svg#icon-volume"></use>
                                 </svg>
                             </div>
-                            <div class="volume__progress _btn">
-                                <input class="volume__progress-line _btn" type="range" name="range"></input>
+                            <div className="volume__progress _btn">
+                                <input className="volume__progress-line _btn" type="range" name="range"></input>
                             </div>
                             
                         </div>

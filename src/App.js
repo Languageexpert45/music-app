@@ -1,5 +1,5 @@
-import logo from './img/logo.svg';
-import './styles.css';
+
+import './index.css';
 import Navbar from './components/Navbar';
 import Search from './components/Search';
 import CenterblockHeader from './components/CenterblockHeader';
@@ -8,13 +8,14 @@ import CenterblockContent from './components/CenterblockContent';
 import SideBar from './components/SideBar';
 import Bar from './components/Bar';
 
-function App() {
+
+function App () {
   return (
-    <div class="wrapper">
-        <div class="container">
-          <main class="main">
+    <div className="wrapper">
+        <div className="container">
+          <main className="main">
             <Navbar/>
-            <div class="main__centerblock centerblock">
+            <div className="main__centerblock centerblock">
               <Search/>
               <CenterblockHeader/>
               <CenterblockFilter/>
@@ -25,8 +26,8 @@ function App() {
           <Bar/>
         </div>
     </div>
-    
-  );
+  )
 }
+
 
 export default App;
