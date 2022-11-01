@@ -1,4 +1,6 @@
 import React from 'react';
+import note from '../img/icon/note.svg';
+import like from '../img/icon/like.svg';
 
 const PlaylistItem = () => {
     return (
@@ -6,9 +8,7 @@ const PlaylistItem = () => {
             <div className="playlist__track track">
                 <div className="track__title">
                     <div className="track__title-image">
-                        <svg className="track__title-svg" alt="music">
-                            <use href="img/icon/sprite.svg#icon-note"></use>
-                        </svg>
+                        <img className="track__title-svg" src={note} alt="music"></img>
                     </div>
                     <div className="track__title-text">
                         <a className="track__title-link" href="http://">Guilt <span className="track__title-span"></span></a>
@@ -21,9 +21,7 @@ const PlaylistItem = () => {
                     <a className="track__album-link" href="http://">Welcome Reality</a>
                 </div>
                 <div className="track__time">
-                    <svg className="track__time-svg" alt="time">
-                        <use href="img/icon/sprite.svg#icon-like"></use>
-                    </svg>
+                    <img className="track__time-svg" src={like} alt="time"></img>
                     <span className="track__time-text">4:44</span>
                 </div>
             </div>

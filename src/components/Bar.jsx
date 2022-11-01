@@ -1,4 +1,13 @@
 import React from 'react';
+import prev from '../img/icon/prev.svg';
+import play from '../img/icon/play.svg';
+import next from '../img/icon/next.svg';
+import repeat from '../img/icon/repeat.svg';
+import shuffle from '../img/icon/shuffle.svg';
+import note from '../img/icon/note.svg';
+import like from '../img/icon/like.svg';
+import dislike from '../img/icon/dislike.svg';
+import volume from '../img/icon/volume.svg';
 
 const Bar = () => {
     return (
@@ -9,38 +18,26 @@ const Bar = () => {
                     <div className="bar__player player">
                         <div className="player__controls">
                             <div className="player__btn-prev">
-                                <svg className="player__btn-prev-svg" alt="prev">
-                                    <use href="img/icon/sprite.svg#icon-prev"></use>
-                                </svg>
+                                <img className="player__btn-prev-svg" src={prev} alt="prev"></img>
                             </div>
                             <div className="player__btn-play _btn">
-                                <svg className="player__btn-play-svg" alt="play">
-                                    <use href="img/icon/sprite.svg#icon-play"></use>
-                                </svg>
+                                <img className="player__btn-play-svg" src={play} alt="play"></img>
                             </div>
                             <div className="player__btn-next">
-                                <svg className="player__btn-next-svg" alt="next">
-                                    <use href="img/icon/sprite.svg#icon-next"></use>
-                                </svg>
+                                <img className="player__btn-next-svg" src={next} alt="next"></img>
                             </div>
                             <div className="player__btn-repeat _btn-icon">
-                                <svg className="player__btn-repeat-svg" alt="repeat">
-                                    <use href="img/icon/sprite.svg#icon-repeat"></use>
-                                </svg>
+                                <img className="player__btn-repeat-svg" src={repeat} alt="repeat"></img>
                             </div>
                             <div className="player__btn-shuffle _btn-icon">
-                                <svg className="player__btn-shuffle-svg" alt="shuffle">
-                                    <use href="img/icon/sprite.svg#icon-shuffle"></use>
-                                </svg>
+                                <img className="player__btn-shuffle-svg" src={shuffle} alt="shuffle"></img>
                             </div>
                         </div>
                         
                         <div className="player__track-play track-play">
                             <div className="track-play__contain">
                                 <div className="track-play__image">
-                                    <svg className="track-play__svg" alt="music">
-                                        <use href="img/icon/sprite.svg#icon-note"></use>
-                                    </svg>
+                                    <img className="track-play__svg" src={note} alt="music"></img>
                                 </div>
                                 <div className="track-play__author">
                                     <a className="track-play__author-link" href="http://">Ты та...</a>
@@ -52,14 +49,10 @@ const Bar = () => {
 
                             <div className="track-play__like-dis">
                                 <div className="track-play__like _btn-icon">
-                                    <svg className="track-play__like-svg" alt="like">
-                                        <use href="img/icon/sprite.svg#icon-like"></use>
-                                    </svg>
+                                    <img className="track-play__like-svg" src={like} alt="like"></img>
                                 </div>
                                 <div className="track-play__dislike _btn-icon">
-                                    <svg className="track-play__dislike-svg" alt="dislike">
-                                        <use href="img/icon/sprite.svg#icon-dislike"></use>
-                                    </svg>
+                                    <img className="track-play__dislike-svg" src={dislike} alt="dislike"></img>
                                 </div>
                             </div>
                         </div>
@@ -67,14 +60,11 @@ const Bar = () => {
                     <div className="bar__volume-block volume">
                         <div className="volume__content">
                             <div className="volume__image">
-                                <svg className="volume__svg" alt="volume">
-                                    <use href="img/icon/sprite.svg#icon-volume"></use>
-                                </svg>
+                                <img className="volume__svg" src={volume} alt="volume"></img>
                             </div>
                             <div className="volume__progress _btn">
                                 <input className="volume__progress-line _btn" type="range" name="range"></input>
-                            </div>
-                            
+                            </div>  
                         </div>
                     </div>
                 </div>

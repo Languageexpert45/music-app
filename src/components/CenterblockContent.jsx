@@ -2,6 +2,7 @@ import React from 'react';
 import PlaylistItem from '../components/PlaylistItem';
 import watch from '../img/icon/watch.svg';
 
+
 const CenterblockContent = () => {
     return (
         <div className="centerblock__content">

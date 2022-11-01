@@ -130,6 +130,7 @@ body {
 }
 
 .nav__burger {
+  cursor: pointer;
   width: 20px;
   height: 36px;
   padding: 13px 0;
@@ -165,6 +166,12 @@ body {
 
 .menu__list {
   padding: 18px 0 10px 0;
+  transform:scaleY(1);
+  transition: 0.3s;
+  
+}
+.menu__list_hidden {
+  transform:scaleY(0)
 }
 
 .menu__item {
@@ -302,6 +309,7 @@ body {
   border: 1px solid #FFFFFF;
   border-radius: 60px;
   padding: 6px 20px;
+
 }
 
 .filter__button:not(:last-child) {
