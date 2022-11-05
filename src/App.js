@@ -1,11 +1,11 @@
-import Navbar from './components/Navbar';
-import Search from './components/Search';
-import CenterblockHeader from './components/CenterblockHeader';
-import CenterblockFilter from './components/CenterblockFilter';
-import CenterblockContent from './components/CenterblockContent';
-import SideBar from './components/SideBar';
-import Bar from './components/Bar';
-import request from './js/request'
+import React from 'react'
+import Navbar from './components/Navbar/Navbar';
+import Search from './components/Search/Search';
+import CenterblockHeader from './components/CenterblockHeader/CenterblockHeader';
+import CenterblockFilter from './components/CenterblockFilter/CenterblockFilter';
+import CenterblockContent from './components/CenterblockContent/CenterblockContent';
+import SideBar from './components/SideBar/SideBar';
+import Bar from './components/bar/Bar';
 
 function App () {
   return (
