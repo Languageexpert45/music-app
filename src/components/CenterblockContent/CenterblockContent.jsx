@@ -16,7 +16,7 @@ const CenterblockContent = () => {
                 </div>
             </div>
             <div className={styles.playlist}>
-                <PlaylistItem/>
+                <PlaylistItem track='Guilt' artist='Nero' album='Welcome Reality' time='4:44'/>
             </div>
         </div>
     )

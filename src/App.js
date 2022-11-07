@@ -5,7 +5,7 @@ import CenterblockHeader from './components/CenterblockHeader/CenterblockHeader'
 import CenterblockFilter from './components/CenterblockFilter/CenterblockFilter';
 import CenterblockContent from './components/CenterblockContent/CenterblockContent';
 import SideBar from './components/SideBar/SideBar';
-import Bar from './components/bar/Bar';
+import Bar from './components/Bar/Bar';
 
 function App () {
   return (

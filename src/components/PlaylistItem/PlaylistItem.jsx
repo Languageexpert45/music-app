@@ -3,7 +3,7 @@ import note from '../img/icon/note.svg';
 import like from '../img/icon/like.svg';
 import styles from './PlaylistItem.module.css'
 
-const PlaylistItem = () => {
+const PlaylistItem = (props) => {
     return (
         <div className={styles.item}>
             <div className={styles.track}>
@@ -12,18 +12,18 @@ const PlaylistItem = () => {
                         <img className={styles.svg} src={note} alt="music"></img>
                     </div>
                     <div className="track__title-text">
-                        <a className={styles.link} href="http://">Guilt <span className={styles.span}></span></a>
+                        <a className={styles.link} href="http://">{props.track} <span className={styles.span}></span></a>
                     </div>
                 </div>
                 <div className={styles.author}>
-                    <a className={styles.author_link} href="http://">Nero</a>
+                    <a className={styles.author_link} href="http://">{props.artist}</a>
                 </div>
                 <div className={styles.album}>
-                    <a className={styles.album_link} href="http://">Welcome Reality</a>
+                    <a className={styles.album_link} href="http://">{props.album}</a>
                 </div>
                 <div className="track__time">
                     <img className={styles.track__time_svg} src={like} alt="time"></img>
-                    <span className={styles.track__time_text}>4:44</span>
+                    <span className={styles.track__time_text}>{props.time}</span>
                 </div>
             </div>
         </div>
