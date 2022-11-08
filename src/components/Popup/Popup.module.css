@@ -1,6 +1,4 @@
-@value left_0:350px;
-@value left_1:550px;
-@value left_2:750px;
+
 
 .box {
     display: flex;
@@ -10,21 +8,61 @@
     gap: 10px;
     width: 248px;
     height: 305px;
-    left: left_1;
+    left: 350px;
     top: 288px;
     background: #313131;
     border-radius: 12px;
-    transform: scale(1);
-    transition: 0.3s;
-    position: absolute;
-}
-
-
-.hidden {
     transform: scale(0);
+    transition: 0.3s;
+    position: fixed;
 }
 
-.scroll {
+.box1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 34px;
+    gap: 10px;
+    width: 248px;
+    height: 305px;
+    left: 550px;
+    top: 288px;
+    background: #313131;
+    border-radius: 12px;
+    transform: scale(0);
+    transition: 0.3s;
+    position: fixed;
+}
+
+.box2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 34px;
+    gap: 10px;
+    width: 248px;
+    height: 305px;
+    left: 750px;
+    top: 288px;
+    background: #313131;
+    border-radius: 12px;
+    transform: scale(0);
+    transition: 0.3s;
+    position: fixed;
+}
+
+.active {
+    transform: scale(1);
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    left: 225px;
+    cursor: pointer;
+}
+
+.content {
     display: flex;
     flex-direction: row;
     justify-content: center;

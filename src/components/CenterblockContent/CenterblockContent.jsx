@@ -4,7 +4,9 @@ import watch from '../img/icon/watch.svg';
 import styles from './CenterblockContent.module.css'
 
 
-const CenterblockContent = () => {
+const CenterblockContent = (props) => {
+
+    const playlistElements = props.songs.map(element => <PlaylistItem track={element.track} artist={element.artist} album={element.album} time={element.time} key={Math.random()}/>)
     return (
         <div className={styles.content}>
             <div className={styles.title}>
@@ -16,7 +18,7 @@ const CenterblockContent = () => {
                 </div>
             </div>
             <div className={styles.playlist}>
-                <PlaylistItem track='Guilt' artist='Nero' album='Welcome Reality' time='4:44'/>
+                {playlistElements}
             </div>
         </div>
     )

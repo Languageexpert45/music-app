@@ -7,7 +7,7 @@ import CenterblockContent from './components/CenterblockContent/CenterblockConte
 import SideBar from './components/SideBar/SideBar';
 import Bar from './components/Bar/Bar';
 
-function App () {
+function App (props) {
   return (
     <div className="wrapper">
         <div className="container">
@@ -17,7 +17,7 @@ function App () {
               <Search />
               <CenterblockHeader />
               <CenterblockFilter />
-              <CenterblockContent />
+              <CenterblockContent songs = {props.songs} />
             </div>
             <SideBar />
           </main>
