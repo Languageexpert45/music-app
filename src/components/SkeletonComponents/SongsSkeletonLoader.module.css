@@ -1,0 +1,56 @@
+.track {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+@keyframes myAnim {
+    0%,
+    50%,
+    100% {
+        opacity: 1;
+    }
+    25%,
+    75% {
+        opacity: 0;
+    }
+}
+
+.trackIcon {
+    width: 51px;
+    height: 51px;
+    background: #313131;
+    margin-right: 17px;
+    animation: myAnim 2s ease 0s infinite normal forwards;
+}
+
+.trackName {
+    height: 24px;
+    width: 100px;
+    background: #313131;
+    margin-right: 285px;
+    animation: myAnim 2s ease 0s infinite normal forwards;
+}
+
+.trackArtist {
+    width: 200px;
+    height: 24px;
+    background: #313131;
+    margin-right: 130px;
+    animation: myAnim 2s ease 0s infinite normal forwards;
+}
+
+.trackAlbum {
+    height: 24px;
+    width: 100px;
+    background: #313131;
+    margin-right: 170px;
+    animation: myAnim 2s ease 0s infinite normal forwards;
+}
+
+.trackTime {
+    height: 24px;
+    width: 50px;
+    background: #313131;
+    animation: myAnim 2s ease 0s infinite normal forwards;
+}

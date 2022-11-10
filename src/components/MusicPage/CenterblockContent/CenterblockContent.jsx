@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import PlaylistItem from '../PlaylistItem/PlaylistItem';
-import watch from '../img/icon/watch.svg';
-import styles from './CenterblockContent.module.css'
+import watch from '../../../img/icon/watch.svg';
+import styles from './CenterblockContent.module.css';
+import SongsSkeletonLoader from '../../SkeletonComponents/SongsSkeletonLoader'
+
 
 
 const CenterblockContent = (props) => {
 
-    const playlistElements = props.songs.map(element => <PlaylistItem track={element.track} artist={element.artist} album={element.album} time={element.time} key={Math.random()}/>)
+    const playlistElements = props.songs.map((element, index) => <PlaylistItem track={element.track} artist={element.artist} album={element.album} time={element.time} key={index}/>)
+
+    
+    const skeletonElements = props.skeleton.map((element, index) => <SongsSkeletonLoader key={index}/>)
+
+
     return (
         <div className={styles.content}>
             <div className={styles.title}>
@@ -18,7 +25,8 @@ const CenterblockContent = (props) => {
                 </div>
             </div>
             <div className={styles.playlist}>
-                {playlistElements}
+                {props.loading && skeletonElements}
+                {!props.loading && playlistElements}
             </div>
         </div>
     )

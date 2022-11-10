@@ -1,5 +1,5 @@
 import React from 'react';
-import search from '../img/icon/search.svg';
+import search from '../../../img/icon/search.svg';
 import styles from './Search.module.css'
 
 const Search = () => {

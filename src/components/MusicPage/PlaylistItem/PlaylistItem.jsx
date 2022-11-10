@@ -1,7 +1,7 @@
 import React from 'react';
-import note from '../img/icon/note.svg';
-import like from '../img/icon/like.svg';
-import styles from './PlaylistItem.module.css'
+import note from '../../../img/icon/note.svg';
+import like from '../../../img/icon/like.svg';
+import styles from './PlaylistItem.module.css';
 
 const PlaylistItem = (props) => {
     return (

@@ -2,6 +2,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-wrap: wrap;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
@@ -35,13 +36,17 @@
 }
 
 .effects:hover {
-  border-color: #d9b6ff;
-  color: #d9b6ff;
-  cursor: pointer;
-}
-
-.effects:active {
   border-color: #ad61ff;
   color: #ad61ff;
   cursor: pointer;
 }
+
+.effects:active {
+  border-color: #d9b6ff;
+  color: #d9b6ff;
+  cursor: pointer;
+}
+.active {
+  border-color: #ad61ff;
+  color: #ad61ff;
+} 

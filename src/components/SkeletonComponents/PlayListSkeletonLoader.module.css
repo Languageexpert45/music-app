@@ -1,0 +1,20 @@
+@keyframes myAnim {
+    0%,
+    50%,
+    100% {
+        opacity: 1;
+    }
+
+    25%,
+    75% {
+        opacity: 0;
+    }
+}
+
+.playlistIcon {
+    width: 250px;
+    height: 150px;
+    margin-bottom: 30px;
+    background: #313131;
+    animation: myAnim 2s ease 0s infinite normal forwards;
+}

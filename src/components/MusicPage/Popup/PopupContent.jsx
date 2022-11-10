@@ -3,12 +3,12 @@ import styles from'./Popup.module.css'
 
 
 const PopupContent = (props) => {
-    const artists = props.artists.map( artist => 
-        <li className={styles.listItem} key={Math.random()}>{artist}</li>
+    const sortItems = props.sortItems.map( sortItem => 
+        <li className={styles.listItem} key={Math.random()}>{sortItem}</li>
     ) 
     return (  
         <ul className={styles.list}>
-            {artists}
+            {sortItems}
         </ul>
     )
 }
