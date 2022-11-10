@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './Centerblock.module.css'
 
 const CenterblockHeader = () => {
     return (
-        <h2 className="centerblock__h2">Треки</h2>
+        <h2 className={styles.header}>Треки</h2>
     )
 }
 export default CenterblockHeader

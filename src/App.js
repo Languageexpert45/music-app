@@ -1,27 +1,25 @@
+import React from 'react'
+import Navbar from './components/Navbar/Navbar';
+import Search from './components/Search/Search';
+import CenterblockHeader from './components/CenterblockHeader/CenterblockHeader';
+import CenterblockFilter from './components/CenterblockFilter/CenterblockFilter';
+import CenterblockContent from './components/CenterblockContent/CenterblockContent';
+import SideBar from './components/SideBar/SideBar';
+import Bar from './components/Bar/Bar';
 
-import './index.css';
-import Navbar from './components/Navbar';
-import Search from './components/Search';
-import CenterblockHeader from './components/CenterblockHeader';
-import CenterblockFilter from './components/CenterblockFilter';
-import CenterblockContent from './components/CenterblockContent';
-import SideBar from './components/SideBar';
-import Bar from './components/Bar';
-
-
-function App () {
+function App (props) {
   return (
     <div className="wrapper">
         <div className="container">
           <main className="main">
             <Navbar/>
             <div className="main__centerblock centerblock">
-              <Search/>
-              <CenterblockHeader/>
-              <CenterblockFilter/>
-              <CenterblockContent/>
+              <Search />
+              <CenterblockHeader />
+              <CenterblockFilter />
+              <CenterblockContent songs = {props.songs} />
             </div>
-            <SideBar/>
+            <SideBar />
           </main>
           <Bar/>
         </div>
