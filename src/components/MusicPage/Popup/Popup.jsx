@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import styles from'./Popup.module.css'
+import React  from "react";
+import styles from'./Popup.module.css';
 
 
 const Popup = ({children, visible, setVisible, position}) => {
-
-    const rootClasses = [styles.box]
+    
+    let rootClasses = [styles.box]
     if (visible) {
         rootClasses.push(styles.active)
     }
@@ -21,12 +21,16 @@ const Popup = ({children, visible, setVisible, position}) => {
         rootClasses.push(styles.left3)
     }
 
+    const closePopup = () => {
+        setVisible(false)
+    }
+
     return (
         <div className={rootClasses.join(' ')} >
             <div className={styles.content}>
                 {children}
             </div>
-            <p className={styles.close} onClick={() => setVisible(false)} >x</p>
+            <p  className={styles.close} onClick={closePopup}>x</p>
         </div>
     )
 }

@@ -4,7 +4,17 @@ import PlayListItem from './PlayList';
 import PlayListSkeleton from '../../SkeletonComponents/PlayListSkeletonLoader';
 
 
+
 const SideBar = (props) => {
+
+
+    const PlaylistItems = props.playlists.map((playlist, index) =>
+        <PlayListItem key={index} playlistName={playlist.playlistName} playlistHREF={playlist.playlistHREF} playlistImage={playlist.img} />
+    );
+
+    const skeletonItems = props.playlists.map((item, index) => <PlayListSkeleton key={index}/>)
+
+    
     return (
         <div className={styles.sidebar}>
             <div className={styles.personal}>
@@ -15,14 +25,8 @@ const SideBar = (props) => {
             </div>
             <div className={styles.block}>
                 <div className={styles.list}>
-                    {props.loading && <PlayListSkeleton/>}
-                    {!props.loading && <PlayListItem href = '#' playlist = {props.playlist01}/>}
-
-                    {props.loading && <PlayListSkeleton/>}
-                    {!props.loading && <PlayListItem href = '#' playlist = {props.playlist02}/>}
-
-                    {props.loading && <PlayListSkeleton/>}
-                    {!props.loading && <PlayListItem href = '#' playlist = {props.playlist03}/>}
+                    {props.loading && skeletonItems}
+                    {!props.loading && PlaylistItems}
 
                 </div>
             </div>

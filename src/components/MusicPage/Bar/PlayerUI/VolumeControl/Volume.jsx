@@ -1,5 +1,5 @@
 import React from 'react';
-import volume from '../../../img/icon/volume.svg';
+import volume from '../../../../../img/icon/volume.svg';
 import styles from './Volume.module.css'
 
 const Volume = (props) => {

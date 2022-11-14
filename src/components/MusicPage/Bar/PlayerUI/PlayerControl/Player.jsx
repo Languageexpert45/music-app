@@ -1,12 +1,12 @@
 import React from 'react';
-import prev from '../../../img/icon/prev.svg'
-import play from '../../../img/icon/play.svg';
-import next from '../../../img/icon/next.svg';
-import repeat from '../../../img/icon/repeat.svg';
-import shuffle from '../../../img/icon/shuffle.svg';
+import prev from '../../../../../img/icon/prev.svg'
+import play from '../../../../../img/icon/play.svg';
+import next from '../../../../../img/icon/next.svg';
+import repeat from '../../../../../img/icon/repeat.svg';
+import shuffle from '../../../../../img/icon/shuffle.svg';
 import styles from './Player.module.css';
-import PlayerSongInfo from './PlayerSongInfo'
-import PlayerSongInfoSkeleton from '../../SkeletonComponents/PlayerSongInfoSkeleton';
+import PlayerSongInfo from '../PlayerSongInfo/PlayerSongInfo'
+import PlayerSongInfoSkeleton from '../../../../SkeletonComponents/PlayerSongInfoSkeleton';
 const Player = (props) => {
     return (
         <div className={styles.bar__player}>
@@ -28,7 +28,7 @@ const Player = (props) => {
                 </div>
             </div>
             {props.loading && <PlayerSongInfoSkeleton/>}
-            {!props.loading && <PlayerSongInfo songName='Ты та...' artistName='Баста' />}
+            {!props.loading && <PlayerSongInfo songInfoURL= {props.songInfoURL} artistInfoURL= {props.artistInfoURL} songName={props.songName} artistName={props.artistName} />}
             
         </div>
                     
