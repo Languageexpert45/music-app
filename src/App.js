@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Navbar from './components/MusicPage/Navbar/Navbar';
-import Search from './components/MusicPage/Search/Search';
-import CenterblockHeader from './components/MusicPage/CenterblockHeader/CenterblockHeader';
-import CenterblockFilter from './components/MusicPage/CenterblockFilter/CenterblockFilter';
-import CenterblockContent from './components/MusicPage/CenterblockContent/CenterblockContent';
-import SideBar from './components/MusicPage/SideBar/SideBar';
-import Bar from './components/MusicPage/Bar/Bar';
 import playlist01 from './img/playlist01.png';
 import playlist02 from './img/playlist02.png';
 import playlist03 from './img/playlist03.png';
+import { AppRoutes } from "./routes";
 
 
 const playlistData = [
@@ -57,22 +51,22 @@ function App (props) {
   
   return (
     <div className="wrapper">
-        <div className="container">
-          <main className="main">
-            <Navbar/>
-            <div className="main__centerblock centerblock"  >
-              <Search />
-              <CenterblockHeader />
-              <CenterblockFilter artist = {artistsData} year = {yearsData} genre = {genreData} filterValues={filterValues} />
-              <CenterblockContent loading={loading} songs={songs} skeleton={playlistData}  />
-            </div>
-            <SideBar loading={loading} playlists={playlists} skeleton={playlists} />
-          </main>
-          <Bar loading={loading} songInfoURL={currentSong.songInfoURL} artistInfoURL={currentSong.artistInfoURL} songName={currentSong.songName} artistName={currentSong.artistName}/>
-        </div>
+      <AppRoutes
+      artist={artistsData} 
+      year={yearsData} 
+      genre={genreData} 
+      filterValues={filterValues} 
+      loading={loading} 
+      songs={songs} 
+      songsSkeleton={playlistData} 
+      playlists={playlists} 
+      playlistsSkeleton={playlists}
+      songInfoURL={currentSong.songInfoURL}
+      artistInfoURL={currentSong.artistInfoURL}
+      songName={currentSong.songName}
+      artistName={currentSong.artistName} />
     </div>
   )
 }
-
 
 export default App;
