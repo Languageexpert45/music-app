@@ -10,7 +10,14 @@ const LikeButton = (props) => {
 
     
     return (             
-        <Like_Dislike_SVG like={fill} setLike={setFill} hover={stroke} setHover={setStroke} dislike={dislike} setDislike={setDislike}/>  
+        <Like_Dislike_SVG 
+            like={fill} 
+            setLike={setFill} 
+            hover={stroke} 
+            setHover={setStroke} 
+            dislike={dislike} 
+            setDislike={setDislike}
+        />  
     )
 }
 

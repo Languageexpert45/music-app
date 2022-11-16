@@ -24,7 +24,10 @@ function FilterButton({filterValue, buttonStatus}) {
     }
 
     return ( 
-        <div ref={menuRef} className={isOpen ? `${styles.filter__button} ${styles.effects} ${styles. active}` : `${styles.filter__button} ${styles.effects}`} onClick={buttonToggle}>
+        <div 
+            ref={menuRef} 
+            className={isOpen ? `${styles.filter__button} ${styles.effects} ${styles. active}` : `${styles.filter__button} ${styles.effects}`} 
+            onClick={buttonToggle}>
             {filterValue}
         </div>    
      );

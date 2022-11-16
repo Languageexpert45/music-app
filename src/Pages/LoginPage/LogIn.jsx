@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './LogIn.module.css';
-import {LogoBlack} from '../MusicPage/components/Logo/Logo'
+import {LogoBlack} from '../MusicPage/components/Logo/Logo';
+import {Link} from 'react-router-dom';
 
 const LogIn = () => {
 
@@ -10,7 +11,6 @@ const LogIn = () => {
     }
 
     const userRegister = (event) => {
-        event.preventDefault()
         console.log('click2');
     }
 
@@ -24,7 +24,13 @@ const LogIn = () => {
                     <input className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
                     <input className={styles.reg__input} type="text" name="password" id="password" placeholder="Пароль" />
                     <button onClick={userLogin} className={styles.login__button}>Войти</button>
-                    <button onClick={userRegister} className={styles.reg__button}>Зарегистрироваться</button>
+                    <Link to='/reg'>
+                        <button 
+                            onClick={userRegister} 
+                            className={styles.reg__button}>
+                            Зарегистрироваться
+                        </button>
+                    </Link>
                 </form>
             </div>
         </div>

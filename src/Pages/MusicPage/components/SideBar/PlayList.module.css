@@ -1,6 +1,11 @@
 .item {
     width: 250px;
     height: 150px;
+    transition: 0.3s;
+}
+.item:hover {
+    transform: scale(1.03);
+    background-color: rgba(111, 54, 218, 0.925);
 }
 
 .item:not(:last-child) {

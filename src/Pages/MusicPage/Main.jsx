@@ -14,9 +14,13 @@ const Main = (props) => {
             <Navbar/>
             <div className="main__centerblock centerblock"  >
               <Search />
-              <CenterblockHeader />
+              <CenterblockHeader {...props}/>
               <CenterblockFilter {...props} />
-              <CenterblockContent loading={props.loading} songs={props.songs} skeleton={props.songsSkeleton}  />
+              <CenterblockContent 
+                // loading={props.loading} 
+                {...props} 
+                // skeleton={props.songsSkeleton}  
+              />
             </div>
             <SideBar {...props} />
           </main>

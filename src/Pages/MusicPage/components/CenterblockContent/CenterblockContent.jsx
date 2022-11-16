@@ -8,10 +8,22 @@ import SongsSkeletonLoader from '../../../../SkeletonComponents/SongsSkeletonLoa
 
 const CenterblockContent = (props) => {
 
-    const playlistElements = props.songs.map((element, index) => <PlaylistItem track={element.track} artist={element.artist} album={element.album} time={element.time} key={index}/>)
+    const playlistElements = props.songs.map((element, index) => 
+        <PlaylistItem 
+            track={element.track} 
+            artist={element.artist} 
+            album={element.album} 
+            time={element.time} 
+            key={index}
+        />
+    )
 
     
-    const skeletonElements = props.skeleton.map((element, index) => <SongsSkeletonLoader key={index}/>)
+    // const skeletonElements = props.skeleton.map((element, index) => 
+    //     <SongsSkeletonLoader 
+    //         key={index}
+    //     />
+    // )
 
 
     return (
@@ -25,8 +37,7 @@ const CenterblockContent = (props) => {
                 </div>
             </div>
             <div className={styles.playlist}>
-                {props.loading && skeletonElements}
-                {!props.loading && playlistElements}
+                {playlistElements}
             </div>
         </div>
     )

@@ -12,7 +12,7 @@ const SideBar = (props) => {
         <PlayListItem key={index} playlistName={playlist.playlistName} playlistHREF={playlist.playlistHREF} playlistImage={playlist.img} />
     );
 
-    const skeletonItems = props.playlists.map((item, index) => <PlayListSkeleton key={index}/>)
+    // const skeletonItems = props.playlists.map((item, index) => <PlayListSkeleton key={index}/>)
 
     
     return (
@@ -25,8 +25,8 @@ const SideBar = (props) => {
             </div>
             <div className={styles.block}>
                 <div className={styles.list}>
-                    {props.loading && skeletonItems}
-                    {!props.loading && PlaylistItems}
+    
+                    {PlaylistItems}
 
                 </div>
             </div>

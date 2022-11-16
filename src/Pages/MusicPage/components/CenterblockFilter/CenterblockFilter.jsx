@@ -43,7 +43,11 @@ const CenterblockFilter = (props) => {
     }
 
     const listItems = props.filterValues.map((filterValue, index) =>
-        <FilterButton key={index} filterValue = {filterValue} buttonStatus={buttonClicked} />
+        <FilterButton 
+            key={index} 
+            filterValue = {filterValue} 
+            buttonStatus={buttonClicked} 
+        />
     );
 
     return (
