@@ -10,6 +10,10 @@ const Registration = (props) => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [path, setPath] = useState('')
 
+    useEffect(() => {
+        setPath('/'); 
+    });
+
     const inputLogin = (event) => {
         setLogin(event.target.value)
     }
@@ -26,23 +30,21 @@ const Registration = (props) => {
     const registerUser = () => {
 
         if (password === confirmPassword && password !== '' && confirmPassword !== '') {
-            setPath('/main');
             props.userReg(login, password);
-            alert('Вы успешно зарегистрированы');
-            console.log(path);
+            console.log('Вы успешно зарегистрированы, чтобы войти, введите логин и пароль');
             
         } 
 
         if (login === '') {
-            alert('вы не заполнили поле "Логин"')
+            console.log('вы не заполнили поле "Логин"')
         }
 
         if (password === '') {
-            alert('вы не заполнили поле "Пароль"')
+            console.log('вы не заполнили поле "Пароль"')
         }
 
         if (password !== confirmPassword ) {
-            alert('Пароли не совпадают')
+            console.log('Пароли не совпадают');
         } 
     }
 

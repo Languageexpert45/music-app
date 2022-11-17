@@ -21,13 +21,16 @@ function App (props) {
   return (
     <div className="wrapper">
       <AppRoutes
+        accessUser={props.state.userReg}
         userReg={props.userReg}
+        userLogin={props.userLogin}
         artist={props.state.filter.artistsData} 
         year={props.state.filter.yearsData} 
         genre={props.state.filter.genreData} 
         filterValues={props.state.filter.filterValues} 
         // loading={loading} 
         songs={state.playlist.allTracks} 
+        favorite={state.playlist.userTracks}
         dayPlaylist={state.playlist.dayPlaylistTracks}
         top100DanceHits={state.playlist.top100HitsTracks}
         indieHits={state.playlist.indieHitsTracks}

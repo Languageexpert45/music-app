@@ -63,9 +63,10 @@ export const state = {
     userLogIn: []
 }
 
+
 export const userReg = (login, password) => {
     const newUser = {
-        userToken: 'token01',
+        userToken: '',
         login: login,
         password: password,
     };
@@ -75,6 +76,11 @@ export const userReg = (login, password) => {
     console.log(state.userReg);
 }
 
+
 export const userLogin = (login, password) => {
+    if (state.userReg[0].login === login && state.userReg[0].password === password) {
+        state.userReg[0].token = 'token01';
+    } 
+    return state.userReg[0].token
     
 }

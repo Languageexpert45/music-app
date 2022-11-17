@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import PlaylistItem from '../PlaylistItem/PlaylistItem';
 import watch from '../../../../img/icon/watch.svg';
 import styles from './CenterblockContent.module.css';
@@ -7,6 +8,8 @@ import SongsSkeletonLoader from '../../../../SkeletonComponents/SongsSkeletonLoa
 
 
 const CenterblockContent = (props) => {
+
+    const params = useParams()
 
     const playlistElements = props.songs.map((element, index) => 
         <PlaylistItem 

@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from './LogIn.module.css';
 import {LogoBlack} from '../MusicPage/components/Logo/Logo';
 import {Link} from 'react-router-dom';
 
-const LogIn = () => {
+const LogIn = (props) => {
 
-    const userLogin = (event) => {
-        event.preventDefault()
-        console.log('click');
-    }
+    // const [login, setLogin] = useState('')
+    // const [password, setPassword] = useState('')
+    // const [token, setToken] = useState('')
 
-    const userRegister = (event) => {
-        console.log('click2');
-    }
+
+    // const inputLogin = (event) => {
+    //     setLogin(event.target.value)
+    // }
+
+    // const inputPassword = (event) => {
+    //     setPassword(event.target.value)
+    // }
+
+    // const userLogin = () => {
+    //     if (login === '' || password === '') {
+    //         console.log('введите логин и пароль');
+    //         return
+    //     }
+    //     setToken(props.userLogin(login, password))
+    // }
 
     return (
         <div className={styles.reg__container}>
@@ -21,12 +33,18 @@ const LogIn = () => {
                     <LogoBlack/>
                 </div>
                 <form className={styles.reg__form}>
-                    <input className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
-                    <input className={styles.reg__input} type="text" name="password" id="password" placeholder="Пароль" />
-                    <button onClick={userLogin} className={styles.login__button}>Войти</button>
+                    <input /* onChange={inputLogin} */ className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
+                    <input /* onChange={inputPassword} */ className={styles.reg__input} type="text" name="password" id="password" placeholder="Пароль" />
+                    <Link to='/main/token'>
+                        <button 
+                            /* onClick={userLogin}  */
+                            className={styles.login__button}>
+                                Войти
+                        </button>
+                    </Link>
+                    
                     <Link to='/reg'>
                         <button 
-                            onClick={userRegister} 
                             className={styles.reg__button}>
                             Зарегистрироваться
                         </button>

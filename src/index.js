@@ -3,16 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './App.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom'
-import {state} from './state'
-import { userReg } from './state';
+import { userReg, userLogin, state } from './state';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <BrowserRouter>
-        <App state={state} userReg={userReg} />
-    </BrowserRouter>    
+<BrowserRouter>
+    <App state={state} userReg={userReg} userLogin={userLogin} />
+</BrowserRouter>    
 );
+
+
 
 
 
