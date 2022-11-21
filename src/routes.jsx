@@ -10,16 +10,16 @@ export const AppRoutes = (props) => {
 
     return (
         <Routes>
-            {/* <Route element={<ProtectedRoute isAllowed={props.accessUser}/>}> */}
+            <Route element={<ProtectedRoute isAllowed={props.accessUser}/>}>
                 <Route path='/main/' element={<Main {...props} header='Все треки' />}/>
                 <Route path='/dayPl/' element={<Main {...props} songs={props.dayPlaylist} header='Плейлист Дня'/>}/>
                 <Route path='/top100Pl/' element={<Main {...props} songs={props.top100DanceHits} header='Топ 100' />}/>
                 <Route path='/indiePl' element={<Main {...props} songs={props.indieHits} header='Инди' />}/>
                 <Route path='/userPl' element={<Main {...props} songs={props.favorite}  header='Ваши любимые композиции' />}/>
-            {/* </Route> */}
+            </Route>
             
             <Route path='/reg' element={<Registration userReg={props.userReg} />}/>
-            <Route path='/' element={<LogIn userLogin={props.userLogin}/>}/>
+            <Route path='/' element={<LogIn userLogin={props.userLogin} accessUser = {props.accessUser}/>}/>
             <Route path='*' element={<Error_404/>}/>
         </Routes>
     );

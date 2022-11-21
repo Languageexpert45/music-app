@@ -3,7 +3,6 @@ import playlist02 from './img/playlist02.png';
 import playlist03 from './img/playlist03.png';
 
 let renderEntireTree = () => {
-    console.log('state changed');
 }
 
 export const state = {

@@ -23,6 +23,7 @@ const LogIn = (props) => {
             return
         }
         props.userLogin(login, password)
+        console.log(props.accessUser);
     }
 
     return (
@@ -34,7 +35,7 @@ const LogIn = (props) => {
                 <form className={styles.reg__form}>
                     <input onChange={inputLogin} className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
                     <input onChange={inputPassword} className={styles.reg__input} type="text" name="password" id="password" placeholder="Пароль" />
-                    <Link to='/main'>
+                    <Link to={'/main/'}>
                         <button 
                             onClick={userLogin}
                             className={styles.login__button}>
