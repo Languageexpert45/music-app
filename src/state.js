@@ -2,6 +2,10 @@ import playlist01 from './img/playlist01.png';
 import playlist02 from './img/playlist02.png';
 import playlist03 from './img/playlist03.png';
 
+let renderEntireTree = () => {
+    console.log('state changed');
+}
+
 export const state = {
     playlist: {
         allTracks: [
@@ -59,28 +63,35 @@ export const state = {
         songName: 'Ты та...',
         artistName: 'Баста',
     },
-    userReg: [],
-    userLogIn: []
+    userReg: {
+        login: '',
+        password: '',
+    },
+    userToken: '',
 }
 
 
 export const userReg = (login, password) => {
-    const newUser = {
-        userToken: '',
-        login: login,
-        password: password,
-    };
+    state.userReg.login = login,
+    state.userReg.password = password,
+    renderEntireTree(state)
 
-    state.userReg.push(newUser)
-
+    
     console.log(state.userReg);
 }
 
 
 export const userLogin = (login, password) => {
-    if (state.userReg[0].login === login && state.userReg[0].password === password) {
-        state.userReg[0].token = 'token01';
+    if (state.userReg.login !== login || state.userReg.password !== password) {
+        console.log('пароль или логин не совпадают');
+        renderEntireTree(state);
+    }
+    if (state.userReg.login === login && state.userReg.password === password) {
+        state.userToken = 'token01';
+        renderEntireTree(state);
     } 
-    return state.userReg[0].token
-    
+}
+
+export const subscribe = (observer) => {
+    renderEntireTree = observer;
 }

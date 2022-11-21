@@ -1,18 +1,32 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './App.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom'
-import { userReg, userLogin, state } from './state';
+import {state, subscribe} from './state'
+import { userReg, userLogin } from './state';
 
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-<BrowserRouter>
-    <App state={state} userReg={userReg} userLogin={userLogin} />
-</BrowserRouter>    
-);
+export const renderEntireTree = (state) => {
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(
+    <BrowserRouter>
+        <App state={state} userReg={userReg} userLogin={userLogin} />
+    </BrowserRouter>    
+    );
+}
+
+renderEntireTree(state)
+
+subscribe(renderEntireTree);
+
+
+
+
+
+
+
+
 
 
 

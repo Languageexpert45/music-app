@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './SideBar.module.css';
 import PlayListItem from './PlayList';
 import PlayListSkeleton from '../../../../SkeletonComponents/PlayListSkeletonLoader';
+import { useParams } from "react-router-dom";
 
 
 
@@ -25,8 +26,7 @@ const SideBar = (props) => {
             </div>
             <div className={styles.block}>
                 <div className={styles.list}>
-    
-                    {PlaylistItems}
+                   {PlaylistItems}
 
                 </div>
             </div>

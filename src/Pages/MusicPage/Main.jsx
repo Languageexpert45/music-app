@@ -17,9 +17,9 @@ const Main = (props) => {
               <CenterblockHeader {...props}/>
               <CenterblockFilter {...props} />
               <CenterblockContent 
-                // loading={props.loading} 
-                {...props} 
-                // skeleton={props.songsSkeleton}  
+              // loading={props.loading} 
+              {...props} 
+              // skeleton={props.songsSkeleton}  
               />
             </div>
             <SideBar {...props} />

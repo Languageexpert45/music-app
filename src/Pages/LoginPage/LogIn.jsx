@@ -5,26 +5,25 @@ import {Link} from 'react-router-dom';
 
 const LogIn = (props) => {
 
-    // const [login, setLogin] = useState('')
-    // const [password, setPassword] = useState('')
-    // const [token, setToken] = useState('')
+    const [login, setLogin] = useState('')
+    const [password, setPassword] = useState('')
 
 
-    // const inputLogin = (event) => {
-    //     setLogin(event.target.value)
-    // }
+    const inputLogin = (event) => {
+        setLogin(event.target.value)
+    }
 
-    // const inputPassword = (event) => {
-    //     setPassword(event.target.value)
-    // }
+    const inputPassword = (event) => {
+        setPassword(event.target.value)
+    }
 
-    // const userLogin = () => {
-    //     if (login === '' || password === '') {
-    //         console.log('введите логин и пароль');
-    //         return
-    //     }
-    //     setToken(props.userLogin(login, password))
-    // }
+    const userLogin = () => {
+        if (login === '' || password === '') {
+            console.log('введите логин и пароль или зарегистрируйтесь');
+            return
+        }
+        props.userLogin(login, password)
+    }
 
     return (
         <div className={styles.reg__container}>
@@ -33,11 +32,11 @@ const LogIn = (props) => {
                     <LogoBlack/>
                 </div>
                 <form className={styles.reg__form}>
-                    <input /* onChange={inputLogin} */ className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
-                    <input /* onChange={inputPassword} */ className={styles.reg__input} type="text" name="password" id="password" placeholder="Пароль" />
-                    <Link to='/main/token'>
+                    <input onChange={inputLogin} className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
+                    <input onChange={inputPassword} className={styles.reg__input} type="text" name="password" id="password" placeholder="Пароль" />
+                    <Link to='/main'>
                         <button 
-                            /* onClick={userLogin}  */
+                            onClick={userLogin}
                             className={styles.login__button}>
                                 Войти
                         </button>

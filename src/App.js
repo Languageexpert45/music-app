@@ -4,7 +4,9 @@ import {state} from './state'
 
 
 
-function App (props) {
+const App = (props) => {
+
+
 
   // const [songs, setSongs] = useState([]);
   // const [loading, setLoading] = useState(false);
@@ -21,19 +23,19 @@ function App (props) {
   return (
     <div className="wrapper">
       <AppRoutes
-        accessUser={props.state.userReg}
-        userReg={props.userReg}
+        accessUser={state.userToken}
         userLogin={props.userLogin}
+        userReg={props.userReg}
         artist={props.state.filter.artistsData} 
         year={props.state.filter.yearsData} 
         genre={props.state.filter.genreData} 
         filterValues={props.state.filter.filterValues} 
         // loading={loading} 
         songs={state.playlist.allTracks} 
-        favorite={state.playlist.userTracks}
         dayPlaylist={state.playlist.dayPlaylistTracks}
         top100DanceHits={state.playlist.top100HitsTracks}
         indieHits={state.playlist.indieHitsTracks}
+        favorite={state.playlist.userTracks}
         // songsSkeleton={state.playlist.tracks} 
         playlists={props.state.playlist.playlistsLinks} 
         // playlistsSkeleton={props.state.playlist.UserPlaylists}

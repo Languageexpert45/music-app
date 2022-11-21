@@ -9,6 +9,7 @@ const Registration = (props) => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [path, setPath] = useState('')
+    const [updateReg, setUpdateReg] = useState('')
 
     useEffect(() => {
         setPath('/'); 
@@ -25,9 +26,11 @@ const Registration = (props) => {
     const inputConfirmPassword = (event) => {
         setConfirmPassword(event.target.value)
     }
+    
 
 
     const registerUser = () => {
+        
 
         if (password === confirmPassword && password !== '' && confirmPassword !== '') {
             props.userReg(login, password);
