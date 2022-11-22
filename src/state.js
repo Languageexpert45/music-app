@@ -66,16 +66,12 @@ export const state = {
         login: '',
         password: '',
     },
-    userToken: '',
 }
-
 
 export const userReg = (login, password) => {
     state.userReg.login = login,
     state.userReg.password = password,
     renderEntireTree(state)
-
-    
     console.log(state.userReg);
 }
 
@@ -86,7 +82,7 @@ export const userLogin = (login, password) => {
         renderEntireTree(state);
     }
     if (state.userReg.login === login && state.userReg.password === password) {
-        state.userToken = 'token01';
+        localStorage.setItem('token01', 'user')
         renderEntireTree(state);
     } 
 }

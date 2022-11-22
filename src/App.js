@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { AppRoutes } from "./routes";
-import {state} from './state'
+import { userReg, userLogin} from './state';
 
 
 
 const App = (props) => {
-
-
-
   // const [songs, setSongs] = useState([]);
   // const [loading, setLoading] = useState(false);
 
@@ -23,19 +20,18 @@ const App = (props) => {
   return (
     <div className="wrapper">
       <AppRoutes
-        accessUser={state.userToken}
-        userLogin={props.userLogin}
-        userReg={props.userReg}
+        userLogin={userLogin}
+        userReg={userReg}
         artist={props.state.filter.artistsData} 
         year={props.state.filter.yearsData} 
         genre={props.state.filter.genreData} 
         filterValues={props.state.filter.filterValues} 
         // loading={loading} 
-        songs={state.playlist.allTracks} 
-        dayPlaylist={state.playlist.dayPlaylistTracks}
-        top100DanceHits={state.playlist.top100HitsTracks}
-        indieHits={state.playlist.indieHitsTracks}
-        favorite={state.playlist.userTracks}
+        tracks={props.state.playlist.allTracks} 
+        dayPlaylist={props.state.playlist.dayPlaylistTracks}
+        top100DanceHits={props.state.playlist.top100HitsTracks}
+        indieHits={props.state.playlist.indieHitsTracks}
+        favorite={props.state.playlist.userTracks}
         // songsSkeleton={state.playlist.tracks} 
         playlists={props.state.playlist.playlistsLinks} 
         // playlistsSkeleton={props.state.playlist.UserPlaylists}

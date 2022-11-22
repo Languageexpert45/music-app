@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from './Registration.module.css';
 import {LogoBlack} from '../MusicPage/components/Logo/Logo'
 import {Link} from 'react-router-dom';
@@ -8,23 +8,20 @@ const Registration = (props) => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [path, setPath] = useState('')
-    const [updateReg, setUpdateReg] = useState('')
+    const loginButton = useRef(null)
+    const passwordButton = useRef(null)
+    const confirmPasswordButton = useRef(null)
 
-    useEffect(() => {
-        setPath('/'); 
-    });
-
-    const inputLogin = (event) => {
-        setLogin(event.target.value)
+    const inputLogin = () => {
+        setLogin(loginButton.current.value)
     }
     
-    const inputPassword = (event) => {
-        setPassword(event.target.value)
+    const inputPassword = () => {
+        setPassword(passwordButton.current.value)
     }
     
-    const inputConfirmPassword = (event) => {
-        setConfirmPassword(event.target.value)
+    const inputConfirmPassword = () => {
+        setConfirmPassword(confirmPasswordButton.current.value)
     }
     
 
@@ -34,8 +31,7 @@ const Registration = (props) => {
 
         if (password === confirmPassword && password !== '' && confirmPassword !== '') {
             props.userReg(login, password);
-            console.log('Вы успешно зарегистрированы, чтобы войти, введите логин и пароль');
-            
+            console.log('Вы успешно зарегистрированы, чтобы войти, введите логин и пароль');  
         } 
 
         if (login === '') {
@@ -59,10 +55,10 @@ const Registration = (props) => {
                     <LogoBlack/>
                 </div>
                 <form className={styles.reg__form}>
-                    <input onChange={inputLogin} className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
-                    <input  onChange={inputPassword} className={styles.reg__input} type="text" name="password" id="password" placeholder="Пароль" />
-                    <input  onChange={inputConfirmPassword} className={styles.reg__input} type="text" name="confirm_password" id="confirm_password" placeholder="Повторите пароль" />
-                    <Link to={path}>
+                    <input ref={loginButton} onChange={inputLogin} className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
+                    <input ref={passwordButton} onChange={inputPassword} className={styles.reg__input} type="password" name="password" id="password" placeholder="Пароль" />
+                    <input ref={confirmPasswordButton} onChange={inputConfirmPassword} className={styles.reg__input} type="password" name="confirm_password" id="confirm_password" placeholder="Повторите пароль" />
+                    <Link to='/'>
                         <button 
                             onClick={registerUser} 
                             className={styles.reg__button}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from './LogIn.module.css';
 import {LogoBlack} from '../MusicPage/components/Logo/Logo';
 import {Link} from 'react-router-dom';
@@ -7,6 +7,7 @@ const LogIn = (props) => {
 
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
+
 
 
     const inputLogin = (event) => {
@@ -18,12 +19,13 @@ const LogIn = (props) => {
     }
 
     const userLogin = () => {
+
         if (login === '' || password === '') {
             console.log('введите логин и пароль или зарегистрируйтесь');
             return
         }
         props.userLogin(login, password)
-        console.log(props.accessUser);
+
     }
 
     return (
@@ -34,8 +36,8 @@ const LogIn = (props) => {
                 </div>
                 <form className={styles.reg__form}>
                     <input onChange={inputLogin} className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
-                    <input onChange={inputPassword} className={styles.reg__input} type="text" name="password" id="password" placeholder="Пароль" />
-                    <Link to={'/main/'}>
+                    <input onChange={inputPassword} className={styles.reg__input} type="password" name="password" id="password" placeholder="Пароль" />
+                    <Link to='/main'>
                         <button 
                             onClick={userLogin}
                             className={styles.login__button}>

@@ -3,15 +3,14 @@ import './App.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom'
 import {state, subscribe} from './state'
-import { userReg, userLogin } from './state';
 
 
 
-export const renderEntireTree = (state) => {
+const renderEntireTree = (state) => {
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(
     <BrowserRouter>
-        <App state={state} userReg={userReg} userLogin={userLogin} />
+        <App state={state} />
     </BrowserRouter>    
     );
 }

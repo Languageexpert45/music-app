@@ -8,7 +8,7 @@ import SongsSkeletonLoader from '../../../../SkeletonComponents/SongsSkeletonLoa
 
 const CenterblockContent = (props) => {
 
-    const playlistElements = props.songs.map((element, index) => 
+    const playlistElements = props.tracks.map((element, index) => 
         <PlaylistItem 
             track={element.track} 
             artist={element.artist} 
