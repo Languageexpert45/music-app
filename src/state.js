@@ -45,9 +45,39 @@ export const state = {
         ],
         
         playlistsLinks: [
-            {playlistName: 'Day playlist', playlistHREF: '/dayPl', img: playlist01},
-            {playlistName: 'Top 100 dance hits', playlistHREF: '/top100Pl', img: playlist02},
-            {playlistName: 'Indie hits', playlistHREF: '/indiePl', img: playlist03},
+            {
+                id: 1,
+                playlistName: 'Плейлист дня',
+                tracks: [
+                            {track: 'kkkkkkk', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
+                            {track: 'llllllll', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'},
+                            {track: 'mmmmmmmm', artist: 'Стоункат, Psychopath', album: 'Non Stop', time: '4:12'},
+                            {track: 'nnnnnnnn', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
+                            {track: 'oooooooo', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'}
+                        ],
+                img: playlist01},
+            {
+                id: 2,
+                playlistName: '100 танцевальных хитов',
+                tracks: [
+                            {track: 'fffffff', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
+                            {track: 'ggggggg', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'},
+                            {track: 'hhhhhhhh', artist: 'Стоункат, Psychopath', album: 'Non Stop', time: '4:12'},
+                            {track: 'iiiiiiii', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
+                            {track: 'jjjjjjjj', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'}
+                        ],
+                img: playlist02},
+                {
+                id: 3,
+                playlistName: 'Инди-заряд',
+                tracks: [
+                            {track: 'aaaaa', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
+                            {track: 'bbbbb', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'},
+                            {track: 'ccccc', artist: 'Стоункат, Psychopath', album: 'Non Stop', time: '4:12'},
+                            {track: 'ddddd', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
+                            {track: 'eeeee', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'}
+                        ],
+                img: playlist03},
         ]
     },
     filter: {
@@ -66,7 +96,9 @@ export const state = {
         login: '',
         password: '',
     },
+    path: ''
 }
+
 
 export const userReg = (login, password) => {
     state.userReg.login = login,

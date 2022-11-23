@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useParams } from "react";
 import { AppRoutes } from "./routes";
 import { userReg, userLogin} from './state';
 
@@ -27,10 +27,10 @@ const App = (props) => {
         genre={props.state.filter.genreData} 
         filterValues={props.state.filter.filterValues} 
         // loading={loading} 
-        tracks={props.state.playlist.allTracks} 
-        dayPlaylist={props.state.playlist.dayPlaylistTracks}
-        top100DanceHits={props.state.playlist.top100HitsTracks}
-        indieHits={props.state.playlist.indieHitsTracks}
+        tracks={props.state.playlist} 
+        // dayPlaylist={props.state.playlist.dayPlaylistTracks}
+        // top100DanceHits={props.state.playlist.top100HitsTracks}
+        // indieHits={props.state.playlist.indieHitsTracks}
         favorite={props.state.playlist.userTracks}
         // songsSkeleton={state.playlist.tracks} 
         playlists={props.state.playlist.playlistsLinks} 

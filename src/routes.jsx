@@ -1,4 +1,5 @@
 import {Routes, Route} from 'react-router-dom';
+import { useState } from "react";
 import Registration from './Pages/RegistrationPage/Registration'
 import Main from './Pages/MusicPage/Main'
 import Error_404 from './Pages/ErrorPage/Error_404'
@@ -7,15 +8,22 @@ import ProtectedRoute from './protected-route/protectedRoute';
 
 export const AppRoutes = (props) => {
 
+    let [path, setPath] = useState(0)
+
+    const getName = (name) => {
+        setPath(name)
+    }
+
+    const playlists = props.playlists
+    const playlist = playlists.find((playlist) => playlist.id === 1);
+    
+
 
     return (
         <Routes>
             <Route element={<ProtectedRoute isAllowed={localStorage.getItem('token01')}/>}>
-                <Route path='/main/' element={<Main {...props} header='Все треки' />}/>
-                <Route path='/dayPl/' element={<Main {...props} tracks={props.dayPlaylist} header='Плейлист Дня'/>}/>
-                <Route path='/top100Pl/' element={<Main {...props} tracks={props.top100DanceHits} header='Топ 100' />}/>
-                <Route path='/indiePl' element={<Main {...props} tracks={props.indieHits} header='Инди' />}/>
-                <Route path='/userPl' element={<Main {...props} tracks={props.favorite}  header='Ваши любимые композиции' />}/>
+                <Route path='/main/' element={<Main {...props} tracks={props.tracks.allTracks} header='Все треки' />}/>
+                <Route path='/playlist/:name' element={<Main {...props} returnName = {getName} tracks={playlist.tracks} header={playlist.playlistName} />}/>
             </Route>
             
             <Route path='/reg' element={<Registration userReg={props.userReg} />}/>

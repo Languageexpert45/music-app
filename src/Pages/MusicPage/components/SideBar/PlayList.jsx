@@ -6,11 +6,11 @@ import { useParams } from "react-router-dom";
 
 
 const PlayListItem = (props) => {
-    const {id} = useParams()
+
+    
     return (
-        
         <div className={styles.item}>
-            <Link className={styles.link} to={props.playlistHREF}>
+            <Link className={styles.link} to={`/playlist/${props.playlistId}`}>
                 <img className={styles.img} src={props.playlistImage} alt={props.playlistName}/>
             </Link>
         </div>

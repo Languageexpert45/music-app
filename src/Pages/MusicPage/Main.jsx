@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useParams} from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Search from './components/Search/Search';
 import CenterblockHeader from './components/CenterblockHeader/CenterblockHeader';
@@ -8,6 +8,8 @@ import SideBar from './components/SideBar/SideBar';
 import Bar from './components/Bar/Bar';
 
 const Main = (props) => {
+
+
     return (
         <div className="container">
           <main className="main">

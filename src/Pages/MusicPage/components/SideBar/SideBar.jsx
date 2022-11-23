@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState} from 'react';
 import styles from './SideBar.module.css';
 import PlayListItem from './PlayList';
 import PlayListSkeleton from '../../../../SkeletonComponents/PlayListSkeletonLoader';
@@ -8,9 +8,13 @@ import { useParams } from "react-router-dom";
 
 const SideBar = (props) => {
 
+    const {name} = useParams()
 
-    const PlaylistItems = props.playlists.map((playlist, index) =>
-        <PlayListItem key={index} playlistName={playlist.playlistName} playlistHREF={playlist.playlistHREF} playlistImage={playlist.img} />
+    props.returnName(name);
+
+
+    const PlaylistItems = props.playlists.map((playlist) =>
+        <PlayListItem key={playlist.id} playlistId={playlist.id} playlistImage={playlist.img} />
     );
 
     // const skeletonItems = props.playlists.map((item, index) => <PlayListSkeleton key={index}/>)

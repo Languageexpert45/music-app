@@ -1,12 +1,11 @@
-import React from "react";
+import {React, useParams} from "react";
 import Main from '../MusicPage/Main'
 
 const PlayListPage = (props) => {
 
 
-
     return (
-        <Main {...props} songs={props.top100DanceHits} header='Топ 100'/>
+        <Main {...props} songs={songs[0].artist} header='Топ 100'/>
     )
     
 }
