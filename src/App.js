@@ -1,78 +1,47 @@
-import React, { useState, useEffect } from "react";
-import Navbar from './components/MusicPage/Navbar/Navbar';
-import Search from './components/MusicPage/Search/Search';
-import CenterblockHeader from './components/MusicPage/CenterblockHeader/CenterblockHeader';
-import CenterblockFilter from './components/MusicPage/CenterblockFilter/CenterblockFilter';
-import CenterblockContent from './components/MusicPage/CenterblockContent/CenterblockContent';
-import SideBar from './components/MusicPage/SideBar/SideBar';
-import Bar from './components/MusicPage/Bar/Bar';
-import playlist01 from './img/playlist01.png';
-import playlist02 from './img/playlist02.png';
-import playlist03 from './img/playlist03.png';
+import React, { useState, useEffect, useParams } from "react";
+import { AppRoutes } from "./routes";
+import { userReg, userLogin} from './state';
 
 
-const playlistData = [
-  {track: 'Elektro', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
-  {track: 'I’m Fire', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'},
-  {track: 'Non Stop', artist: 'Стоункат, Psychopath', album: 'Non Stop', time: '4:12'},
-  {track: 'Elektro', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
-  {track: 'I’m Fire', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'}
-];
 
-const playlists = [
-  {playlistName: 'Day playlist', playlistHREF: 'https://', img: playlist01},
-  {playlistName: 'Top 100 dance hits', playlistHREF: 'https://', img: playlist02},
-  {playlistName: 'Indie hits', playlistHREF: 'https://', img: playlist03},
-]
+const App = (props) => {
+  // const [songs, setSongs] = useState([]);
+  // const [loading, setLoading] = useState(false);
 
-const artistsData =  ['Linkin Park', 'Placebo', 'Evanessence', 'Portishead'];
-
-const yearsData =  ['2002', '2001', '2010', '2011'];
-
-const genreData =  ['pop', 'funk', 'electro', 'rock'];
-
-const filterValues = ['исполнителю', 'году выпуска', 'жанру'];
-
-const currentSong = {
-  songInfoURL: 'https//',
-  artistInfoURL: 'https//',
-  songName: 'Ты та...',
-  artistName: 'Баста',
-}
-
-
-function App (props) {
-
-  const [songs, setSongs] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setLoading(true);
-        const timer = setTimeout(() => {
-        setSongs(playlistData);
-        setLoading(false);
-        }, 1000);
-        return () => clearTimeout(timer);
-    }, []);
+  //   useEffect(() => {
+  //       setLoading(true);
+  //       const timer = setTimeout(() => {
+  //       setSongs(state.playlist.tracks);
+  //       setLoading(false);
+  //       }, 1000);
+  //       return () => clearTimeout(timer);
+  //   }, []);
   
   return (
     <div className="wrapper">
-        <div className="container">
-          <main className="main">
-            <Navbar/>
-            <div className="main__centerblock centerblock"  >
-              <Search />
-              <CenterblockHeader />
-              <CenterblockFilter artist = {artistsData} year = {yearsData} genre = {genreData} filterValues={filterValues} />
-              <CenterblockContent loading={loading} songs={songs} skeleton={playlistData}  />
-            </div>
-            <SideBar loading={loading} playlists={playlists} skeleton={playlists} />
-          </main>
-          <Bar loading={loading} songInfoURL={currentSong.songInfoURL} artistInfoURL={currentSong.artistInfoURL} songName={currentSong.songName} artistName={currentSong.artistName}/>
-        </div>
+      <AppRoutes
+        userLogin={userLogin}
+        userReg={userReg}
+        artist={props.state.filter.artistsData} 
+        year={props.state.filter.yearsData} 
+        genre={props.state.filter.genreData} 
+        filterValues={props.state.filter.filterValues} 
+        // loading={loading} 
+        tracks={props.state.playlist} 
+        // dayPlaylist={props.state.playlist.dayPlaylistTracks}
+        // top100DanceHits={props.state.playlist.top100HitsTracks}
+        // indieHits={props.state.playlist.indieHitsTracks}
+        favorite={props.state.playlist.userTracks}
+        // songsSkeleton={state.playlist.tracks} 
+        playlists={props.state.playlist.playlistsLinks} 
+        // playlistsSkeleton={props.state.playlist.UserPlaylists}
+        songInfoURL={props.state.currentSong.songInfoURL}
+        artistInfoURL={props.state.currentSong.artistInfoURL}
+        songName={props.state.currentSong.songName}
+        artistName={props.state.currentSong.artistName} 
+      />
     </div>
   )
 }
-
 
 export default App;

@@ -1,0 +1,25 @@
+.nav__logo {
+  width: auto;
+  height: auto;
+  padding: 13px 0 13px 0;
+  background-color: transparent;
+  margin-bottom: 20px;
+}
+
+.logo__image_wh {
+  width: 113.33px;
+  height: 17px;
+  color: #181818;
+}
+
+.nav__logo_bl {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+}
+
+.logo__image_bl {
+  width: 140px;
+  height: 21px;
+  color: #181818;
+}
