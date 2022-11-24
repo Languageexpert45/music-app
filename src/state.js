@@ -77,11 +77,6 @@ export const state = {
     },
 }
 
-export const getName = (name) => {
-        return name
-    }
-
-
 
 export const onUserReg = (login, password) => {
     state.userRegData.login = login,

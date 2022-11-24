@@ -8,16 +8,21 @@ import ProtectedRoute from './protected-route/protectedRoute';
 
 export const AppRoutes = (props) => {
 
+    const playlistPath = (name) => {
+        console.log(name);
+    }
+
+
     const playlists = props.playlists
-    const playlist = playlists.find((playlist) => playlist.id === 3);
+    const playlist = playlists.find((playlist) => playlist.id === 1);
     
 
 
     return (
         <Routes>
             <Route element={<ProtectedRoute isAllowed={localStorage.getItem('token01')}/>}>
-                <Route path='/main/' element={<Main {...props} tracks={props.tracks.allTracks} header='Все треки' />}/>
-                <Route path='/playlist/:name' element={<Main {...props}  tracks={playlist.tracks} header={playlist.playlistName} />}/>
+                <Route path='/main/' element={<Main {...props} playlistPath={playlistPath} tracks={props.tracks.allTracks} header='Все треки' />}/>
+                <Route path='/playlist/:name' element={<Main {...props} playlistPath={playlistPath}  tracks={playlist.tracks} header={playlist.playlistName} />}/>
             </Route>
             
             <Route path='/reg' element={<Registration {...props} />}/>

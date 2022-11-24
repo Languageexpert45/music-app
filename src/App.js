@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useParams } from "react";
 import { AppRoutes } from "./Routes";
-import { onUserReg, onUserLogin, getName} from './state';
+import { onUserReg, onUserLogin} from './state';
 
 
 
@@ -22,7 +22,6 @@ const App = (props) => {
       <AppRoutes
         onUserLogin={onUserLogin}
         onUserReg={onUserReg}
-        getName={getName}
         artist={props.state.filter.artistsData} 
         year={props.state.filter.yearsData} 
         genre={props.state.filter.genreData} 

@@ -8,11 +8,9 @@ import { useParams } from "react-router-dom";
 
 const SideBar = (props) => {
 
-    console.log(props);
-
     const {name} = useParams()
 
-    props.getName(name);
+    props.playlistPath(name)
 
 
     const PlaylistItems = props.playlists.map((playlist) =>

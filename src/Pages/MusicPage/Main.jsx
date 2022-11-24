@@ -9,8 +9,6 @@ import Bar from './components/Bar/Bar';
 
 const Main = (props) => {
 
-  console.log(props);
-
 
     return (
         <div className="container">
