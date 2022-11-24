@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useParams } from "react";
-import { AppRoutes } from "./routes";
-import { userReg, userLogin} from './state';
+import { AppRoutes } from "./Routes";
+import { onUserReg, onUserLogin, getName} from './state';
 
 
 
@@ -20,8 +20,9 @@ const App = (props) => {
   return (
     <div className="wrapper">
       <AppRoutes
-        userLogin={userLogin}
-        userReg={userReg}
+        onUserLogin={onUserLogin}
+        onUserReg={onUserReg}
+        getName={getName}
         artist={props.state.filter.artistsData} 
         year={props.state.filter.yearsData} 
         genre={props.state.filter.genreData} 

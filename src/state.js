@@ -14,27 +14,6 @@ export const state = {
             {track: 'Elektro', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
             {track: 'I’m Fire', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'}
         ],
-        dayPlaylistTracks: [
-            {track: 'aaaaa', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
-            {track: 'bbbbb', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'},
-            {track: 'ccccc', artist: 'Стоункат, Psychopath', album: 'Non Stop', time: '4:12'},
-            {track: 'ddddd', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
-            {track: 'eeeee', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'}
-        ],
-        indieHitsTracks: [
-            {track: 'fffffff', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
-            {track: 'ggggggg', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'},
-            {track: 'hhhhhhhh', artist: 'Стоункат, Psychopath', album: 'Non Stop', time: '4:12'},
-            {track: 'iiiiiiii', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
-            {track: 'jjjjjjjj', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'}
-        ],
-        top100HitsTracks: [
-            {track: 'kkkkkkk', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
-            {track: 'llllllll', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'},
-            {track: 'mmmmmmmm', artist: 'Стоункат, Psychopath', album: 'Non Stop', time: '4:12'},
-            {track: 'nnnnnnnn', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
-            {track: 'oooooooo', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'}
-        ],
 
         userTracks: [
             {track: 'ppppppppp', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
@@ -92,28 +71,32 @@ export const state = {
         songName: 'Ты та...',
         artistName: 'Баста',
     },
-    userReg: {
+    userRegData: {
         login: '',
         password: '',
     },
-    path: ''
 }
 
+export const getName = (name) => {
+        return name
+    }
 
-export const userReg = (login, password) => {
-    state.userReg.login = login,
-    state.userReg.password = password,
+
+
+export const onUserReg = (login, password) => {
+    state.userRegData.login = login,
+    state.userRegData.password = password,
     renderEntireTree(state)
-    console.log(state.userReg);
+    console.log(state);
 }
 
 
-export const userLogin = (login, password) => {
-    if (state.userReg.login !== login || state.userReg.password !== password) {
+export const onUserLogin = (login, password) => {
+    if (state.userRegData.login !== login || state.userRegData.password !== password) {
         console.log('пароль или логин не совпадают');
         renderEntireTree(state);
     }
-    if (state.userReg.login === login && state.userReg.password === password) {
+    if (state.userRegData.login === login && state.userRegData.password === password) {
         localStorage.setItem('token01', 'user')
         renderEntireTree(state);
     } 

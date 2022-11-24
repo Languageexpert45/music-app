@@ -24,7 +24,7 @@ const LogIn = (props) => {
             console.log('введите логин и пароль или зарегистрируйтесь');
             return
         }
-        props.userLogin(login, password)
+        props.onUserLogin(login, password)
 
     }
 

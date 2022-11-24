@@ -30,7 +30,7 @@ const Registration = (props) => {
         
 
         if (password === confirmPassword && password !== '' && confirmPassword !== '') {
-            props.userReg(login, password);
+            props.onUserReg(login, password);
             console.log('Вы успешно зарегистрированы, чтобы войти, введите логин и пароль');  
         } 
 
