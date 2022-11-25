@@ -1,5 +1,5 @@
 import React  from "react";
-import styles from'./Popup.module.css';
+import styles from'./Popup.module.scss';
 
 
 const Popup = ({children, visible, setVisible, position}) => {

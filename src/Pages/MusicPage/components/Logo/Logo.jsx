@@ -1,7 +1,7 @@
 import React from 'react';
 import logoImageWh from '../../../../img/logo_white.png';
 import logoImageBl from '../../../../img/logo_black.png';
-import logoStyles from './Logo.module.css';
+import logoStyles from './Logo.module.scss';
 
 export const LogoWhite = () => {
     return (

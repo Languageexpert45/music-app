@@ -1,9 +1,10 @@
+@import '../../../../../../variables';
 .bar {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(28, 28, 28, 0.9);
+    background: $player_bar;
     position: fixed;
 }
 
@@ -23,16 +24,12 @@
 
 .bar__player_block {
     height: 73px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 .bar__player {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -40,8 +37,6 @@
 }
 
 .player__controls {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     padding: 0 27px 0 31px;

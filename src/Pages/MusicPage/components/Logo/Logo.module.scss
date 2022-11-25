@@ -1,3 +1,5 @@
+@import '../../../../variables';
+
 .nav__logo {
   width: auto;
   height: auto;
@@ -9,7 +11,7 @@
 .logo__image_wh {
   width: 113.33px;
   height: 17px;
-  color: #181818;
+  color: $black;
 }
 
 .nav__logo_bl {
@@ -21,5 +23,5 @@
 .logo__image_bl {
   width: 140px;
   height: 21px;
-  color: #181818;
+  color: $black;
 }

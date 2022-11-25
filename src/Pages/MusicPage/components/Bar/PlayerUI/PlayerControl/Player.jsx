@@ -5,10 +5,9 @@ import pause from '../../../../../../img/icon/pause.svg';
 import next from '../../../../../../img/icon/next.svg';
 import repeat from '../../../../../../img/icon/repeat.svg';
 import shuffle from '../../../../../../img/icon/shuffle.svg';
-import styles from './Player.module.css';
+import styles from './Player.module.scss';
 import PlayerSongInfo from '../PlayerSongInfo/PlayerSongInfo'
 import PlayerSongInfoSkeleton from '../../../../../../SkeletonComponents/PlayerSongInfoSkeleton';
-import track from '../../../../../../media/Bobby_Marleni_Dropin.mp3'
 import Volume from '../../PlayerUI/VolumeControl/Volume';
 
 
@@ -17,20 +16,12 @@ import Volume from '../../PlayerUI/VolumeControl/Volume';
 
 const Player = (props) => {
 
-    const tracks = [
-        {
-            title: '',
-            artist: '',
-            audioSrc: track,
-            image: '',
-            color: '',
-        },
-    ];
+
 
     const [trackIndex, setTrackIndex] = useState(0);
     const [trackProgress, setTrackProgress] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
-    const audioRef = useRef(new Audio(tracks[0].audioSrc));
+    const audioRef = useRef(new Audio(props.tracks[0].audioSrc));
     const intervalRef = useRef();
     const isReady = useRef(false);
     const { duration } = audioRef.current;
@@ -61,7 +52,7 @@ const Player = (props) => {
         useEffect(() => {
         audioRef.current.pause();
 
-        audioRef.current = new Audio(tracks[0].audioSrc);
+        audioRef.current = new Audio(props.tracks[0].audioSrc);
             setTrackProgress(audioRef.current.currentTime);
 
         if (isReady.current) {
