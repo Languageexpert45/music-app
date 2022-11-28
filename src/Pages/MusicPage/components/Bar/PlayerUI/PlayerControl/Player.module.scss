@@ -1,16 +1,14 @@
-@import '../../../../../../variables';
+
 .bar {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: $player_bar;
+    background: var(--player_bar);
     position: fixed;
 }
 
 .bar__content {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: column;
 }

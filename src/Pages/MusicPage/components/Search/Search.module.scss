@@ -1,8 +1,8 @@
-@import '../../../../variables';
+
 
 .centerblock__search {
   width: 100%;
-  border-bottom: 1px solid $grey_standard;
+  border-bottom: 1px solid #4e4e4e;
   margin-bottom: 51px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -15,7 +15,7 @@
   width: 17px;
   height: 17px;
   margin-right: 5px;
-  stroke: $white;
+  stroke: #ffffff;
   fill: transparent;
 }
 
@@ -28,5 +28,5 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: $white;
+  color: var(--secondary_color);
 }

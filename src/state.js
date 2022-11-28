@@ -77,7 +77,7 @@ export const state = {
         },
     ],
     filter: {
-        artistsData: ['Linkin Park', 'Placebo', 'Evanessence', 'Portishead'],
+        artistsData: ['Linkin Park', 'Placebo', 'Evanessence', 'Portishead','Linkin Park', 'Placebo', 'Evanessence', 'Portishead'],
         yearsData:  ['2002', '2001', '2010', '2011'],
         genreData:  ['pop', 'funk', 'electro', 'rock'],
         filterValues: ['исполнителю', 'году выпуска', 'жанру'],

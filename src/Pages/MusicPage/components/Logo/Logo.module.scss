@@ -1,4 +1,4 @@
-@import '../../../../variables';
+
 
 .nav__logo {
   width: auto;
@@ -6,12 +6,15 @@
   padding: 13px 0 13px 0;
   background-color: transparent;
   margin-bottom: 20px;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-image: var(--logo);
 }
 
 .logo__image_wh {
   width: 113.33px;
   height: 17px;
-  color: $black;
+  color: var(--primary_color);
 }
 
 .nav__logo_bl {
@@ -23,5 +26,5 @@
 .logo__image_bl {
   width: 140px;
   height: 21px;
-  color: $black;
+  color: var(--primary_color);
 }

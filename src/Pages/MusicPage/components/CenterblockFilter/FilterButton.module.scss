@@ -1,11 +1,12 @@
-@import '../../../../variables';
+
 
 .filter__button {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--secondary_color);
+    color: var(--secondary_color);
     border-radius: 60px;
     padding: 6px 20px;
     transition: 0.2s;
@@ -16,18 +17,18 @@
 }
 
 .effects:hover {
-    border-color: $purple;
-    color: $purple;
+    border-color: #ad61ff;
+    color: #ad61ff;
     cursor: pointer;
 }
 
 .effects:active {
-    border-color: $light_purple;
-    color: $light_purple;
+    border-color: #d9b6ff;
+    color: #d9b6ff;
     cursor: pointer;
 }
 
 .active {
-    border-color: $purple;
-    color:$purple;
+    border-color: #ad61ff;
+    color:#ad61ff;
 }

@@ -1,15 +1,11 @@
-@import '../../../../variables';
+
 
 .content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   flex-direction: column;
 }
 
 .title {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,7 +19,7 @@
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 2px;
-  color: $grey_centerBlock_title;
+  color: var(--track_title_text);
   text-transform: uppercase;
 }
 

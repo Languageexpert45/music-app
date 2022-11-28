@@ -6,7 +6,6 @@ import { onUserReg, onUserLogin} from './state';
 
 const App = (props) => {
 
-
   // const [songs, setSongs] = useState([]);
   // const [loading, setLoading] = useState(false);
 

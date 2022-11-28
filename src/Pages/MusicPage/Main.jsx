@@ -6,13 +6,22 @@ import CenterblockFilter from './components/CenterblockFilter/CenterblockFilter'
 import CenterblockContent from './components/CenterblockContent/CenterblockContent';
 import SideBar from './components/SideBar/SideBar';
 import Bar from './components/Bar/Bar';
+import useLocalStorage from 'use-local-storage';
+
 
 const Main = (props) => {
 
+const [theme, setTheme] = useLocalStorage('theme' ? 'dark' : 'light');
+
+const switchTheme = () => {
+  const newTheme = theme === 'light' ? 'dark' : 'light';
+  setTheme(newTheme);
+}
+
     return (
-        <div className="container">
+        <div className="container" data-theme={theme}>
           <main className="main">
-            <Navbar {...props} />
+            <Navbar {...props} switchTheme = {switchTheme} />
             <div className="main__centerblock centerblock"  >
               <Search />
               <CenterblockHeader {...props}/>

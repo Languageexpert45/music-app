@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 
 
 const Navbar = (props) => {
+
     
     const [active, setActive] = useState(false)
     const toggle = () => {
@@ -14,7 +15,7 @@ const Navbar = (props) => {
 
     return (
         <nav className={navbar.main__nav}> 
-            <LogoWhite/>
+            <LogoWhite switchLogo = {props.switchTheme}/>
             <div onClick={toggle} className={navbar.nav__burger}>
                 <span className={navbar.burger__line}></span>
                 <span className={navbar.burger__line}></span>
@@ -27,6 +28,7 @@ const Navbar = (props) => {
                     <li className={navbar.menu__item}><Link className={navbar.menu__link} to='/'>Выйти</Link></li>
                 </ul>
             </div>
+            <button onClick={props.switchTheme}>switch color</button>
         </nav>
     )
 }

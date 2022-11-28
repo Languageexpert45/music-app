@@ -1,4 +1,4 @@
-@import '../../../../variables';
+
 
 .box {
     display: flex;
@@ -9,7 +9,7 @@
     width: 248px;
     height: 305px;
     top: 288px;
-    background: $grey_dark;
+    background: #313131;
     border-radius: 12px;
     transform: scale(0);
     transition: 0.3s;
@@ -56,12 +56,12 @@
 
 ::-webkit-scrollbar {
     width: 4px; 
-    background-color: $grey_scrollbar;
+    background-color: #4B4949;
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: $white;
+    background-color: #ffffff;
     border-radius: 10px;
     height: 65px;
     width: 4px;
@@ -76,7 +76,7 @@
 .listItem:hover {
     cursor: pointer;
     text-decoration: underline;
-    color: $purple_standard;
+    color: #B672FF;
 }
 
 
