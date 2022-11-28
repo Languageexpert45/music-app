@@ -1,11 +1,11 @@
+@import '../../../../variables';
+
 .sidebar {
   max-width: 418px;
   padding: 20px 90px 20px 78px;
 }
 
 .personal {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -18,30 +18,26 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
+  color: $white;
   margin-right: 16px;
 }
 
 .avatar {
   width: 43px;
   height: 43px;
-  background-color: #313131;
+  background-color: $grey_dark;
   border-radius: 50%;
 }
 
 .block {
   height: 100%;
   padding: 240px 0 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
 .list {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,16 +1,12 @@
-import {React, useState} from 'react';
-import styles from './SideBar.module.css';
+import {React, useState, useEffect} from 'react';
+import styles from './SideBar.module.scss';
 import PlayListItem from './PlayList';
 import PlayListSkeleton from '../../../../SkeletonComponents/PlayListSkeletonLoader';
-import { useParams } from "react-router-dom";
 
 
 
 const SideBar = (props) => {
-
-    const {name} = useParams()
-
-    props.returnName(name);
+    
 
 
     const PlaylistItems = props.playlists.map((playlist) =>

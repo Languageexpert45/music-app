@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Popup from '../Popup/Popup';
-import styles from './CenterblockFilter.module.css'
+import styles from './CenterblockFilter.module.scss'
 import PopupContent from "../Popup/PopupContent";
 import FilterButton from "./FilterButton";
 

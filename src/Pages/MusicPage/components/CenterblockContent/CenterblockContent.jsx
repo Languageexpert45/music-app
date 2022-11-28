@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import PlaylistItem from '../PlaylistItem/PlaylistItem';
 import watch from '../../../../img/icon/watch.svg';
-import styles from './CenterblockContent.module.css';
+import styles from './CenterblockContent.module.scss';
 import SongsSkeletonLoader from '../../../../SkeletonComponents/SongsSkeletonLoader'
+import { useParams } from "react-router-dom";
 
 
 
 const CenterblockContent = (props) => {
 
-    const playlistElements = props.tracks.map((element, index) => 
+    const {name} = useParams()
+    const playlists = props.playlists
+    const playlist = playlists.find((playlist) => playlist.id === Number(name));
+
+    const playlistElements = playlist.tracks.map((element, index) => 
         <PlaylistItem 
             track={element.track} 
             artist={element.artist} 

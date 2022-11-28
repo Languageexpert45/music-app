@@ -1,3 +1,5 @@
+@import '../../variables';
+
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +9,7 @@
 .reg__container {
     width: 100vw;
     height: 100vh;
-    background-color: #2E2E2E;
+    background-color: $grey_dark;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +21,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #FFFFFF;
+    background-color: $white;
     border-radius: 12px;
     padding-top: 36px;
     gap: 40px;
@@ -30,7 +32,7 @@
     display: flex;
     flex-direction: column;
     gap: 38px;
-    background-color: #FFFFFF;
+    background-color: $white;
 }
 
 .reg__input {
@@ -44,24 +46,24 @@
     letter-spacing: -0.05px;
     border: none;
     outline: none;
-    border-bottom: solid 1px #D0CECE;
+    border-bottom: solid 1px $grey_button;
 }
 
 .reg__input::placeholder {
-    color: #D0CECE
+    color: $grey_button;
 }
 
 .reg__button {
     width: 278px;
     height: 52px;
-    background-color: #580EA2;
+    background-color: $purple_bright;
     border-radius: 6px;
     font-family: 'StratosSkyeng';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: $white;
     letter-spacing: -0.05px;
     border: none;
     margin-top: 20px;
@@ -69,9 +71,9 @@
 }
 
 .reg__button:hover {
-    background-color: #3F007D;
+    background-color: $purple_bright_hover;
 }
 
 .reg__button:active {
-    background-color: #271A58;
+    background-color: $purple_bright_active;
 }

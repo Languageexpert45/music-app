@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import styles from './Registration.module.css';
+import styles from './Registration.module.scss';
 import {LogoBlack} from '../MusicPage/components/Logo/Logo'
 import {Link} from 'react-router-dom';
 
@@ -30,7 +30,7 @@ const Registration = (props) => {
         
 
         if (password === confirmPassword && password !== '' && confirmPassword !== '') {
-            props.userReg(login, password);
+            props.onUserReg(login, password);
             console.log('Вы успешно зарегистрированы, чтобы войти, введите логин и пароль');  
         } 
 
