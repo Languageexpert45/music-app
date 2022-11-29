@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AppRoutes } from "./Routes";
+import { AppRoutes } from "./routes";
 import { onUserReg, onUserLogin} from './state';
 
 
