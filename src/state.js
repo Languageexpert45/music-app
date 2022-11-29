@@ -4,7 +4,7 @@ import playlist03 from './img/playlist03.png';
 import track from '../src/media/Bobby_Marleni_Dropin.mp3';
 
 let renderEntireTree = () => {
-    console.log('the state was updeted');
+    console.log('the state was updated');
 }
 
 export const state = {
