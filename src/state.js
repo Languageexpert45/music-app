@@ -3,9 +3,9 @@ import playlist02 from './img/playlist02.png';
 import playlist03 from './img/playlist03.png';
 import track from '../src/media/Bobby_Marleni_Dropin.mp3';
 
-let renderEntireTree = () => {
-    console.log('the state was updeted');
-}
+// let renderEntireTree = () => {
+//     console.log('the state was updeted');
+// }
 
 export const state = {
 
@@ -88,32 +88,32 @@ export const state = {
         songName: 'Ты та...',
         artistName: 'Баста',
     },
-    userRegData: {
-        login: '',
-        password: '',
-    },
+    // userRegData: {
+    //     login: '',
+    //     password: '',
+    // },
 }
 
 
-export const onUserReg = (login, password) => {
-    state.userRegData.login = login,
-    state.userRegData.password = password,
-    renderEntireTree(state)
-    console.log(state);
-}
+// export const onUserReg = (login, password) => {
+//     state.userRegData.login = login,
+//     state.userRegData.password = password,
+//     renderEntireTree(state)
+//     console.log(state);
+// }
 
 
-export const onUserLogin = (login, password) => {
-    if (state.userRegData.login !== login || state.userRegData.password !== password) {
-        console.log('пароль или логин не совпадают');
-        renderEntireTree(state);
-    }
-    if (state.userRegData.login === login && state.userRegData.password === password) {
-        localStorage.setItem('token01', 'user')
-        renderEntireTree(state);
-    } 
-}
+// export const onUserLogin = (login, password) => {
+//     if (state.userRegData.login !== login || state.userRegData.password !== password) {
+//         console.log('пароль или логин не совпадают');
+//         renderEntireTree(state);
+//     }
+//     if (state.userRegData.login === login && state.userRegData.password === password) {
+//         localStorage.setItem('token01', 'user')
+//         renderEntireTree(state);
+//     } 
+// }
 
-export const subscribe = (observer) => {
-    renderEntireTree = observer;
-}
+// export const subscribe = (observer) => {
+//     renderEntireTree = observer;
+// }

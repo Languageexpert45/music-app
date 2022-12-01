@@ -9,9 +9,10 @@ import ProtectedRoute from './protected-route/protectedRoute';
 export const AppRoutes = (props) => {
 
 
+
     return (
         <Routes>
-            <Route element={<ProtectedRoute isAllowed={localStorage.getItem('token01')}/>}>
+            <Route element={<ProtectedRoute isAllowed={localStorage.getItem(props.user)}/>}>
                 <Route path='/main/:name' element={<Main {...props}/>}/>
             </Route>
             <Route path='/reg' element={<Registration {...props} />}/>

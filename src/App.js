@@ -6,6 +6,22 @@ import { onUserReg, onUserLogin} from './state';
 
 const App = (props) => {
 
+
+  const [user, setUser] = useState('')
+  const [password, setPassword] = useState('')
+
+
+  const onUserReg = (login, password) => {
+    setUser(login)
+    setPassword(password)
+  }
+
+  const accessDeny = () => {
+    setUser('')
+    setPassword('')
+    console.log('Неверный логин или пароль');
+  }
+
   // const [songs, setSongs] = useState([]);
   // const [loading, setLoading] = useState(false);
 
@@ -21,7 +37,11 @@ const App = (props) => {
   return (
     <div className="wrapper">
       <AppRoutes
-        onUserLogin={onUserLogin}
+        // onUserLogin={onUserLogin}
+        // onUserReg={onUserReg}
+        accessDeny={accessDeny}
+        password={password}
+        user={user}
         onUserReg={onUserReg}
         playlists={props.state.playlists}
         tracks={props.state.tracks} 

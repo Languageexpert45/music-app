@@ -11,6 +11,7 @@ const Registration = (props) => {
     const loginButton = useRef(null)
     const passwordButton = useRef(null)
     const confirmPasswordButton = useRef(null)
+    
 
     const inputLogin = () => {
         setLogin(loginButton.current.value)
@@ -31,7 +32,8 @@ const Registration = (props) => {
 
         if (password === confirmPassword && password !== '' && confirmPassword !== '') {
             props.onUserReg(login, password);
-            console.log('Вы успешно зарегистрированы, чтобы войти, введите логин и пароль');  
+            console.log('Вы успешно зарегистрированы, чтобы войти, введите логин и пароль');
+            localStorage.setItem(login, 'token')  
         } 
 
         if (login === '') {

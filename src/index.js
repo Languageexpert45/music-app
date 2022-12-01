@@ -6,18 +6,13 @@ import {state, subscribe} from './state'
 
 
 
-const renderEntireTree = (state) => {
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(
-    <BrowserRouter>
-        <App state={state} />
-    </BrowserRouter>    
-    );
-}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+<BrowserRouter>
+    <App state={state} />
+</BrowserRouter>    
+);
 
-renderEntireTree(state)
-
-subscribe(renderEntireTree);
 
 
 
