@@ -9,7 +9,6 @@ import ProtectedRoute from './protected-route/protectedRoute';
 export const AppRoutes = (props) => {
 
 
-
     return (
         <Routes>
             <Route element={<ProtectedRoute isAllowed={localStorage.getItem(props.user)}/>}>
