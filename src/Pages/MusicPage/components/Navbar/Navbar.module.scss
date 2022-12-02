@@ -49,4 +49,12 @@
     font-size: 16px;
     line-height: 24px;
 }
+.menu__theme_button {
+    background-image: var(--theme_img);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
 

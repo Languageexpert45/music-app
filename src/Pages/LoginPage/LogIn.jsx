@@ -11,8 +11,6 @@ const LogIn = (props) => {
     const loginButton = useRef(null)
     const passwordButton = useRef(null)
 
-    
-
 
     const inputLogin = () => {
         setLogin(loginButton.current.value)
@@ -22,12 +20,8 @@ const LogIn = (props) => {
         setPassword(passwordButton.current.value)
     }
 
-    const userLogin = () => {
-
-        if (login === '' || password === '') {
-            props.accessDeny()
-        }
-
+    const userSignIn = () => {
+        props.checkUserReg(login, password)
     }
 
     return (
@@ -41,7 +35,7 @@ const LogIn = (props) => {
                     <input ref={passwordButton} onChange={inputPassword} className={styles.reg__input} type="password" name="password" id="password" placeholder="Пароль" />
                     <Link to={`/main/${props.playlists[3].id}`}>
                         <button 
-                            onClick={userLogin}
+                            onClick={userSignIn}
                             className={styles.login__button}>
                                 Войти
                         </button>

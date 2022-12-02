@@ -32,8 +32,7 @@ const Registration = (props) => {
 
         if (password === confirmPassword && password !== '' && confirmPassword !== '') {
             props.onUserReg(login, password);
-            console.log('Вы успешно зарегистрированы, чтобы войти, введите логин и пароль');
-            localStorage.setItem(login, 'token')  
+            console.log('Вы успешно зарегистрированы, чтобы войти, введите логин и пароль');  
         } 
 
         if (login === '') {
@@ -61,7 +60,7 @@ const Registration = (props) => {
                     <input ref={passwordButton} onChange={inputPassword} className={styles.reg__input} type="password" name="password" id="password" placeholder="Пароль" />
                     <input ref={confirmPasswordButton} onChange={inputConfirmPassword} className={styles.reg__input} type="password" name="confirm_password" id="confirm_password" placeholder="Повторите пароль" />
                     <Link to='/'>
-                        <button 
+                        <button
                             onClick={registerUser} 
                             className={styles.reg__button}>
                                 Зарегистрироваться

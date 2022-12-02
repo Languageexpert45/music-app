@@ -1,25 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { AppRoutes } from "./routes";
-import { onUserReg, onUserLogin} from './state';
+import { AppRoutes } from "./Routes";
 
 
 
 const App = (props) => {
 
 
-  const [user, setUser] = useState('')
-  const [password, setPassword] = useState('')
-
+  const [userLogin, setUserLogin] = useState('')
+  const [userPassword, setUserPassword] = useState('')
+  const[token, setToken] = useState('')
+  
 
   const onUserReg = (login, password) => {
-    setUser(login)
-    setPassword(password)
+    setUserLogin(login)
+    setUserPassword(password)
+    localStorage.setItem(login, 'token')
+    setToken(localStorage.getItem(login))
   }
 
-  const accessDeny = () => {
-    setUser('')
-    setPassword('')
-    console.log('Неверный логин или пароль');
+  const checkUserReg = (login, password) => {
+    if (!login || !password) {
+      console.log('enter login and password or sing up');
+      return
+    }
+    if (login === userLogin && password === userPassword) {
+      console.log('login and password are correct');
+    }
+    else {
+      console.log('login or password are incorrect');
+    }
   }
 
   // const [songs, setSongs] = useState([]);
@@ -37,11 +46,10 @@ const App = (props) => {
   return (
     <div className="wrapper">
       <AppRoutes
-        // onUserLogin={onUserLogin}
-        // onUserReg={onUserReg}
-        accessDeny={accessDeny}
-        password={password}
-        user={user}
+        checkUserReg={checkUserReg}
+        password={userPassword}
+        user={userLogin}
+        token={token}
         onUserReg={onUserReg}
         playlists={props.state.playlists}
         tracks={props.state.tracks} 

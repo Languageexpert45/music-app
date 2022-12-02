@@ -88,32 +88,4 @@ export const state = {
         songName: 'Ты та...',
         artistName: 'Баста',
     },
-    // userRegData: {
-    //     login: '',
-    //     password: '',
-    // },
 }
-
-
-// export const onUserReg = (login, password) => {
-//     state.userRegData.login = login,
-//     state.userRegData.password = password,
-//     renderEntireTree(state)
-//     console.log(state);
-// }
-
-
-// export const onUserLogin = (login, password) => {
-//     if (state.userRegData.login !== login || state.userRegData.password !== password) {
-//         console.log('пароль или логин не совпадают');
-//         renderEntireTree(state);
-//     }
-//     if (state.userRegData.login === login && state.userRegData.password === password) {
-//         localStorage.setItem('token01', 'user')
-//         renderEntireTree(state);
-//     } 
-// }
-
-// export const subscribe = (observer) => {
-//     renderEntireTree = observer;
-// }

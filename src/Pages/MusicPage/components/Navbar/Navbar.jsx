@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {LogoWhite} from '../Logo/Logo';
-import navbar from './Navbar.module.scss'
+import styles from './Navbar.module.scss'
 import {Link} from 'react-router-dom'
 
 
@@ -14,21 +14,21 @@ const Navbar = (props) => {
     }
 
     return (
-        <nav className={navbar.main__nav}> 
+        <nav className={styles.main__nav}> 
             <LogoWhite switchLogo = {props.switchTheme}/>
-            <div onClick={toggle} className={navbar.nav__burger}>
-                <span className={navbar.burger__line}></span>
-                <span className={navbar.burger__line}></span>
-                <span className={navbar.burger__line}></span>
+            <div onClick={toggle} className={styles.nav__burger}>
+                <span className={styles.burger__line}></span>
+                <span className={styles.burger__line}></span>
+                <span className={styles.burger__line}></span>
             </div>
-            <div className={navbar.nav__menu}>
-                <ul className={!active ? `${navbar.menu__list} ${navbar.menu__list_hidden}` : navbar.menu__list}>
-                    <li className={navbar.menu__item}><Link className={navbar.menu__link} to={`/main/${props.playlists[3].id}`}>Главное</Link></li>
-                    <li className={navbar.menu__item}><Link className={navbar.menu__link}to={`/main/${props.playlists[4].id}`}>Мой плейлист</Link></li>
-                    <li className={navbar.menu__item}><Link className={navbar.menu__link} to='/'>Выйти</Link></li>
+            <div className={styles.nav__menu}>
+                <ul className={!active ? `${styles.menu__list} ${styles.menu__list_hidden}` : styles.menu__list}>
+                    <li className={styles.menu__item}><Link className={styles.menu__link} to={`/main/${props.playlists[3].id}`}>Главное</Link></li>
+                    <li className={styles.menu__item}><Link className={styles.menu__link}to={`/main/${props.playlists[4].id}`}>Мой плейлист</Link></li>
+                    <li className={styles.menu__item}><Link className={styles.menu__link} to='/'>Выйти</Link></li>
                 </ul>
             </div>
-            <button onClick={props.switchTheme}>switch color</button>
+            <div className={styles.menu__theme_button} onClick={props.switchTheme}></div>
         </nav>
     )
 }

@@ -39,6 +39,7 @@ ul li {
   --player_bar: rgba(28, 28, 28, 0.9);
   --track_title_text: #696969;
   --logo: url('../src/img/logo_white.png');
+  --theme_img: url('../src/img/dark_theme.png');
 }
 
 [data-theme='light'] {
@@ -51,6 +52,7 @@ ul li {
   --player_bar: rgba(65, 60, 60, 0.9);
   --track_title_text: #2b2929;
   --logo: url('../src/img/logo_black.png');
+  --theme_img: url('../src/img/light_theme.png');
 }
 
 
