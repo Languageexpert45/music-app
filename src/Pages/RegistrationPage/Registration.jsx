@@ -2,8 +2,15 @@ import React, { useEffect, useState, useRef } from "react";
 import styles from './Registration.module.scss';
 import {LogoBlack} from '../MusicPage/components/Logo/Logo'
 import {Link} from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import { addUser } from "../../store/actions/creators/addUser";
+
 
 const Registration = (props) => {
+
+    const dispatch = useDispatch()
+
+    
 
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
@@ -24,14 +31,13 @@ const Registration = (props) => {
     const inputConfirmPassword = () => {
         setConfirmPassword(confirmPasswordButton.current.value)
     }
-    
-
 
     const registerUser = () => {
         
 
         if (password === confirmPassword && password !== '' && confirmPassword !== '') {
-            props.onUserReg(login, password);
+            const token = 'token'
+            dispatch(addUser(login, password, token))
             console.log('Вы успешно зарегистрированы, чтобы войти, введите логин и пароль');  
         } 
 
@@ -66,7 +72,6 @@ const Registration = (props) => {
                                 Зарегистрироваться
                         </button>
                     </Link>
-                    
                 </form>
             </div>
         </div>

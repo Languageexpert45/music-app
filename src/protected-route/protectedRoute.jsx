@@ -3,7 +3,7 @@ import {Navigate, Outlet} from 'react-router-dom';
 
 
 
-export const ProtectedRoute = ({ redirectPath = "/", isAllowed='token' }) => {
+export const ProtectedRoute = ({ redirectPath = "/", isAllowed }) => {
   if (isAllowed !== 'token') {
     return <Navigate to={redirectPath} replace={true} />;
   }
