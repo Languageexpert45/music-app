@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { AppRoutes } from "./Routes";
-import {useSelector} from "react-redux";
-import { usersSelector } from "./store/selectors/addUser";
+import { AppRoutes } from "./routes";
+
 
 
 const App = (props) => {
