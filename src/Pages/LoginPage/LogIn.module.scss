@@ -1,5 +1,3 @@
-@import '../../variables';
-
 
 * {
     margin: 0;
@@ -22,7 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: $white;
+    background-color: #ffffff;
     border-radius: 12px;
     padding-top: 36px;
 
@@ -31,7 +29,7 @@
 .reg__form {
     display: flex;
     flex-direction: column;
-    background-color: $white;
+    background-color: #ffffff;
     margin-top: 42px;
 }
 
@@ -64,7 +62,7 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
-    color: $white;
+    color: #ffffff;
     letter-spacing: -0.05px;
     border: none;
     margin-top: 60px;
@@ -85,25 +83,25 @@
     justify-content: center;
     width: 278px;
     height: 52px;
-    background-color: $white;
+    background-color: #ffffff;
     border-radius: 6px;
     font-family: 'StratosSkyeng';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
-    color:$black;
+    color: #181818;
     letter-spacing: -0.05px;
     border: none;
     margin-top: 20px;
-    border: solid 1px $grey_button;
+    border: solid 1px #D0CECE;
     transition: 0.1s;
 }
 
 .reg__button:hover {
-    background-color: $grey_button_bgc;
+    background-color: #F4F5F6;
 }
 .reg__button:active {
-    background-color: $grey_button;
+    background-color: #D0CECE;
 }
 

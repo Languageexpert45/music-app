@@ -1,23 +1,22 @@
 import ReactDOM from 'react-dom/client';
 import './App.scss';
 import App from './App';
-import {BrowserRouter} from 'react-router-dom'
-import {state, subscribe} from './state'
+import {BrowserRouter} from 'react-router-dom';
+import {state, subscribe} from './state';
+import { Provider } from "react-redux";
+import { store } from './store/store';
 
 
 
-const renderEntireTree = (state) => {
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(
-    <BrowserRouter>
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+<BrowserRouter>
+    <Provider store={store}>
         <App state={state} />
-    </BrowserRouter>    
-    );
-}
+    </Provider>
+</BrowserRouter>    
+);
 
-renderEntireTree(state)
-
-subscribe(renderEntireTree);
 
 
 

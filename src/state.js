@@ -3,9 +3,9 @@ import playlist02 from './img/playlist02.png';
 import playlist03 from './img/playlist03.png';
 import track from '../src/media/Bobby_Marleni_Dropin.mp3';
 
-let renderEntireTree = () => {
-    console.log('the state was updeted');
-}
+// let renderEntireTree = () => {
+//     console.log('the state was updeted');
+// }
 
 export const state = {
 
@@ -77,7 +77,7 @@ export const state = {
         },
     ],
     filter: {
-        artistsData: ['Linkin Park', 'Placebo', 'Evanessence', 'Portishead'],
+        artistsData: ['Linkin Park', 'Placebo', 'Evanessence', 'Portishead','Linkin Park', 'Placebo', 'Evanessence', 'Portishead'],
         yearsData:  ['2002', '2001', '2010', '2011'],
         genreData:  ['pop', 'funk', 'electro', 'rock'],
         filterValues: ['исполнителю', 'году выпуска', 'жанру'],
@@ -88,32 +88,4 @@ export const state = {
         songName: 'Ты та...',
         artistName: 'Баста',
     },
-    userRegData: {
-        login: '',
-        password: '',
-    },
-}
-
-
-export const onUserReg = (login, password) => {
-    state.userRegData.login = login,
-    state.userRegData.password = password,
-    renderEntireTree(state)
-    console.log(state);
-}
-
-
-export const onUserLogin = (login, password) => {
-    if (state.userRegData.login !== login || state.userRegData.password !== password) {
-        console.log('пароль или логин не совпадают');
-        renderEntireTree(state);
-    }
-    if (state.userRegData.login === login && state.userRegData.password === password) {
-        localStorage.setItem('token01', 'user')
-        renderEntireTree(state);
-    } 
-}
-
-export const subscribe = (observer) => {
-    renderEntireTree = observer;
 }

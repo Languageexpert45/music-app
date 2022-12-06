@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { AppRoutes } from "./Routes";
-import { onUserReg, onUserLogin} from './state';
+import { AppRoutes } from "./routes";
 
 
 
 const App = (props) => {
 
+  const users = useSelector(usersSelector)
+ 
+ 
 
   // const [songs, setSongs] = useState([]);
   // const [loading, setLoading] = useState(false);
@@ -22,8 +24,9 @@ const App = (props) => {
   return (
     <div className="wrapper">
       <AppRoutes
-        onUserLogin={onUserLogin}
-        onUserReg={onUserReg}
+        // checkUserReg={checkUserReg}
+        // password={userPassword}
+        // user={users}
         playlists={props.state.playlists}
         tracks={props.state.tracks} 
         artist={props.state.filter.artistsData} 
