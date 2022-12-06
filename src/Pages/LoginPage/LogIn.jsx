@@ -2,17 +2,35 @@ import React, { useEffect, useState, useRef } from "react";
 import styles from './LogIn.module.scss';
 import {LogoBlack} from '../MusicPage/components/Logo/Logo';
 import {Link} from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import { regUser } from "../../store/actions/creators/user";
+import { useSelector } from "react-redux";
+import { userSelector } from "../../store/selectors/user";
 
 
 const LogIn = (props) => {
 
-    
+    const user = useSelector(userSelector)
+    const dispatch = useDispatch()
 
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState()
 
+    const [path, setPath] = useState('')
+
     const loginButton = useRef(null)
     const passwordButton = useRef(null)
+
+
+
+
+    useEffect(() => {
+        if (user.active === true) {
+            props.getToken(user.token)
+            setPath(`/main/${props.playlists[3].id}`)
+        }
+    })
+
 
 
     const inputLogin = () => {
@@ -28,7 +46,8 @@ const LogIn = (props) => {
         console.log('enter login and password or register');
         return
         }
-        else if (login === localStorage.login && password === localStorage.password) {
+        else if (login === user.login && password === user.password) {
+        dispatch(regUser(true, login, password, 'token'))
         console.log('login and password are correct');
         }
         else {
@@ -45,9 +64,8 @@ const LogIn = (props) => {
                 <form className={styles.reg__form}>
                     <input ref={loginButton} onChange={inputLogin} className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
                     <input ref={passwordButton} onChange={inputPassword} className={styles.reg__input} type="password" name="password" id="password" placeholder="Пароль" />
-                    <Link to={`/main/${props.playlists[3].id}`}>
+                    <Link onClick={checkUserReg} to={path}>
                         <button 
-                            onClick={checkUserReg}
                             className={styles.login__button}>
                                 Войти
                         </button>
