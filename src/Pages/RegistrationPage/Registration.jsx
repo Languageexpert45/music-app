@@ -3,7 +3,7 @@ import styles from './Registration.module.scss';
 import {LogoBlack} from '../MusicPage/components/Logo/Logo'
 import {Link} from 'react-router-dom';
 import {useDispatch} from "react-redux";
-import { addUser } from "../../store/actions/creators/addUser";
+import { regUser } from "../../store/actions/creators/user";
 
 
 const Registration = (props) => {
@@ -36,8 +36,7 @@ const Registration = (props) => {
         
 
         if (password === confirmPassword && password !== '' && confirmPassword !== '') {
-            const token = 'token'
-            dispatch(addUser(login, password, token))
+            dispatch(regUser(false, login, password, 'token'))
             console.log('Вы успешно зарегистрированы, чтобы войти, введите логин и пароль');  
         } 
 
