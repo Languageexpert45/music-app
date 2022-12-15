@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from './reducers/user'
-
+import { musicApi } from '../services/allTracksRTK';
 
 export const store = configureStore({
   reducer: {
-    users: userReducer,
-  }
+    [musicApi.reducerPath]: musicApi.reducer,
+  },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(musicApi.middleware),
 });

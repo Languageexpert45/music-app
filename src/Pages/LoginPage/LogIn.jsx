@@ -1,57 +1,45 @@
 import React, { useEffect, useState, useRef } from "react";
 import styles from './LogIn.module.scss';
-import {LogoBlack} from '../MusicPage/components/Logo/Logo';
+import {LogoBlack} from '../../components/Logo/Logo';
 import {Link} from 'react-router-dom';
-import {useDispatch} from "react-redux";
-import { regUser } from "../../store/actions/creators/user";
-import { useSelector } from "react-redux";
-import { userSelector } from "../../store/selectors/user";
+import { useAddActiveUserMutation, useGetUserTokenMutation } from "../../services/allTracksRTK";
 
 
 const LogIn = (props) => {
 
-    const user = useSelector(userSelector)
-    const dispatch = useDispatch()
-
-    const [login, setLogin] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState()
-
-    const [path, setPath] = useState('')
 
     const loginButton = useRef(null)
     const passwordButton = useRef(null)
 
+    const [userSignIn] = useAddActiveUserMutation();
+
+    const [userToken, result] = useGetUserTokenMutation();
 
 
-
-    useEffect(() => {
-        if (user.active === true) {
-            props.getToken(user.token)
-            setPath(`/main/${props.playlists[3].id}`)
-        }
-    })
-
+    const canSave = [email, password].every(Boolean)
 
 
     const inputLogin = () => {
-        setLogin(loginButton.current.value)
+        setEmail(loginButton.current.value)
     }
 
     const inputPassword = () => {
         setPassword(passwordButton.current.value)
     }
 
-    const checkUserReg = () => {
-        if (!login || !password) {
-        console.log('enter login and password or register');
-        return
+    const checkUserReg = async () => {
+
+        if (canSave) {
+        try {
+            await userSignIn({email, password}).unwrap();
+
+            await userToken ({email, password}).unwrap();
+
+        } catch (err) {
+            console.log(err.data.detail)
         }
-        else if (login === user.login && password === user.password) {
-        dispatch(regUser(true, login, password, 'token'))
-        console.log('login and password are correct');
-        }
-        else {
-        console.log('login or password are incorrect')
         }
     }
 
@@ -64,7 +52,8 @@ const LogIn = (props) => {
                 <form className={styles.reg__form}>
                     <input ref={loginButton} onChange={inputLogin} className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
                     <input ref={passwordButton} onChange={inputPassword} className={styles.reg__input} type="password" name="password" id="password" placeholder="Пароль" />
-                    <Link onClick={checkUserReg} to={path}>
+                    
+                    <Link onClick={checkUserReg} to={`/main`}>
                         <button 
                             className={styles.login__button}>
                                 Войти

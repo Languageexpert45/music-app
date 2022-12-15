@@ -52,7 +52,12 @@ export const state = {
                         {track: 'ggggg', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'},
                         {track: 'hhhhh', artist: 'Стоункат, Psychopath', album: 'Non Stop', time: '4:12'},
                         {track: 'iiiiii', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
-                        {track: 'jjjjjj', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'}
+                        {track: 'jjjjjj', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'},
+                        {track: 'fffff', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
+                        {track: 'ggggg', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'},
+                        {track: 'hhhhh', artist: 'Стоункат, Psychopath', album: 'Non Stop', time: '4:12'},
+                        {track: 'iiiiii', artist: 'Dynoro, Outwork, Mr. Gee', album: 'Elektro', time: '2:22'},
+                        {track: 'jjjjjj', artist: 'Ali Bakgor', album: 'I’m Fire', time: '2:22'},
                     ],
         },
         {
@@ -77,7 +82,7 @@ export const state = {
         },
     ],
     filter: {
-        artistsData: ['Linkin Park', 'Placebo', 'Evanessence', 'Portishead','Linkin Park', 'Placebo', 'Evanessence', 'Portishead'],
+        artistsData: [ 'Placebo', 'Linkin Park', 'Evanessence', 'Portishead', 'Portishead', 'Placebo'],
         yearsData:  ['2002', '2001', '2010', '2011'],
         genreData:  ['pop', 'funk', 'electro', 'rock'],
         filterValues: ['исполнителю', 'году выпуска', 'жанру'],

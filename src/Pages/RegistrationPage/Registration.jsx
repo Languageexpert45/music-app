@@ -1,27 +1,31 @@
 import React, { useEffect, useState, useRef } from "react";
 import styles from './Registration.module.scss';
-import {LogoBlack} from '../MusicPage/components/Logo/Logo'
+import {LogoBlack} from '../../components/Logo/Logo'
 import {Link} from 'react-router-dom';
-import {useDispatch} from "react-redux";
-import { regUser } from "../../store/actions/creators/user";
+import { useAddUserSignUpMutation } from "../../services/allTracksRTK";
 
 
 const Registration = (props) => {
 
-    const dispatch = useDispatch()
-
-    
-
-    const [login, setLogin] = useState('')
+    const [userSignUp] = useAddUserSignUpMutation()
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const loginButton = useRef(null)
+    const emailButton = useRef(null)
     const passwordButton = useRef(null)
     const confirmPasswordButton = useRef(null)
+
+    const canSave = [username, email, password, confirmPassword].every(Boolean)
     
 
     const inputLogin = () => {
-        setLogin(loginButton.current.value)
+        setUsername(loginButton.current.value)
+    }
+
+    const inputEmail = () => {
+        setEmail(emailButton.current.value)
     }
     
     const inputPassword = () => {
@@ -32,25 +36,18 @@ const Registration = (props) => {
         setConfirmPassword(confirmPasswordButton.current.value)
     }
 
-    const registerUser = () => {
-        
+    const registerUser = async () => {
 
-        if (password === confirmPassword && password !== '' && confirmPassword !== '') {
-            dispatch(regUser(false, login, password, 'token'))
-            console.log('Вы успешно зарегистрированы, чтобы войти, введите логин и пароль');  
-        } 
+        if (canSave) {
+        try {
+           await userSignUp({username, email, password}).unwrap()
 
-        if (login === '') {
-            console.log('вы не заполнили поле "Логин"')
+        } catch (err) {
+            console.log(err.data.email[0])
+            console.log(err.data.password[0])
+        }
         }
 
-        if (password === '') {
-            console.log('вы не заполнили поле "Пароль"')
-        }
-
-        if (password !== confirmPassword ) {
-            console.log('Пароли не совпадают');
-        } 
     }
 
 
@@ -61,9 +58,10 @@ const Registration = (props) => {
                     <LogoBlack/>
                 </div>
                 <form className={styles.reg__form}>
-                    <input ref={loginButton} onChange={inputLogin} className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
-                    <input ref={passwordButton} onChange={inputPassword} className={styles.reg__input} type="password" name="password" id="password" placeholder="Пароль" />
-                    <input ref={confirmPasswordButton} onChange={inputConfirmPassword} className={styles.reg__input} type="password" name="confirm_password" id="confirm_password" placeholder="Повторите пароль" />
+                    <input ref={loginButton} onChange={inputLogin} className={styles.reg__input} type="text" name="username" id="username" placeholder="username" />
+                    <input ref={emailButton} onChange={inputEmail} className={styles.reg__input} type="text" name="email" id="email" placeholder="email" />
+                    <input ref={passwordButton} onChange={inputPassword} className={styles.reg__input} type="password" name="password" id="password" placeholder="password" />
+                    <input ref={confirmPasswordButton} onChange={inputConfirmPassword} className={styles.reg__input} type="password" name="confirm_password" id="confirm_password" placeholder="confirm password" />
                     <Link to='/'>
                         <button
                             onClick={registerUser} 

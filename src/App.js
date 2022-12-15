@@ -5,12 +5,6 @@ import { AppRoutes } from "./Routes";
 
 const App = (props) => {
 
-  const [token, setToken] = useState('')
-
-  const getToken = (token) => {
-    setToken(token)
-  }
-
   // const [songs, setSongs] = useState([]);
   // const [loading, setLoading] = useState(false);
 
@@ -26,11 +20,7 @@ const App = (props) => {
   return (
     <div className="wrapper">
       <AppRoutes
-        // checkUserReg={checkUserReg}
-        // password={userPassword}
-        // user={users}
-        getToken = {getToken}
-        token = {token}
+      
         playlists={props.state.playlists}
         tracks={props.state.tracks} 
         artist={props.state.filter.artistsData} 
