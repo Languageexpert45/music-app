@@ -7,11 +7,16 @@
 }
 
 .track {
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  transition: 0.2s;
+}
+
+.track:hover{
+  cursor: pointer;
+  background-color: rgba(95, 59, 153, 0.56);
 }
 
 .title {

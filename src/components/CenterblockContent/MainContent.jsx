@@ -5,15 +5,14 @@ import styles from './CenterblockContent.module.scss';
 import SongsSkeletonLoader from '../../SkeletonComponents/SongsSkeletonLoader'
 import { useParams } from "react-router-dom";
 import { store } from "../../store/store";
+import {useGetAllTracksQuery} from "../../services/allTracksRTK";
 
 
 
-const CompilationPageContent = ({ error, isLoading, compilationTracks}) => {
 
+const MainContent = () => {
 
-    const {id} = useParams();
-
-    const trackList = compilationTracks.find((trackList) => trackList.id === Number(id))
+    const {data: allTracks, error, isLoading} = useGetAllTracksQuery()
 
     return (
         <div className={styles.content}>
@@ -29,10 +28,11 @@ const CompilationPageContent = ({ error, isLoading, compilationTracks}) => {
                 <>Oh no, there was an error</>
              ) : isLoading ? (
                 <>Loading...</>
-             ) : compilationTracks ? (
+             ) : allTracks ? (
                 <div className={styles.playlist}>
-                    {trackList.items.map((element, index) => 
+                    {allTracks.map((element, index) => 
                         <PlaylistItem
+                            id={element.id}
                             track={element.name} 
                             artist={element.author} 
                             album={element.album} 
@@ -46,4 +46,4 @@ const CompilationPageContent = ({ error, isLoading, compilationTracks}) => {
     )
 }
 
-export default CompilationPageContent
+export default MainContent

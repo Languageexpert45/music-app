@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import styles from './LogIn.module.scss';
 import {LogoBlack} from '../../components/Logo/Logo';
-import {Link} from 'react-router-dom';
+import {Await, Link} from 'react-router-dom';
 import { useAddActiveUserMutation, useGetUserTokenMutation } from "../../services/allTracksRTK";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../store/slices/user";
 
 
 const LogIn = (props) => {
@@ -13,9 +15,18 @@ const LogIn = (props) => {
     const loginButton = useRef(null)
     const passwordButton = useRef(null)
 
-    const [userSignIn] = useAddActiveUserMutation();
+    const [userSignIn] = useAddActiveUserMutation()
 
-    const [userToken, result] = useGetUserTokenMutation();
+
+    const [userToken] = useGetUserTokenMutation()
+
+    // const saveToken = (result) => {
+    //     console.log(result);
+    // }
+
+    // useEffect(() => {
+    //     console.log(result);
+    // }, [])
 
 
     const canSave = [email, password].every(Boolean)
@@ -40,6 +51,7 @@ const LogIn = (props) => {
         } catch (err) {
             console.log(err.data.detail)
         }
+        
         }
     }
 

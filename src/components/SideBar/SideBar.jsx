@@ -5,23 +5,13 @@ import PlayListSkeleton from '../../SkeletonComponents/PlayListSkeletonLoader';
 import playlist1 from '../../img/playlist01.png';
 import playlist2 from '../../img/playlist02.png';
 import playlist3 from '../../img/playlist03.png';
+import {useGetSelectionsQuery} from "../../services/allTracksRTK";
 
 
 
-const SideBar = ({ error, isLoading, compilationTracks}) => {
+const SideBar = () => {
 
-    const images = [
-        {
-            id: 1, 
-            items: [playlist1, playlist2, playlist3]
-        },
-    ]
-
-
-    const result = images.map((image) => image.items )
-
-
-
+    const {data: selections, error, isLoading} = useGetSelectionsQuery()
 
     // const skeletonItems = props.playlists.map((item, index) => <PlayListSkeleton key={index}/>)
     
@@ -37,16 +27,31 @@ const SideBar = ({ error, isLoading, compilationTracks}) => {
                     <>Oh no, there was an error</>
                 ) : isLoading ? (
                     <>Loading...</>
-                ) : compilationTracks ? (
+                ) : selections ? (
 
                     <div className={styles.list}>
-                    {compilationTracks.map((playlist) =>
+                   
                         <CompilationItem 
-                            key={playlist.id} 
-                            playlistId={playlist.id}
-                            image = {images[0].items[0]} 
-                            />
-                        )}
+                            key={selections[0].id} 
+                            playlistId={selections[0].id}
+                            image = {playlist1}
+                            playlistName = {selections[0].items[0].genre} 
+                        />
+
+                        <CompilationItem 
+                            key={selections[1].id} 
+                            playlistId={selections[1].id}
+                            image = {playlist2}
+                            playlistName = {selections[1].items[0].genre} 
+                        />
+
+                        <CompilationItem 
+                            key={selections[2].id} 
+                            playlistId={selections[2].id}
+                            image = {playlist3}
+                            playlistName = {selections[2].items[0].genre}  
+                        />
+
                     </div>                 
                 ) : null}  
                    

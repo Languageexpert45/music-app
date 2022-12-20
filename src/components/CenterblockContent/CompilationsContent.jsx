@@ -4,15 +4,23 @@ import watch from '../../img/icon/watch.svg';
 import styles from './CenterblockContent.module.scss';
 import SongsSkeletonLoader from '../../SkeletonComponents/SongsSkeletonLoader'
 import { useParams } from "react-router-dom";
-import { store } from "../../store/store";
+import {useGetSelectionsQuery} from "../../services/allTracksRTK";
+import { addTrack } from "../../store/slices/tracks";
+import { useDispatch } from "react-redux";
 
 
 
-const MainPageContent = ({ error, isLoading, allTracks}) => {
+const CompilationContent = () => {
 
-    const {name} = useParams();
+    const {data: selections, error, isLoading} = useGetSelectionsQuery()
 
+    // const dispatch = useDispatch();
 
+    // dispatch(addTrack(selections));
+
+    const {id} = useParams();
+
+    const compilationsTracks = selections.find((trackList) => trackList.id === Number(id))
 
     return (
         <div className={styles.content}>
@@ -28,10 +36,10 @@ const MainPageContent = ({ error, isLoading, allTracks}) => {
                 <>Oh no, there was an error</>
              ) : isLoading ? (
                 <>Loading...</>
-             ) : allTracks ? (
+             ) : selections ? (
                 <div className={styles.playlist}>
-                    {allTracks.map((element, index) => 
-                        <PlaylistItem 
+                    {compilationsTracks.items.map((element, index) => 
+                        <PlaylistItem
                             track={element.name} 
                             artist={element.author} 
                             album={element.album} 
@@ -45,4 +53,4 @@ const MainPageContent = ({ error, isLoading, allTracks}) => {
     )
 }
 
-export default MainPageContent
+export default CompilationContent

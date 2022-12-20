@@ -36,9 +36,24 @@ export const musicApi = createApi({
             method: 'POST',
             body: userData
         })
-    })
+    }),
+
+    getRefreshUserToken: builder.mutation({
+        query: refreshToken => ({
+            url: 'user/token/refresh/',
+            method: 'POST',
+            body: refreshToken
+        })
+    }),
+    addTrackToFavorite: builder.mutation({
+        query: trackId => ({
+            url: `catalog/track/${trackId}/favorite`,
+            method: 'POST',
+            body: trackId,
+        })
+    }),
   }),
 });
 
 
-export const { useGetAllTracksQuery, useGetSelectionsQuery, useAddUserSignUpMutation, useAddActiveUserMutation, useGetUserTokenMutation} = musicApi;
+export const { useGetRefreshUserTokenMutation, useAddTrackToFavoriteMutation, useGetAllTracksQuery, useGetSelectionsQuery, useAddUserSignUpMutation, useAddActiveUserMutation, useGetUserTokenMutation} = musicApi;

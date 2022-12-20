@@ -1,9 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { AppRoutes } from "./Routes";
+import { useGetRefreshUserTokenMutation } from "./services/allTracksRTK";
+
+
+
 
 
 
 const App = (props) => {
+
+    // const [tokenRefresh, result] = useGetRefreshUserTokenMutation();
+
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         tokenRefresh({"refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY3MTU0MzE0NiwiaWF0IjoxNjcxNDU2NzQ2LCJqdGkiOiJkMGE5OThlYWZiNDg0YzBlODY1MGU1NWMwZGRmOTczMCIsInVzZXJfaWQiOjkwfQ.9N78QEPsczLSw_HcOizGcJdK7K0cVoVyPUAyBHbN1iA"})
+    //     }, 600000);
+    //     return () => clearTimeout(timer);
+    // });
+
+    // console.log(result.data);
 
   // const [songs, setSongs] = useState([]);
   // const [loading, setLoading] = useState(false);
