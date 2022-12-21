@@ -2,7 +2,7 @@ import React from 'react';
 import note from '../../img/icon/note.svg';
 import like from '../../img/icon/like.svg';
 import styles from './PlaylistItem.module.scss';
-import { useAddTrackToFavoriteMutation } from '../../services/allTracksRTK';
+import { useAddTrackToFavoriteMutation } from '../../services/tracks';
 import { useState } from 'react';
 
 const PlaylistItem = (props) => {

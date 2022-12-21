@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, Fragment } from "react";
 import Popup from '../Popup/Popup';
 import styles from './CenterblockFilter.module.scss'
 import PopupContent from "../Popup/PopupContent";
@@ -6,6 +6,8 @@ import FilterButton from "./FilterButton";
 
 
 const CenterblockFilter = (props) => {
+
+    const filterValues = ['исполнителю', 'году выпуска', 'жанру']
 
     const [sortByArtist, setSortByArtist] = useState(false);
     const [sortByYear, setSortByYear] = useState(false);
@@ -42,7 +44,7 @@ const CenterblockFilter = (props) => {
         }  
     }
 
-    const listItems = props.filterValues.map((filterValue, index) =>
+    const listItems = filterValues.map((filterValue, index) =>
         <FilterButton 
             key={index} 
             filterValue = {filterValue} 
@@ -51,24 +53,24 @@ const CenterblockFilter = (props) => {
     );
 
     return (
-        <div className={styles.centerblock__filter}>
-            <div className={styles.filter__title}>Искать по:</div>
 
-            {listItems}
-            
-            <Popup position={pos} visible={sortByArtist} setVisible={setSortByArtist} >
-                <PopupContent sortItems = {props.artist} />
-            </Popup>
+        <Fragment>
+            <div className={styles.centerblock__filter}>
+                <div className={styles.filter__title}>Искать по:</div>
+                {listItems}
+            </div>
+                <Popup position={pos} visible={sortByArtist} setVisible={setSortByArtist} >
+                    <PopupContent sortItems = {props.artist} />
+                </Popup>
 
-            <Popup position={pos} visible={sortByYear} setVisible={setSortByYear} >
-                <PopupContent sortItems = {props.year} />
-            </Popup>
+                <Popup position={pos} visible={sortByYear} setVisible={setSortByYear} >
+                    <PopupContent sortItems = {props.year} />
+                </Popup>
 
-            <Popup position={pos} visible={sortByGenre} setVisible={setSortByGenre} >
-                <PopupContent sortItems = {props.genre} />
-            </Popup>
-
-        </div>
+                <Popup position={pos} visible={sortByGenre} setVisible={setSortByGenre} >
+                    <PopupContent sortItems = {props.genre} />
+                </Popup>   
+        </Fragment>
     )
 }
 export default CenterblockFilter

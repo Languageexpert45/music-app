@@ -4,7 +4,7 @@ import watch from '../../img/icon/watch.svg';
 import styles from './CenterblockContent.module.scss';
 import SongsSkeletonLoader from '../../SkeletonComponents/SongsSkeletonLoader'
 import { useParams } from "react-router-dom";
-import {useGetSelectionsQuery} from "../../services/allTracksRTK";
+import { useGetSelectionsQuery } from "../../services/selections";
 import { addTrack } from "../../store/slices/tracks";
 import { useDispatch } from "react-redux";
 
@@ -12,13 +12,15 @@ import { useDispatch } from "react-redux";
 
 const CompilationContent = () => {
 
-    const {data: selections, error, isLoading} = useGetSelectionsQuery()
+    
 
     // const dispatch = useDispatch();
 
     // dispatch(addTrack(selections));
 
     const {id} = useParams();
+
+    const {data: selections, error, isLoading} = useGetSelectionsQuery()
 
     const compilationsTracks = selections.find((trackList) => trackList.id === Number(id))
 

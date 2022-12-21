@@ -5,11 +5,14 @@ import PlayListSkeleton from '../../SkeletonComponents/PlayListSkeletonLoader';
 import playlist1 from '../../img/playlist01.png';
 import playlist2 from '../../img/playlist02.png';
 import playlist3 from '../../img/playlist03.png';
-import {useGetSelectionsQuery} from "../../services/allTracksRTK";
+import {useGetSelectionsQuery} from "../../services/selections";
+import { useParams } from 'react-router-dom';
 
 
 
 const SideBar = () => {
+
+    const { id } = useParams()
 
     const {data: selections, error, isLoading} = useGetSelectionsQuery()
 

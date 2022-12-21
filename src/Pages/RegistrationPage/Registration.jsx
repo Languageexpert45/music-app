@@ -2,12 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import styles from './Registration.module.scss';
 import {LogoBlack} from '../../components/Logo/Logo'
 import {Link} from 'react-router-dom';
-import { useAddUserSignUpMutation } from "../../services/allTracksRTK";
+import { useSignupMutation } from "../../services/user";
 
 
 const Registration = (props) => {
 
-    const [userSignUp] = useAddUserSignUpMutation()
+    const [userSignUp] = useSignupMutation()
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

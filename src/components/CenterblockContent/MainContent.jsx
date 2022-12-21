@@ -5,7 +5,7 @@ import styles from './CenterblockContent.module.scss';
 import SongsSkeletonLoader from '../../SkeletonComponents/SongsSkeletonLoader'
 import { useParams } from "react-router-dom";
 import { store } from "../../store/store";
-import {useGetAllTracksQuery} from "../../services/allTracksRTK";
+import {useGetAllTracksQuery} from "../../services/tracks";
 
 
 

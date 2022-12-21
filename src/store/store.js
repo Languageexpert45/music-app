@@ -1,15 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { musicApi } from '../services/allTracksRTK';
-import {addUser} from './slices/user';
-import { addTrack } from "./slices/tracks";
+import { userApi } from "../services/user";
+import { tracksApi } from "../services/tracks";
+import { selectionsApi } from "../services/selections";
 
 export const store = configureStore({
   reducer: {
-    [musicApi.reducerPath]: musicApi.reducer,
-    user: addUser,
-    tracks: addTrack,
+    [userApi.reducerPath]: userApi.reducer,
+    [tracksApi.reducerPath]: tracksApi.reducer,
+    [selectionsApi.reducerPath]: selectionsApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(musicApi.middleware),
+    getDefaultMiddleware()
+      .concat(userApi.middleware)
+      .concat(tracksApi.middleware)
+      .concat(selectionsApi.middleware)
+      
 });
