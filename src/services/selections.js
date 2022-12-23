@@ -1,19 +1,17 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const DATA_TAG = { type: "tracks", id: "LIST" };
+const DATA_TAG = { type: 'tracks', id: 'LIST' };
 
 export const selectionsApi = createApi({
-  reducerPath: "musicApi",
+  reducerPath: 'selections',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://painassasin.online/",
+    baseUrl: 'https://painassasin.online/',
   }),
   endpoints: (builder) => ({
-
     getSelections: builder.query({
-      query:(id) => `catalog/selection/`,
+      query: (id) => `catalog/selection/`,
     }),
   }),
 });
 
-
-export const {useGetSelectionsQuery} = selectionsApi;
+export const { useGetSelectionsQuery } = selectionsApi;

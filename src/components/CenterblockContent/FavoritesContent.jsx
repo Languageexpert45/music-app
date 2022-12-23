@@ -5,10 +5,10 @@ import styles from './CenterblockContent.module.scss';
 import SongsSkeletonLoader from '../../SkeletonComponents/SongsSkeletonLoader';
 import { useParams } from 'react-router-dom';
 import { store } from '../../store/store';
-import { useGetAllTracksQuery } from '../../services/tracks';
+import { useGetFavoritesQuery } from '../../services/favorites';
 
-const MainContent = () => {
-  const { data: allTracks, error, isLoading } = useGetAllTracksQuery();
+const FavoritesContent = () => {
+  const { data: FavTracks, error, isLoading } = useGetFavoritesQuery();
 
   return (
     <div className={styles.content}>
@@ -26,9 +26,9 @@ const MainContent = () => {
         <>Oh no, there was an error</>
       ) : isLoading ? (
         <>Loading...</>
-      ) : allTracks ? (
+      ) : FavTracks ? (
         <div className={styles.playlist}>
-          {allTracks.map((element, index) => (
+          {FavTracks.map((element, index) => (
             <PlaylistItem
               id={element.id}
               track={element.name}
@@ -44,4 +44,4 @@ const MainContent = () => {
   );
 };
 
-export default MainContent;
+export default FavoritesContent;

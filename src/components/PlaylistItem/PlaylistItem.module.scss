@@ -86,8 +86,11 @@
   color: #696969;
 }
 
-.track__time {
+.track__like_time_box {
   margin-right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .track__time_svg {

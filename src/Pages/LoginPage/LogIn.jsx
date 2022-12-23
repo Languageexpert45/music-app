@@ -1,94 +1,95 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from 'react';
 import styles from './LogIn.module.scss';
-import {LogoBlack} from '../../components/Logo/Logo';
-import {Await, Link} from 'react-router-dom';
-import { useLoginMutation, useTokenMutation } from "../../services/user";
-import { useDispatch } from "react-redux";
-import { addUser } from "../../store/slices/user";
+import { LogoBlack } from '../../components/Logo/Logo';
+import { Link, Navigate } from 'react-router-dom';
+import { useLoginMutation, useTokenMutation } from '../../services/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { isLoggedInSelector } from '../../store/selectors/auth';
+import { tokenReceived } from '../../store/slices/auth';
 
+const LogIn = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState();
+  const loginInput = useRef(null);
+  const passwordInput = useRef(null);
+  const dispatch = useDispatch();
+  const loggedIn = useSelector(isLoggedInSelector);
+  const [userSignIn] = useLoginMutation();
+  const [userToken, result] = useTokenMutation();
 
-const LogIn = (props) => {
+  useEffect(() => {
+    dispatch(tokenReceived(result.data));
+  }, [result.data]);
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState()
-
-    const loginButton = useRef(null)
-    const passwordButton = useRef(null)
-
-    const [userSignIn] = useLoginMutation()
-
-
-    const [userToken, {data: result}] = useTokenMutation()
-
-    // const saveToken = (result) => {
-    //     console.log(result);
-    // }
-
-    
-
-    // useEffect(() => {
-    //     console.log(result);
-    // }, [result])
-
-    
-
-
-
-    const canSave = [email, password].every(Boolean)
-
-
-    const inputLogin = () => {
-        setEmail(loginButton.current.value)
+  useEffect(() => {
+    if (result.error) {
+      console.log(result.error.data.detail);
     }
+  }, [result]);
 
-    const inputPassword = () => {
-        setPassword(passwordButton.current.value)
+  if (loggedIn) {
+    return <Navigate to='/main'/>
+  }
+
+
+  const inputLogin = () => {
+    setEmail(loginInput.current.value);
+  };
+
+  const inputPassword = () => {
+    setPassword(passwordInput.current.value);
+  };
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    if (email && password) {
+      userSignIn({ email, password });
+      userToken({ email, password });
     }
-
-    const checkUserReg = async () => {
-
-        if (canSave) {
-        try {
-            await userSignIn({email, password}).unwrap();
-
-            await userToken ({email, password}).unwrap();
-
-            console.log(result)
-
-        } catch (err) {
-            console.log(err.data.detail)
-        }
-        
-        }
+    if (!email || !password) {
+      console.log('поле пароль и/или логин не заполнено ');
     }
+    setEmail('');
+    setPassword('');
+    passwordInput.current.value = '';
+    loginInput.current.value = '';
+  };
 
-    return (
-        <div className={styles.reg__container}>
-            <div className={styles.reg__box}>
-                <div className={styles.reg__logo}>
-                    <LogoBlack/>
-                </div>
-                <form className={styles.reg__form}>
-                    <input ref={loginButton} onChange={inputLogin} className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
-                    <input ref={passwordButton} onChange={inputPassword} className={styles.reg__input} type="password" name="password" id="password" placeholder="Пароль" />
-                    
-                    <Link onClick={checkUserReg} to={`/main`}>
-                        <button 
-                            className={styles.login__button}>
-                                Войти
-                        </button>
-                    </Link>
-                    
-                    <Link to='/reg'>
-                        <button 
-                            className={styles.reg__button}>
-                            Зарегистрироваться
-                        </button>
-                    </Link>
-                </form>
-            </div>
+  return (
+    <div className={styles.reg__container}>
+      <div className={styles.reg__box}>
+        <div className={styles.reg__logo}>
+          <LogoBlack />
         </div>
-    )
-}
+        <form onSubmit={handleSignIn} className={styles.reg__form}>
+          <input
+            ref={loginInput}
+            onChange={inputLogin}
+            className={styles.reg__input}
+            type="text"
+            name="login"
+            id="login"
+            placeholder="Логин"
+          />
+          <input
+            ref={passwordInput}
+            onChange={inputPassword}
+            className={styles.reg__input}
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Пароль"
+          />
 
-export default LogIn
+          <button className={styles.login__button}>Войти</button>
+
+          <Link to="/reg">
+            <button className={styles.reg__button}>Зарегистрироваться</button>
+          </Link>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default LogIn;

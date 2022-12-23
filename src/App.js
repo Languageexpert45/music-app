@@ -1,24 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { AppRoutes } from "./Routes";
-import { useGetRefreshUserTokenMutation } from "./services/tracks";
-
-
-
-
-
+import React, { useState, useEffect } from 'react';
+import { AppRoutes } from './Routes';
+import { useRefreshMutation } from './services/user';
+import { useDispatch } from 'react-redux';
+import { tokenReceived } from './store/slices/auth';
+import { useSelector } from 'react-redux';
+import { isLoggedInSelector } from './store/selectors/auth';
 
 const App = (props) => {
+  const [tokenRefresh, result] = useRefreshMutation();
 
-    // const [tokenRefresh, result] = useGetRefreshUserTokenMutation();
+  const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         tokenRefresh({"refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY3MTU0MzE0NiwiaWF0IjoxNjcxNDU2NzQ2LCJqdGkiOiJkMGE5OThlYWZiNDg0YzBlODY1MGU1NWMwZGRmOTczMCIsInVzZXJfaWQiOjkwfQ.9N78QEPsczLSw_HcOizGcJdK7K0cVoVyPUAyBHbN1iA"})
-    //     }, 600000);
-    //     return () => clearTimeout(timer);
-    // });
+  const loggedIn = useSelector(isLoggedInSelector);
 
-    // console.log(result.data);
+
+
+  useEffect(() => {
+    if (loggedIn) {
+      const timer = setTimeout(() => {
+        tokenRefresh({ refresh: localStorage.getItem('tokenRefresh') })
+      }, 240000)
+      return () => clearTimeout(timer);
+    }
+  });
+
+  useEffect(() => {
+    if (result.isSuccess) {
+      dispatch(tokenReceived(result.data));
+    }
+  }, [result.isSuccess]);
 
   // const [songs, setSongs] = useState([]);
   // const [loading, setLoading] = useState(false);
@@ -31,27 +41,26 @@ const App = (props) => {
   //       }, 1000);
   //       return () => clearTimeout(timer);
   //   }, []);
-  
+
   return (
     <div className="wrapper">
       <AppRoutes
-      
         playlists={props.state.playlists}
-        tracks={props.state.tracks} 
-        artist={props.state.filter.artistsData} 
-        year={props.state.filter.yearsData} 
-        genre={props.state.filter.genreData} 
-        filterValues={props.state.filter.filterValues} 
-        // loading={loading} 
-        // songsSkeleton={state.playlist.tracks} 
+        tracks={props.state.tracks}
+        artist={props.state.filter.artistsData}
+        year={props.state.filter.yearsData}
+        genre={props.state.filter.genreData}
+        filterValues={props.state.filter.filterValues}
+        // loading={loading}
+        // songsSkeleton={state.playlist.tracks}
         // playlistsSkeleton={props.state.playlist.UserPlaylists}
         songInfoURL={props.state.currentSong.songInfoURL}
         artistInfoURL={props.state.currentSong.artistInfoURL}
         songName={props.state.currentSong.songName}
-        artistName={props.state.currentSong.artistName} 
+        artistName={props.state.currentSong.artistName}
       />
     </div>
-  )
-}
+  );
+};
 
 export default App;

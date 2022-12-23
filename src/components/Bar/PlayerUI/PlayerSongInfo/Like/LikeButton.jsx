@@ -1,24 +1,18 @@
-import React, { useState, useEffect } from "react";
-import Like_Dislike_SVG from './Like_Dislike_SVG';
+import React, { useState, useEffect } from 'react';
+import Like_Dislike_logic_visual from './Like_Dislike_logic&visual';
 
-const LikeButton = (props) => {
+const LikeButton = () => {
+  const [likeDislike, setLikeDislike] = useState('transparent');
+  const [stroke, setStroke] = useState('#ACACAC');
 
-    const [fill, setFill] = useState('transparent');
-    const [stroke, setStroke] = useState('#ACACAC');
-    const [dislike, setDislike] = useState('transparent');
-    
+  return (
+    <Like_Dislike_logic_visual
+      likeDislike={likeDislike}
+      setLikeDislike={setLikeDislike}
+      hover={stroke}
+      setHover={setStroke}
+    />
+  );
+};
 
-    
-    return (             
-        <Like_Dislike_SVG 
-            like={fill} 
-            setLike={setFill} 
-            hover={stroke} 
-            setHover={setStroke} 
-            dislike={dislike} 
-            setDislike={setDislike}
-        />  
-    )
-}
-
-export default LikeButton
+export default LikeButton;
