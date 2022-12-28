@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useGetSelectionsQuery } from '../../services/selections';
 import { useDispatch } from 'react-redux';
 
-const CompilationContent = () => {
+const CompilationContent = ({tracks}) => {
   const { id } = useParams();
 
   const { data: selections, error, isLoading } = useGetSelectionsQuery();
@@ -15,6 +15,13 @@ const CompilationContent = () => {
   const compilationsTracks = selections.find(
     (trackList) => trackList.id === Number(id)
   );
+
+   useEffect(() => {
+    if (compilationsTracks) {
+      tracks(compilationsTracks.items);
+    } 
+   }, [compilationsTracks]);
+
 
   return (
     <div className={styles.content}>
@@ -34,15 +41,17 @@ const CompilationContent = () => {
         <>Loading...</>
       ) : selections ? (
         <div className={styles.playlist}>
-          {compilationsTracks.items.map((element, index) => (
-            <PlaylistItem
-              track={element.name}
-              artist={element.author}
-              album={element.album}
-              time={element.duration_in_seconds}
-              key={index}
-            />
-          ))}
+          {compilationsTracks
+            ? compilationsTracks.items.map((element, index) => (
+                <PlaylistItem
+                  track={element.name}
+                  artist={element.author}
+                  album={element.album}
+                  time={element.duration_in_seconds}
+                  key={index}
+                />
+              ))
+            : null}
         </div>
       ) : null}
     </div>

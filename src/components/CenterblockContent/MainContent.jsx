@@ -7,8 +7,12 @@ import { useParams } from 'react-router-dom';
 import { store } from '../../store/store';
 import { useGetAllTracksQuery } from '../../services/tracks';
 
-const MainContent = () => {
+const MainContent = ({ tracks }) => {
   const { data: allTracks, error, isLoading } = useGetAllTracksQuery();
+
+  useEffect(() => {
+    tracks(allTracks);
+  }, [allTracks]);
 
   return (
     <div className={styles.content}>

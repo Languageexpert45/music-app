@@ -18,8 +18,8 @@ const App = (props) => {
   useEffect(() => {
     if (loggedIn) {
       const timer = setTimeout(() => {
-        tokenRefresh({ refresh: localStorage.getItem('tokenRefresh') })
-      }, 240000)
+        tokenRefresh({ refresh: localStorage.getItem('tokenRefresh') });
+      }, 300000);
       return () => clearTimeout(timer);
     }
   });

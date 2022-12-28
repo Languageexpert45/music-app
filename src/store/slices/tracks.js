@@ -4,7 +4,6 @@ import { userApi } from '../../services/user';
 const initialState = {
   access: '',
   isLoggedIn: false,
-  
 };
 
 const storeTokens = (state, { payload }) => {

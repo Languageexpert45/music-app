@@ -35,21 +35,18 @@ const SideBar = () => {
                     <div className={styles.list}>
                    
                         <CompilationItem 
-                            key={selections[0].id} 
                             playlistId={selections[0].id}
                             image = {playlist1}
                             playlistName = {selections[0].items[0].genre} 
                         />
 
                         <CompilationItem 
-                            key={selections[1].id} 
                             playlistId={selections[1].id}
                             image = {playlist2}
                             playlistName = {selections[1].items[0].genre} 
                         />
 
                         <CompilationItem 
-                            key={selections[2].id} 
                             playlistId={selections[2].id}
                             image = {playlist3}
                             playlistName = {selections[2].items[0].genre}  
