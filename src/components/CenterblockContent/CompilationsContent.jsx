@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useGetSelectionsQuery } from '../../services/selections';
 import { useDispatch } from 'react-redux';
 
-const CompilationContent = ({tracks}) => {
+const CompilationContent = ({ tracks, trackId }) => {
   const { id } = useParams();
 
   const { data: selections, error, isLoading } = useGetSelectionsQuery();
@@ -16,12 +16,11 @@ const CompilationContent = ({tracks}) => {
     (trackList) => trackList.id === Number(id)
   );
 
-   useEffect(() => {
+  useEffect(() => {
     if (compilationsTracks) {
       tracks(compilationsTracks.items);
-    } 
-   }, [compilationsTracks]);
-
+    }
+  }, [compilationsTracks]);
 
   return (
     <div className={styles.content}>
@@ -44,6 +43,8 @@ const CompilationContent = ({tracks}) => {
           {compilationsTracks
             ? compilationsTracks.items.map((element, index) => (
                 <PlaylistItem
+                  trackId={trackId}
+                  id={element.id}
                   track={element.name}
                   artist={element.author}
                   album={element.album}

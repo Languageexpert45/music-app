@@ -7,10 +7,10 @@ import MainContent from '../../components/CenterblockContent/MainContent';
 import CompilationsContent from '../../components/CenterblockContent/CompilationsContent';
 import FavoritesContent from '../../components/CenterblockContent/FavoritesContent';
 import SideBar from '../../components/SideBar/SideBar';
-import Bar from '../../components/Bar/Bar';
 import useLocalStorage from 'use-local-storage';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Player from '../../components/Bar/PlayerUI/PlayerControl/Player';
 
 const MainPage = (props) => {
   const [theme, setTheme] = useLocalStorage('theme' ? 'dark' : 'light');
@@ -21,32 +21,46 @@ const MainPage = (props) => {
 
   const { id } = useParams();
 
+  const [sourceTracks, setSourceTracks] = useState(undefined);
 
+  const [trackId, setTrackId] = useState(undefined);
 
   const getTracksFromChosenPlaylist = (tracks) => {
-    setSourceTracks(tracks);
-  }
-  const [sourceTracks, setSourceTracks] = useState(null);
-
-  useEffect(() => {
-    if (sourceTracks) {
-     setSourceTracks(sourceTracks);
+    if (tracks) {
+      setSourceTracks(tracks);
     }
-  }, [sourceTracks]);
+  };
 
-
+  const getTrackId = (id) => {
+    setTrackId(id);
+  };
 
   const [tracksContent, setTracksContent] = useState(null);
 
   useEffect(() => {
     if (id === '1' || id === '2' || id === '3') {
-      setTracksContent(<CompilationsContent tracks={getTracksFromChosenPlaylist} />);
+      setTracksContent(
+        <CompilationsContent
+          tracks={getTracksFromChosenPlaylist}
+          trackId={getTrackId}
+        />
+      );
     }
     if (id === '4') {
-      setTracksContent(<FavoritesContent />);
+      setTracksContent(
+        <FavoritesContent
+          tracks={getTracksFromChosenPlaylist}
+          trackId={getTrackId}
+        />
+      );
     }
     if (id === undefined) {
-      setTracksContent(<MainContent tracks={getTracksFromChosenPlaylist} />);
+      setTracksContent(
+        <MainContent
+          tracks={getTracksFromChosenPlaylist}
+          trackId={getTrackId}
+        />
+      );
     }
   }, [id]);
 
@@ -62,7 +76,7 @@ const MainPage = (props) => {
         </div>
         <SideBar />
       </main>
-      <Bar tracks={sourceTracks} />
+      <Player tracks={sourceTracks} trackId={trackId} />
     </div>
   );
 };

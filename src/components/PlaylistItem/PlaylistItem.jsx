@@ -1,19 +1,20 @@
 import React from 'react';
 import note from '../../img/icon/note.svg';
-import like from '../../img/icon/like.svg';
 import styles from './PlaylistItem.module.scss';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import LikeButton from '../Bar/PlayerUI/PlayerSongInfo/Like/LikeButton';
+import { trackId } from '../../store/slices/tracks';
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetAllTracksQuery } from '../../services/tracks';
 
-
-
-
-const PlaylistItem = (props) => {
-
+const PlaylistItem = ({ id, track, artist, album, time, trackId }) => {
+  const handleTrackId = () => {
+    trackId(id);
+  };
 
   return (
-    <div className={styles.item}>
+    <div onClick={handleTrackId} className={styles.item}>
       <div className={styles.track}>
         <div className={styles.title}>
           <div className={styles.image}>
@@ -21,19 +22,19 @@ const PlaylistItem = (props) => {
           </div>
           <div className="track__title-text">
             <a className={styles.link}>
-              {props.track} <span className={styles.span}></span>
+              {track} <span className={styles.span}></span>
             </a>
           </div>
         </div>
         <div className={styles.author}>
-          <a className={styles.author_link}>{props.artist}</a>
+          <a className={styles.author_link}>{artist}</a>
         </div>
         <div className={styles.album}>
-          <a className={styles.album_link}>{props.album}</a>
+          <a className={styles.album_link}>{album}</a>
         </div>
         <div className={styles.track__like_time_box}>
           <LikeButton />
-          <span className={styles.track__time_text}>{props.time}</span>
+          <span className={styles.track__time_text}>{time}</span>
         </div>
       </div>
     </div>

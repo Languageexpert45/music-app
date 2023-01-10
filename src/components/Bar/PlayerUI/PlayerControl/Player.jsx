@@ -10,24 +10,15 @@ import PlayerSongInfo from '../PlayerSongInfo/PlayerSongInfo';
 import PlayerSongInfoSkeleton from '../../../../SkeletonComponents/PlayerSongInfoSkeleton';
 import Volume from '../../PlayerUI/VolumeControl/Volume';
 
-const Player = ({ tracks }) => {
+const Player = ({ tracks, trackId }) => {
 
-
-  const [playlist, setPlaylist] = useState(null);
-
-  useEffect(() => {
-    console.log(tracks);
-  }, [tracks]);
-
-
-
-  const [trackIndex, setTrackIndex] = useState(4);
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(new Audio());
   const intervalRef = useRef();
   const isReady = useRef(false);
   const { duration } = audioRef.current;
+//   const [track, setTrack] = useState(null)
 
   const onPlayPauseClick = () => {
     setIsPlaying(!isPlaying);
@@ -52,10 +43,13 @@ const Player = ({ tracks }) => {
 
   // Handle setup when changing tracks
   useEffect(() => {
-    audioRef.current.pause();
+    if (trackId) {
+      const track = (tracks.find((track) => track.id === trackId));
+      audioRef.current.pause();
 
-    audioRef.current = new Audio();
-    setTrackProgress(audioRef.current.currentTime);
+      audioRef.current = new Audio(track.track_file);
+      setTrackProgress(audioRef.current.currentTime);
+    }
 
     if (isReady.current) {
       audioRef.current.play();
@@ -65,7 +59,7 @@ const Player = ({ tracks }) => {
       // Set the isReady ref as true for the next pass
       isReady.current = true;
     }
-  }, [trackIndex]);
+  }, [trackId]);
 
   const startTimer = () => {
     // Clear any timers already running
@@ -128,7 +122,7 @@ const Player = ({ tracks }) => {
         <div className={styles.bar__player_block}>
           <div className={styles.bar__player}>
             <div className={styles.player__controls}>
-              <div className={styles.player__btn_prev}>
+              <div onClick={toPrevTrack} className={styles.player__btn_prev}>
                 <img
                   className={styles.player__btn_prev_svg}
                   src={prev}
@@ -157,7 +151,7 @@ const Player = ({ tracks }) => {
                   alt="pause"
                 ></img>
               </div>
-              <div className={styles.player__btn_next}>
+              <div onClick={toNextTrack} className={styles.player__btn_next}>
                 <img
                   className={styles.player__btn_next_svg}
                   src={next}

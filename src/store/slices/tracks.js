@@ -2,44 +2,24 @@ import { createSlice } from '@reduxjs/toolkit';
 import { userApi } from '../../services/user';
 
 const initialState = {
-  access: '',
-  isLoggedIn: false,
+  id: '',
 };
 
-const storeTokens = (state, { payload }) => {
-  const { access, refresh } = payload;
-  if (!access) {
-    return;
-  }
-  state.access = access;
-  state.isLoggedIn = true;
-   if (refresh) {
-     localStorage.setItem('tokenRefresh', refresh);
-   }
-};
 
-export const authSlice = createSlice ({
-  name: 'auth',
+export const trackIdSlice = createSlice({
+  name: 'trackId',
   initialState,
   reducers: {
-    tokenReceived: (state, {payload}) => {
+    trackId: (state, { payload }) => {
       if (payload) {
-        const { access, refresh } = payload;
-        if(access) {state.access = access};
-        if (refresh) {localStorage.setItem('tokenRefresh', refresh)};
-        state.isLoggedIn = true;
-      } 
+        const { id } = payload;
+        if (id) {
+          state.id = id;
+        }
+      }
     },
-    logOut: (state) => {
-      state.access = initialState.access
-      state.isLoggedIn = initialState.isLoggedIn
-      localStorage.removeItem('tokenRefresh');
-    },
-    },
-    extraReducers: (builder) => {
-      builder.addMatcher(userApi.endpoints.refresh.matchFulfilled, storeTokens);
-    }
-})
+  },
+});
 
-export const { tokenReceived, logOut } = authSlice.actions;
-export default authSlice.reducer;
+export const { trackId } = trackIdSlice.actions;
+export default trackIdSlice.reducer;

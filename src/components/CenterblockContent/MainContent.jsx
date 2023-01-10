@@ -7,11 +7,13 @@ import { useParams } from 'react-router-dom';
 import { store } from '../../store/store';
 import { useGetAllTracksQuery } from '../../services/tracks';
 
-const MainContent = ({ tracks }) => {
+const MainContent = ({ tracks, trackId }) => {
   const { data: allTracks, error, isLoading } = useGetAllTracksQuery();
 
   useEffect(() => {
-    tracks(allTracks);
+    if (allTracks) {
+       tracks(allTracks);
+    }
   }, [allTracks]);
 
   return (
@@ -34,6 +36,7 @@ const MainContent = ({ tracks }) => {
         <div className={styles.playlist}>
           {allTracks.map((element, index) => (
             <PlaylistItem
+              trackId={trackId}
               id={element.id}
               track={element.name}
               artist={element.author}

@@ -7,8 +7,14 @@ import { useParams } from 'react-router-dom';
 import { store } from '../../store/store';
 import { useGetFavoritesQuery } from '../../services/favorites';
 
-const FavoritesContent = () => {
+const FavoritesContent = ({ tracks, trackId }) => {
   const { data: FavTracks, error, isLoading } = useGetFavoritesQuery();
+
+   useEffect(() => {
+     if (FavTracks) {
+       tracks(FavTracks);
+     }
+   }, [FavTracks]);
 
   return (
     <div className={styles.content}>
@@ -30,6 +36,7 @@ const FavoritesContent = () => {
         <div className={styles.playlist}>
           {FavTracks.map((element, index) => (
             <PlaylistItem
+              trackId={trackId}
               id={element.id}
               track={element.name}
               artist={element.author}
