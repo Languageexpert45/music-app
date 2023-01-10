@@ -1,86 +1,95 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from 'react';
 import styles from './LogIn.module.scss';
-import {LogoBlack} from '../MusicPage/components/Logo/Logo';
-import {Link} from 'react-router-dom';
-import {useDispatch} from "react-redux";
-import { regUser } from "../../store/actions/creators/user";
-import { useSelector } from "react-redux";
-import { userSelector } from "../../store/selectors/user";
+import { LogoBlack } from '../../components/Logo/Logo';
+import { Link, Navigate } from 'react-router-dom';
+import { useLoginMutation, useTokenMutation } from '../../services/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { isLoggedInSelector } from '../../store/selectors/auth';
+import { tokenReceived } from '../../store/slices/auth';
 
+const LogIn = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState();
+  const loginInput = useRef(null);
+  const passwordInput = useRef(null);
+  const dispatch = useDispatch();
+  const loggedIn = useSelector(isLoggedInSelector);
+  const [userSignIn] = useLoginMutation();
+  const [userToken, result] = useTokenMutation();
 
-const LogIn = (props) => {
+  useEffect(() => {
+    dispatch(tokenReceived(result.data));
+  }, [result.data]);
 
-    const user = useSelector(userSelector)
-    const dispatch = useDispatch()
-
-    const [login, setLogin] = useState('')
-    const [password, setPassword] = useState()
-
-    const [path, setPath] = useState('')
-
-    const loginButton = useRef(null)
-    const passwordButton = useRef(null)
-
-
-
-
-    useEffect(() => {
-        if (user.active === true) {
-            props.getToken(user.token)
-            setPath(`/main/${props.playlists[3].id}`)
-        }
-    })
-
-
-
-    const inputLogin = () => {
-        setLogin(loginButton.current.value)
+  useEffect(() => {
+    if (result.error) {
+      console.log(result.error.data.detail);
     }
+  }, [result]);
 
-    const inputPassword = () => {
-        setPassword(passwordButton.current.value)
+  if (loggedIn) {
+    return <Navigate to='/main'/>
+  }
+
+
+  const inputLogin = () => {
+    setEmail(loginInput.current.value);
+  };
+
+  const inputPassword = () => {
+    setPassword(passwordInput.current.value);
+  };
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    if (email && password) {
+      userSignIn({ email, password });
+      userToken({ email, password });
     }
-
-    const checkUserReg = () => {
-        if (!login || !password) {
-        console.log('enter login and password or register');
-        return
-        }
-        else if (login === user.login && password === user.password) {
-        dispatch(regUser(true, login, password, 'token'))
-        console.log('login and password are correct');
-        }
-        else {
-        console.log('login or password are incorrect')
-        }
+    if (!email || !password) {
+      console.log('поле пароль и/или логин не заполнено ');
     }
+    setEmail('');
+    setPassword('');
+    passwordInput.current.value = '';
+    loginInput.current.value = '';
+  };
 
-    return (
-        <div className={styles.reg__container}>
-            <div className={styles.reg__box}>
-                <div className={styles.reg__logo}>
-                    <LogoBlack/>
-                </div>
-                <form className={styles.reg__form}>
-                    <input ref={loginButton} onChange={inputLogin} className={styles.reg__input} type="text" name="login" id="login" placeholder="Логин" />
-                    <input ref={passwordButton} onChange={inputPassword} className={styles.reg__input} type="password" name="password" id="password" placeholder="Пароль" />
-                    <Link onClick={checkUserReg} to={path}>
-                        <button 
-                            className={styles.login__button}>
-                                Войти
-                        </button>
-                    </Link>
-                    
-                    <Link to='/reg'>
-                        <button 
-                            className={styles.reg__button}>
-                            Зарегистрироваться
-                        </button>
-                    </Link>
-                </form>
-            </div>
+  return (
+    <div className={styles.reg__container}>
+      <div className={styles.reg__box}>
+        <div className={styles.reg__logo}>
+          <LogoBlack />
         </div>
-    )
-}
+        <form onSubmit={handleSignIn} className={styles.reg__form}>
+          <input
+            ref={loginInput}
+            onChange={inputLogin}
+            className={styles.reg__input}
+            type="text"
+            name="login"
+            id="login"
+            placeholder="Логин"
+          />
+          <input
+            ref={passwordInput}
+            onChange={inputPassword}
+            className={styles.reg__input}
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Пароль"
+          />
 
-export default LogIn
+          <button className={styles.login__button}>Войти</button>
+
+          <Link to="/reg">
+            <button className={styles.reg__button}>Зарегистрироваться</button>
+          </Link>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default LogIn;
