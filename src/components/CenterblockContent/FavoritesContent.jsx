@@ -8,13 +8,13 @@ import { store } from '../../store/store';
 import { useGetFavoritesQuery } from '../../services/favorites';
 
 const FavoritesContent = ({ tracks, trackId }) => {
-  const { data: FavTracks, error, isLoading } = useGetFavoritesQuery();
+  const { data: favTracks, error, isLoading } = useGetFavoritesQuery();
 
    useEffect(() => {
-     if (FavTracks) {
-       tracks(FavTracks);
+     if (favTracks) {
+       tracks(favTracks);
      }
-   }, [FavTracks]);
+   }, [favTracks]);
 
   return (
     <div className={styles.content}>
@@ -32,9 +32,9 @@ const FavoritesContent = ({ tracks, trackId }) => {
         <>Oh no, there was an error</>
       ) : isLoading ? (
         <>Loading...</>
-      ) : FavTracks ? (
+      ) : favTracks ? (
         <div className={styles.playlist}>
-          {FavTracks.map((element, index) => (
+          {favTracks.map((element, index) => (
             <PlaylistItem
               trackId={trackId}
               id={element.id}

@@ -76,7 +76,7 @@ const MainPage = (props) => {
         </div>
         <SideBar />
       </main>
-      <Player tracks={sourceTracks} trackId={trackId} />
+      <Player tracks={sourceTracks} id={trackId} />
     </div>
   );
 };

@@ -9,8 +9,10 @@ const Like_Dislike_logic_visual = ({
   setLikeDislike,
   hover,
   setHover,
+  id,
 }) => {
   const [count, setCount] = useState(true);
+  const [favId, setFavId] = useState()
 
   const [
     addToFav,
@@ -30,15 +32,17 @@ const Like_Dislike_logic_visual = ({
     },
   ] = useDeleteFavoriteMutation();
 
-  const handleLikeDislike = () => {
+  const handleLikeDislike = (event) => {
     setCount(!count);
     if (count) {
       setLikeDislike('#696969');
-      addToFav(15);
+      addToFav(id);
+      event.stopPropagation()
     }
     if (!count) {
       setLikeDislike('transparent');
-      deleteFromFav(15);
+      deleteFromFav(id);
+      event.stopPropagation();
     }
   };
 
