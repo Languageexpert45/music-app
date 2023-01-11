@@ -33,7 +33,7 @@ const PlaylistItem = ({ id, track, artist, album, time, trackId }) => {
           <a className={styles.album_link}>{album}</a>
         </div>
         <div className={styles.track__like_time_box}>
-          <LikeButton />
+          <LikeButton id={id} />
           <span className={styles.track__time_text}>{time}</span>
         </div>
       </div>

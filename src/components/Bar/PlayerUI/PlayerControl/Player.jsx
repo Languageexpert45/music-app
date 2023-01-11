@@ -10,15 +10,14 @@ import PlayerSongInfo from '../PlayerSongInfo/PlayerSongInfo';
 import PlayerSongInfoSkeleton from '../../../../SkeletonComponents/PlayerSongInfoSkeleton';
 import Volume from '../../PlayerUI/VolumeControl/Volume';
 
-const Player = ({ tracks, trackId }) => {
-
+const Player = ({ tracks, id }) => {
+  const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(new Audio());
   const intervalRef = useRef();
   const isReady = useRef(false);
   const { duration } = audioRef.current;
-//   const [track, setTrack] = useState(null)
 
   const onPlayPauseClick = () => {
     setIsPlaying(!isPlaying);
@@ -43,11 +42,10 @@ const Player = ({ tracks, trackId }) => {
 
   // Handle setup when changing tracks
   useEffect(() => {
-    if (trackId) {
-      const track = (tracks.find((track) => track.id === trackId));
+    if (tracks) {
       audioRef.current.pause();
 
-      audioRef.current = new Audio(track.track_file);
+      audioRef.current = new Audio(tracks[trackIndex].track_file);
       setTrackProgress(audioRef.current.currentTime);
     }
 
@@ -59,7 +57,7 @@ const Player = ({ tracks, trackId }) => {
       // Set the isReady ref as true for the next pass
       isReady.current = true;
     }
-  }, [trackId]);
+  }, [trackIndex]);
 
   const startTimer = () => {
     // Clear any timers already running
