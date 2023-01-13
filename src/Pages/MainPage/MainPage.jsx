@@ -35,6 +35,7 @@ const MainPage = (props) => {
     setTrackId(id);
   };
 
+
   const [tracksContent, setTracksContent] = useState(null);
 
   useEffect(() => {
@@ -76,7 +77,10 @@ const MainPage = (props) => {
         </div>
         <SideBar />
       </main>
-      <Player tracks={sourceTracks} id={trackId} />
+      <Player
+        tracks={sourceTracks}
+        id={trackId}
+      />
     </div>
   );
 };

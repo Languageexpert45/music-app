@@ -14,14 +14,45 @@ const Player = ({ tracks, id }) => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(new Audio());
+  const audioRef = useRef(new Audio(tracks));
   const intervalRef = useRef();
   const isReady = useRef(false);
   const { duration } = audioRef.current;
+  const [playlist, setPlaylist] = useState();
+  const [isMuted, setIsMuted] = useState(false);
+  const [volumeProgress, setVolumeProgress] = useState(0);
+
+  useEffect(() => {
+    if (tracks) {
+      setPlaylist(tracks);
+    }
+  }, [tracks]);
+
+  useEffect(() => {
+    if (id) {
+      audioRef.current.pause();
+      const track = playlist.find((track) => track.id === id);
+      audioRef.current = new Audio(track.track_file);
+      setTrackProgress(audioRef.current.currentTime);
+      setTrackIndex(playlist.indexOf(track));
+      setIsMuted(false);
+    }
+  }, [id]);
 
   const onPlayPauseClick = () => {
     setIsPlaying(!isPlaying);
   };
+  const handleMuteTrack = () => {
+    setIsMuted(!isMuted);
+  };
+
+  useEffect(() => {
+    if (isMuted) {
+      audioRef.current.volume = 0;
+    } else {
+      audioRef.current.volume = 1;
+    }
+  }, [isMuted]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -41,12 +72,14 @@ const Player = ({ tracks, id }) => {
   }, []);
 
   // Handle setup when changing tracks
-  useEffect(() => {
-    if (tracks) {
-      audioRef.current.pause();
 
-      audioRef.current = new Audio(tracks[trackIndex].track_file);
+  useEffect(() => {
+    if (playlist) {
+      audioRef.current.pause();
+      audioRef.current = new Audio(playlist[trackIndex].track_file);
+      //   setCurrentTrack(playlist[trackIndex]);
       setTrackProgress(audioRef.current.currentTime);
+      setIsMuted(false);
     }
 
     if (isReady.current) {
@@ -72,6 +105,11 @@ const Player = ({ tracks, id }) => {
     }, [1000]);
   };
 
+  const onVolumeChange = (value) => {
+    audioRef.current.volume = value/100
+    setVolumeProgress(value)
+  }
+
   const onScrub = (value) => {
     // Clear any timers already running
     clearInterval(intervalRef.current);
@@ -89,14 +127,14 @@ const Player = ({ tracks, id }) => {
 
   const toPrevTrack = () => {
     if (trackIndex - 1 < 0) {
-      setTrackIndex(tracks.length - 1);
+      setTrackIndex(playlist.length - 1);
     } else {
       setTrackIndex(trackIndex - 1);
     }
   };
 
   const toNextTrack = () => {
-    if (trackIndex < tracks.length - 1) {
+    if (trackIndex < playlist.length - 1) {
       setTrackIndex(trackIndex + 1);
     } else {
       setTrackIndex(0);
@@ -179,7 +217,7 @@ const Player = ({ tracks, id }) => {
             {/* {props.loading && <PlayerSongInfoSkeleton />}
             {!props.loading && <PlayerSongInfo />} */}
           </div>
-          <Volume />
+          <Volume mute={handleMuteTrack} isMuted={isMuted} onVolumeChange={onVolumeChange} volumeProgress={volumeProgress} />
         </div>
       </div>
     </div>
