@@ -1,37 +1,41 @@
 import React  from "react";
 import styles from'./Popup.module.scss';
+import { useEffect, useState } from 'react';
 
+const Popup = ({ children, visible, setVisible, position, setPosition }) => {
+  const [rootClasses, setRootClasses] = useState([styles.box, styles.closed]);
 
-const Popup = ({children, visible, setVisible, position}) => {
-    
-    let rootClasses = [styles.box]
+  useEffect(() => {
     if (visible) {
-        rootClasses.push(styles.active)
+      setRootClasses([styles.box, styles.active]);
+    }
+  }, [visible]);
+
+  useEffect(() => {
+    if (position === 1) {
+      setRootClasses([styles.box, styles.active, styles.left1]);
     }
 
-    if (position == '1') {
-        rootClasses.push(styles.left1)
+    if (position === 2) {
+      setRootClasses([styles.box, styles.active, styles.left2]);
     }
 
-    if (position == '2') {
-        rootClasses.push(styles.left2)
+    if (position === 3) {
+      setRootClasses([styles.box, styles.active, styles.left3]);
     }
+  }, [position]);
 
-     if (position == '3') {
-        rootClasses.push(styles.left3)
-    }
+  const closePopup = () => {
+    setRootClasses([styles.box, styles.left2, styles.closed]);
+  };
 
-    const closePopup = () => {
-        setVisible(false)
-    }
-
-    return (
-        <div className={rootClasses.join(' ')} >
-            <div className={styles.content}>
-                {children}
-            </div>
-            <p  className={styles.close} onClick={closePopup}>x</p>
-        </div>
-    )
-}
+  return (
+    <div className={rootClasses.join(' ')}>
+      <div className={styles.content}>{children}</div>
+      <p className={styles.close} onClick={closePopup}>
+        x
+      </p>
+    </div>
+  );
+};
 export default Popup

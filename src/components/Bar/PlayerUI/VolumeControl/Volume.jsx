@@ -2,8 +2,11 @@ import React from 'react';
 import volume from '../../../../img/icon/volume.svg';
 import styles from './Volume.module.scss'
 import VolumeButton from './VolumeButton';
+import { useState } from 'react';
 
 const Volume = ({ mute, isMuted, onVolumeChange, volumeProgress }) => {
+
+
   return (
     <div className={styles.bar__volume_block}>
       <div className={styles.volume__content}>
@@ -16,7 +19,8 @@ const Volume = ({ mute, isMuted, onVolumeChange, volumeProgress }) => {
             type="range"
             name="range"
             onChange={(e) => onVolumeChange(e.target.value)}
-            value={isMuted ? 0 : volumeProgress}
+            step="1"
+            value={isMuted ? 0 : volumeProgress * 100}
           ></input>
         </div>
       </div>

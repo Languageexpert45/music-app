@@ -20,10 +20,6 @@ const PlaylistItem = ({ id, track, artist, album, time, trackId, currentTrack}) 
     trackId(id);
   };
 
- 
-
-
-
   return (
     <div onClick={handleTrackId} className={styles.item}>
       <div className={`${styles.track}`}>
