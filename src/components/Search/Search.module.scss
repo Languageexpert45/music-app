@@ -4,11 +4,8 @@
   width: 100%;
   border-bottom: 1px solid #4e4e4e;
   margin-bottom: 51px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-direction: row;
   align-items: center;
+  position: relative;
 }
 
 .search__svg {
@@ -20,6 +17,7 @@
 }
 
 .search__text {
+  width: 95%;
   flex-grow: 100;
   background-color: transparent;
   border: none;
@@ -29,4 +27,33 @@
   font-size: 16px;
   line-height: 24px;
   color: var(--secondary_color);
+}
+.search__text:focus{
+  outline: none;
+}
+.search__result_box {
+  position: absolute;
+  background-color: var(--primary_color);;
+  border-radius: 6px;
+  border: solid 1px var(--secondary_color);
+  padding: 10px 20px ;
+  margin-left: 19px ;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.search_hidden {
+  display: none;
+}
+
+.search__result_item{
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+  color: var(--secondary_color);
+}
+
+.search__result_item:hover{
+  background-color: rgba(119, 61, 213, 0.687);
 }

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../store/slices/auth';
 
-const Navbar = (props) => {
+const Navbar = ({switchTheme}) => {
   const [active, setActive] = useState(false);
   const toggle = () => {
     setActive(!active);
@@ -19,7 +19,7 @@ const Navbar = (props) => {
 
   return (
     <nav className={styles.main__nav}>
-      <LogoWhite switchLogo={props.switchTheme} />
+      <LogoWhite switchLogo={switchTheme} />
       <div onClick={toggle} className={styles.nav__burger}>
         <span className={styles.burger__line}></span>
         <span className={styles.burger__line}></span>
@@ -50,7 +50,7 @@ const Navbar = (props) => {
           </li>
           <div
             className={styles.menu__theme_button}
-            onClick={props.switchTheme}
+            onClick={switchTheme}
           ></div>
         </ul>
       </div>

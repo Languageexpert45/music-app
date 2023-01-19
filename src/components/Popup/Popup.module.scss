@@ -9,7 +9,6 @@
     top: 288px;
     background: #313131;
     border-radius: 12px;
-    transform: scale(0);
     transition: 0.3s;
 }
 
@@ -27,6 +26,12 @@
 
 .active {
     transform: scale(1);
+   
+}
+
+.closed {
+   
+    transform: scale(0);
 }
 
 .close {
@@ -38,17 +43,10 @@
 
 .content {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    padding: 0px;
-    gap: 20px;
     width: 180px;
     height: 225px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    overflow-y:auto;
+    overflow-y: auto;
 }
 
 ::-webkit-scrollbar {

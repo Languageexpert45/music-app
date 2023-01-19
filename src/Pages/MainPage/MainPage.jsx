@@ -9,8 +9,8 @@ import FavoritesContent from '../../components/CenterblockContent/FavoritesConte
 import SideBar from '../../components/SideBar/SideBar';
 import useLocalStorage from 'use-local-storage';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import Player from '../../components/Bar/PlayerUI/PlayerControl/Player';
+import { useGetAllTracksQuery } from '../../services/tracks';
 
 const MainPage = (props) => {
   const [theme, setTheme] = useLocalStorage('theme' ? 'dark' : 'light');
@@ -19,11 +19,15 @@ const MainPage = (props) => {
     setTheme(newTheme);
   };
 
+  const { data: allTracks, error, isLoading } = useGetAllTracksQuery();
+
   const { id } = useParams();
 
   const [sourceTracks, setSourceTracks] = useState(undefined);
 
   const [trackId, setTrackId] = useState(undefined);
+
+  const [searchedTrackId, setSearchedTrackId] = useState(undefined);
 
   const getTracksFromChosenPlaylist = (tracks) => {
     if (tracks) {
@@ -33,6 +37,10 @@ const MainPage = (props) => {
 
   const getTrackId = (id) => {
     setTrackId(id);
+  };
+
+  const getSearchedTrackId = (id) => {
+    setSearchedTrackId(id);
   };
 
   const [tracksContent, setTracksContent] = useState(null);
@@ -67,16 +75,21 @@ const MainPage = (props) => {
   return (
     <div className="container" data-theme={theme}>
       <main className="main">
-        <Navbar {...props} switchTheme={switchTheme} />
+        <Navbar switchTheme={switchTheme} />
         <div className="main__centerblock centerblock">
-          <Search />
+          <Search tracks={allTracks} trackId={getSearchedTrackId} />
           <CenterblockHeader />
-          <CenterblockFilter {...props} />
+          <CenterblockFilter tracks={allTracks} trackId={getTrackId} filteredTracks={getTracksFromChosenPlaylist} />
           {tracksContent}
         </div>
         <SideBar />
       </main>
-      <Player tracks={sourceTracks} id={trackId} />
+      <Player
+        searchedTracks={allTracks}
+        tracks={sourceTracks}
+        id={trackId}
+        searchedTrackId={searchedTrackId}
+      />
     </div>
   );
 };

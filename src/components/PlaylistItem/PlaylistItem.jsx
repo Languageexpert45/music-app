@@ -8,14 +8,21 @@ import { trackId } from '../../store/slices/tracks';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetAllTracksQuery } from '../../services/tracks';
 
-const PlaylistItem = ({ id, track, artist, album, time, trackId }) => {
+const PlaylistItem = ({ id, track, artist, album, time, trackId, currentTrack}) => {
+
+  const [active, setActive] = useState(false);
+
+  // useEffect(() => {
+  //   console.log(currentTrack);
+  // }, [currentTrack]);
+
   const handleTrackId = () => {
     trackId(id);
   };
 
   return (
     <div onClick={handleTrackId} className={styles.item}>
-      <div className={styles.track}>
+      <div className={`${styles.track}`}>
         <div className={styles.title}>
           <div className={styles.image}>
             <img className={styles.svg} src={note} alt="music"></img>

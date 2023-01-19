@@ -10,7 +10,7 @@ import PlayerSongInfo from '../PlayerSongInfo/PlayerSongInfo';
 import PlayerSongInfoSkeleton from '../../../../SkeletonComponents/PlayerSongInfoSkeleton';
 import Volume from '../../PlayerUI/VolumeControl/Volume';
 
-const Player = ({ tracks, id }) => {
+const Player = ({ tracks, id, searchedTrackId, searchedTracks }) => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -18,10 +18,71 @@ const Player = ({ tracks, id }) => {
   const intervalRef = useRef();
   const isReady = useRef(false);
   const { duration } = audioRef.current;
+  const [playlist, setPlaylist] = useState(undefined);
+  const [isMuted, setIsMuted] = useState(false);
+  const [volumeProgress, setVolumeProgress] = useState(0.5);
+  const [currentTrack, setCurrentTrack] = useState(undefined);
+  const [trackInfo, setTrackInfo] = useState(undefined);
+
+  useEffect(() => {
+    if (tracks) {
+      setPlaylist(tracks);
+    }
+  }, [tracks]);
+
+  useEffect(() => {
+    if (playlist) {
+      setCurrentTrack(playlist[0]);
+    }
+  }, [playlist]);
+
+  useEffect(() => {
+    if (id) {
+      setCurrentTrack(playlist.find((track) => track.id === id));
+    }
+  }, [id]);
+
+  useEffect(() => {
+    if (searchedTrackId) {
+      setCurrentTrack(
+        searchedTracks.find((track) => track.id === searchedTrackId)
+      );
+    }
+  }, [searchedTrackId]);
+
+  useEffect(() => {
+    if (currentTrack) {
+      audioRef.current.pause();
+      audioRef.current = new Audio(currentTrack.track_file);
+      setTrackProgress(audioRef.current.currentTime);
+      audioRef.current.volume = volumeProgress;
+      setTrackIndex(playlist.indexOf(currentTrack));
+      setIsMuted(false);
+      setTrackInfo(currentTrack);
+    }
+  }, [currentTrack]);
+
+  useEffect(() => {
+    if (playlist) {
+      setCurrentTrack(playlist[trackIndex]);
+      setTrackProgress(audioRef.current.currentTime);
+    }
+  }, [trackIndex]);
 
   const onPlayPauseClick = () => {
     setIsPlaying(!isPlaying);
   };
+  const handleMuteTrack = () => {
+    setIsMuted(!isMuted);
+  };
+
+  useEffect(() => {
+    if (isMuted) {
+      audioRef.current.volume = 0;
+    } else {
+      audioRef.current.volume = volumeProgress;
+    }
+  }, [isMuted]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -30,7 +91,7 @@ const Player = ({ tracks, id }) => {
     } else {
       audioRef.current.pause();
     }
-  }, [isPlaying]);
+  });
 
   useEffect(() => {
     // Pause and clean up on unmount
@@ -41,14 +102,8 @@ const Player = ({ tracks, id }) => {
   }, []);
 
   // Handle setup when changing tracks
+
   useEffect(() => {
-    if (tracks) {
-      audioRef.current.pause();
-
-      audioRef.current = new Audio(tracks[trackIndex].track_file);
-      setTrackProgress(audioRef.current.currentTime);
-    }
-
     if (isReady.current) {
       audioRef.current.play();
       setIsPlaying(true);
@@ -72,6 +127,11 @@ const Player = ({ tracks, id }) => {
     }, [1000]);
   };
 
+  const onVolumeChange = (value) => {
+    audioRef.current.volume = value / 100;
+    setVolumeProgress(audioRef.current.volume);
+  };
+
   const onScrub = (value) => {
     // Clear any timers already running
     clearInterval(intervalRef.current);
@@ -89,14 +149,14 @@ const Player = ({ tracks, id }) => {
 
   const toPrevTrack = () => {
     if (trackIndex - 1 < 0) {
-      setTrackIndex(tracks.length - 1);
+      setTrackIndex(playlist.length - 1);
     } else {
       setTrackIndex(trackIndex - 1);
     }
   };
 
   const toNextTrack = () => {
-    if (trackIndex < tracks.length - 1) {
+    if (trackIndex < playlist.length - 1) {
       setTrackIndex(trackIndex + 1);
     } else {
       setTrackIndex(0);
@@ -175,11 +235,16 @@ const Player = ({ tracks, id }) => {
                 ></img>
               </div>
             </div>
-            <PlayerSongInfo />
+            <PlayerSongInfo trackInfo={trackInfo} />
             {/* {props.loading && <PlayerSongInfoSkeleton />}
             {!props.loading && <PlayerSongInfo />} */}
           </div>
-          <Volume />
+          <Volume
+            mute={handleMuteTrack}
+            isMuted={isMuted}
+            onVolumeChange={onVolumeChange}
+            volumeProgress={volumeProgress}
+          />
         </div>
       </div>
     </div>

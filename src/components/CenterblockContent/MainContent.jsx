@@ -3,8 +3,6 @@ import PlaylistItem from '../PlaylistItem/PlaylistItem';
 import watch from '../../img/icon/watch.svg';
 import styles from './CenterblockContent.module.scss';
 import SongsSkeletonLoader from '../../SkeletonComponents/SongsSkeletonLoader';
-import { useParams } from 'react-router-dom';
-import { store } from '../../store/store';
 import { useGetAllTracksQuery } from '../../services/tracks';
 
 const MainContent = ({ tracks, trackId }) => {

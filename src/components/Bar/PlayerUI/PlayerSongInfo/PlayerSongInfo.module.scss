@@ -11,6 +11,7 @@
     grid-template-columns: auto 1fr;
     grid-template-areas: 'image author' 'image album';
     align-items: center;
+    width: 300px;
 }
 
 .track_play__image {
