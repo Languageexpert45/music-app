@@ -1,14 +1,16 @@
 import React from "react";
 import styles from './FilterButton.module.scss'
-import Popup from "../Popup/Popup";
+import { useNavigate } from 'react-router-dom';
+import Popup from '../Popup/Popup';
 import { useState, useEffect } from 'react';
 
-function FilterButton({ filterValue, buttonStatus }) {
-  const [active, setActive] = useState(false);
+function FilterButton({ filterValue, buttonStatus, buttonActive }) {
+  const navigate = useNavigate();
 
   const getFilterValue = () => {
-    // setActive(!active);
     buttonStatus(filterValue);
+    buttonActive(true);
+    navigate('/main')
   };
 
   return (

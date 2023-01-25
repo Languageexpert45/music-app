@@ -6,14 +6,18 @@ import { tokenReceived } from './store/slices/auth';
 import { useSelector } from 'react-redux';
 import { isLoggedInSelector } from './store/selectors/auth';
 
-const App = (props) => {
+const App = () => {
   const [tokenRefresh, result] = useRefreshMutation();
 
   const dispatch = useDispatch();
 
-  const loggedIn = useSelector(isLoggedInSelector);
+  const loggedIn = localStorage.getItem('isLoggedIn');
 
-
+  useEffect(() => {
+    if (window.performance) {
+      tokenRefresh({ refresh: localStorage.getItem('tokenRefresh') });
+    }
+  }, [window.performance]);
 
   useEffect(() => {
     if (loggedIn) {
@@ -44,7 +48,7 @@ const App = (props) => {
 
   return (
     <div className="wrapper">
-      <AppRoutes/>
+      <AppRoutes />
     </div>
   );
 };

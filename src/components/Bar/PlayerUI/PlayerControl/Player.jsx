@@ -3,14 +3,14 @@ import prev from '../../../../img/icon/prev.svg';
 import play from '../../../../img/icon/play.svg';
 import pause from '../../../../img/icon/pause.svg';
 import next from '../../../../img/icon/next.svg';
-import repeat from '../../../../img/icon/repeat.svg';
-import shuffle from '../../../../img/icon/shuffle.svg';
 import styles from './Player.module.scss';
 import PlayerSongInfo from '../PlayerSongInfo/PlayerSongInfo';
 import PlayerSongInfoSkeleton from '../../../../SkeletonComponents/PlayerSongInfoSkeleton';
 import Volume from '../../PlayerUI/VolumeControl/Volume';
+import Shuffle from '../ShuffleTracks/ShuffleTracks';
+import Repeat from '../RepeatTrack/RepeatTrack';
 
-const Player = ({ tracks, id, searchedTrackId, searchedTracks }) => {
+const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -22,7 +22,10 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks }) => {
   const [isMuted, setIsMuted] = useState(false);
   const [volumeProgress, setVolumeProgress] = useState(0.5);
   const [currentTrack, setCurrentTrack] = useState(undefined);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(undefined);
   const [trackInfo, setTrackInfo] = useState(undefined);
+  const [shuffled, setShuffled] = useState(false);
+  const [repeated, setRepeated] = useState(false);
 
   useEffect(() => {
     if (tracks) {
@@ -30,8 +33,21 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks }) => {
     }
   }, [tracks]);
 
+  // useEffect(() => {
+  //   if (audioRef.current.ended && repeated) {
+  //     console.log('repeat!');
+  //     setTrackIndex(currentTrackIndex);
+  //   }
+  // });
+
+  // useEffect(() => {
+  //   if (playlist) {
+  //     setCurrentTrackIndex(playlist.indexOf(currentTrack));
+  //   }
+  // }, [currentTrack]);
+
   useEffect(() => {
-    if (playlist) {
+    if (currentTrack === undefined && playlist) {
       setCurrentTrack(playlist[0]);
     }
   }, [playlist]);
@@ -120,6 +136,7 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks }) => {
 
     intervalRef.current = setInterval(() => {
       if (audioRef.current.ended) {
+        clearInterval(intervalRef.current);
         toNextTrack();
       } else {
         setTrackProgress(audioRef.current.currentTime);
@@ -162,6 +179,26 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks }) => {
       setTrackIndex(0);
     }
   };
+
+  // const repeatTrack = () => {
+  //   if (repeated) {
+  //     audioRef.current = new Audio(currentTrack.track_file);
+  //   }
+  // };
+
+  function shuffleTracks(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  useEffect(() => {
+    if (shuffled) {
+      const clone = Object.assign([], playlist);
+      shuffleTracks(clone);
+      setPlaylist(clone);
+    } else {
+      setPlaylist(tracks);
+    }
+  }, [shuffled]);
 
   return (
     <div className={styles.bar}>
@@ -216,28 +253,12 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks }) => {
                   alt="next"
                 ></img>
               </div>
-              <div
-                className={`${styles.player__btn_repeat} ${styles._btn_icon}`}
-              >
-                <img
-                  className={styles.player__btn_repeat_svg}
-                  src={repeat}
-                  alt="repeat"
-                ></img>
-              </div>
-              <div
-                className={`${styles.player__btn_shuffle} ${styles._btn_icon}`}
-              >
-                <img
-                  className={styles.player__btn_shuffle_svg}
-                  src={shuffle}
-                  alt="shuffle"
-                ></img>
-              </div>
+              <Repeat setIsRepeated={setRepeated} isRepeated={repeated} />
+              <Shuffle setIsShuffled={setShuffled} isShuffled={shuffled} />
             </div>
-            <PlayerSongInfo trackInfo={trackInfo} />
-            {/* {props.loading && <PlayerSongInfoSkeleton />}
-            {!props.loading && <PlayerSongInfo />} */}
+
+            {isLoading && <PlayerSongInfoSkeleton />}
+            {!isLoading && <PlayerSongInfo trackInfo={trackInfo} />}
           </div>
           <Volume
             mute={handleMuteTrack}

@@ -9,8 +9,8 @@ import { useSelector } from 'react-redux';
 import { isLoggedInSelector } from './store/selectors/auth';
 
 export const AppRoutes = (props) => {
-    
-  const isLoggedIn = useSelector(isLoggedInSelector);
+  
+  const isLoggedIn = localStorage.getItem('isLoggedIn');
 
   return (
     <Routes>

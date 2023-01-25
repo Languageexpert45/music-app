@@ -35,14 +35,14 @@
 
 .container__info_song {
     height: 18px;
-    width: 45px;
+    width: 80px;
     background-color: #313131;
     animation: myAnim 2s ease 0s infinite normal forwards;
 }
 
 .container__info_artist {
     height: 18px;
-    width: 45px;
+    width: 80px;
     background-color: #313131;
     animation: myAnim 2s ease 0s infinite normal forwards;
 }

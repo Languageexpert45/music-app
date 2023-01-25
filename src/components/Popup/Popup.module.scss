@@ -9,7 +9,7 @@
     top: 288px;
     background: #313131;
     border-radius: 12px;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 .left1{
@@ -25,13 +25,13 @@
 }
 
 .active {
-    transform: scale(1);
-   
+    opacity: 1;
+    visibility: visible;
 }
 
 .closed {
-   
-    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
 }
 
 .close {

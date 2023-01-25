@@ -12,15 +12,20 @@ const CompilationContent = ({ tracks, trackId }) => {
 
   const { data: selections, error, isLoading } = useGetSelectionsQuery();
 
-  const compilationsTracks = selections.find(
+  const compilationsTracks = selections? selections.find(
     (trackList) => trackList.id === Number(id)
-  );
+  ): null
 
   useEffect(() => {
     if (compilationsTracks) {
       tracks(compilationsTracks.items);
     }
   }, [compilationsTracks]);
+
+  const skeletonArray = [1,2,3,4,5,6,7,8]
+  const skeletonItems = skeletonArray.map((item, index) => (
+    <SongsSkeletonLoader key={index} />
+  ));
 
   return (
     <div className={styles.content}>
@@ -37,7 +42,7 @@ const CompilationContent = ({ tracks, trackId }) => {
       {error ? (
         <>Oh no, there was an error</>
       ) : isLoading ? (
-        <>Loading...</>
+        <div className={styles.playlist}>{skeletonItems}</div>
       ) : selections ? (
         <div className={styles.playlist}>
           {compilationsTracks
