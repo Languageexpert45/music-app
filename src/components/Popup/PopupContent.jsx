@@ -2,56 +2,79 @@ import React from "react";
 import styles from'./Popup.module.scss'
 import { useState, useEffect } from 'react';
 
-const PopupContent = ({ sortItems, position, trackId, filteredTracks }) => {
+const PopupContent = ({ sortItems, position, filteredTracks }) => {
   const [trackData, setTrackData] = useState(undefined);
 
-  const getTrackByArtist = () => {
-    console.log(trackData);
+  const getTracksByGenre = (event) => {
+    const result = sortItems.filter((track) => {
+      return track.genre.match(event.target.textContent);
+    });
+    filteredTracks(result);
   };
 
-//   useEffect(() => {
-//     if (trackData) {
-//       console.log(trackData);
-//     }
-//   }, [trackData]);
+  const getTracksByArtist = (event) => {
+    const result = sortItems.filter((track) => {
+      return track.author.match(event.target.textContent);
+    });
+    filteredTracks(result);
+  };
+
+  const getTracksByReleaseDate = (event) => {
+    const target = event.target.textContent;
+
+    const result = sortItems.filter(
+      (sortItem) => sortItem.release_date === target
+    );
+
+    filteredTracks(result);
+  };
 
   useEffect(() => {
     if (position === 1) {
+      const trackAuthorData = sortItems.map((sortItem) => sortItem.author);
+      const nonDuplicatedAuthorData = [...new Set(trackAuthorData)];
+
       setTrackData(
-        sortItems.map((sortItem) => (
+        nonDuplicatedAuthorData.map((sortItem, index) => (
           <li
-            onClick={getTrackByArtist}
+            onClick={getTracksByArtist}
             className={styles.listItem}
-            key={sortItem.id}
+            key={index}
           >
-            {sortItem.author}
+            {sortItem}
           </li>
         ))
       );
     }
     if (position === 2) {
-    //   const releaseData = sortItems.map((sortItem) => sortItem.release_date)
-    //   const result = releaseData.forEach(element => {
-    //     element+element
-    //   });
-    //   console.log(result);
-        setTrackData(
-          sortItems.map((sortItem) => (
-            <li className={styles.listItem} key={sortItem.id}>
-              {sortItem.release_date}
-            </li>
-          ))
-        );
+      const releaseData = sortItems.map((sortItem) => sortItem.release_date);
+      const nonDuplicatedYears = [...new Set(releaseData)];
+      const resultDates = nonDuplicatedYears.sort();
+
+      setTrackData(
+        resultDates.map((sortItem, index) => (
+          <li
+            onClick={getTracksByReleaseDate}
+            className={styles.listItem}
+            key={index}
+          >
+            {sortItem}
+          </li>
+        ))
+      );
     }
 
     if (position === 3) {
       const genreData = sortItems.map((sortItem) => sortItem.genre);
-
-      const notDuplicatedGenreData = [...new Set(genreData)];
+      const nonDuplicatedGenreData = [...new Set(genreData)];
 
       setTrackData(
-        notDuplicatedGenreData.map((sortItem, index) => (
-          <li className={styles.listItem} key={index}>
+        nonDuplicatedGenreData.map((sortItem, index) => (
+          <li
+            onClick={getTracksByGenre}
+            className={styles.listItem}
+            key={index}
+          >
             {sortItem}
           </li>
         ))

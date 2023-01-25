@@ -8,17 +8,24 @@ import { trackId } from '../../store/slices/tracks';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetAllTracksQuery } from '../../services/tracks';
 
-const PlaylistItem = ({ id, track, artist, album, time, trackId, currentTrack}) => {
-
-  const [active, setActive] = useState(false);
-
-  // useEffect(() => {
-  //   console.log(currentTrack);
-  // }, [currentTrack]);
-
+const PlaylistItem = ({ id, track, artist, album, time, trackId }) => {
   const handleTrackId = () => {
     trackId(id);
   };
+
+  function fancyTimeFormat(duration) {
+    const hrs = ~~(duration / 3600);
+    const mins = ~~((duration % 3600) / 60);
+    const secs = ~~duration % 60;
+    let ret = '';
+
+    if (hrs > 0) {
+      ret += '' + hrs + ':' + (mins < 10 ? '0' : '');
+    }
+    ret += '' + mins + ':' + (secs < 10 ? '0' : '');
+    ret += '' + secs;
+    return ret;
+  }
 
   return (
     <div onClick={handleTrackId} className={styles.item}>
@@ -41,7 +48,9 @@ const PlaylistItem = ({ id, track, artist, album, time, trackId, currentTrack}) 
         </div>
         <div className={styles.track__like_time_box}>
           <LikeButton id={id} />
-          <span className={styles.track__time_text}>{time}</span>
+          <span className={styles.track__time_text}>
+            {fancyTimeFormat(time)}
+          </span>
         </div>
       </div>
     </div>

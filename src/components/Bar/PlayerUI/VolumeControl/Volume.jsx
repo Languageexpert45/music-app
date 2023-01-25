@@ -1,5 +1,4 @@
 import React from 'react';
-import volume from '../../../../img/icon/volume.svg';
 import styles from './Volume.module.scss'
 import VolumeButton from './VolumeButton';
 import { useState } from 'react';

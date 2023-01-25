@@ -3,21 +3,12 @@ import PlaylistItem from '../PlaylistItem/PlaylistItem';
 import watch from '../../img/icon/watch.svg';
 import styles from './CenterblockContent.module.scss';
 import SongsSkeletonLoader from '../../SkeletonComponents/SongsSkeletonLoader';
-import { useGetAllTracksQuery } from '../../services/tracks';
+import { useParams } from 'react-router-dom';
+import { store } from '../../store/store';
+import { useGetFavoritesQuery } from '../../services/favorites';
 
-const MainContent = ({ tracks, trackId }) => {
-  const { data: allTracks, error, isLoading } = useGetAllTracksQuery();
+const FilteredTracksContent = ({ tracks, trackId }) => {
 
-  useEffect(() => {
-    if (allTracks) {
-       tracks(allTracks);
-    }
-  }, [allTracks]);
-
-   const skeletonArray = [1, 2, 3, 4, 5, 6, 7, 8];
-   const skeletonItems = skeletonArray.map((item, index) => (
-     <SongsSkeletonLoader key={index} />
-   ));
 
   return (
     <div className={styles.content}>
@@ -31,13 +22,9 @@ const MainContent = ({ tracks, trackId }) => {
           <img className={styles.title__svg} src={watch} alt="time"></img>
         </div>
       </div>
-      {error ? (
-        <>Oh no, there was an error</>
-      ) : isLoading ? (
-        <div className={styles.playlist}>{skeletonItems}</div>
-      ) : allTracks ? (
+      {tracks ? (
         <div className={styles.playlist}>
-          {allTracks.map((element, index) => (
+          {tracks.map((element, index) => (
             <PlaylistItem
               trackId={trackId}
               id={element.id}
@@ -54,4 +41,4 @@ const MainContent = ({ tracks, trackId }) => {
   );
 };
 
-export default MainContent;
+export default FilteredTracksContent;

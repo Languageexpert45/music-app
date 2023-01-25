@@ -6,13 +6,14 @@ import CenterblockFilter from '../../components/CenterblockFilter/CenterblockFil
 import MainContent from '../../components/CenterblockContent/MainContent';
 import CompilationsContent from '../../components/CenterblockContent/CompilationsContent';
 import FavoritesContent from '../../components/CenterblockContent/FavoritesContent';
+import FilteredTracksContent from '../../components/CenterblockContent/FilteredTracksContent';
 import SideBar from '../../components/SideBar/SideBar';
 import useLocalStorage from 'use-local-storage';
 import { useParams } from 'react-router-dom';
 import Player from '../../components/Bar/PlayerUI/PlayerControl/Player';
 import { useGetAllTracksQuery } from '../../services/tracks';
 
-const MainPage = (props) => {
+const MainPage = () => {
   const [theme, setTheme] = useLocalStorage('theme' ? 'dark' : 'light');
   const switchTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -29,9 +30,19 @@ const MainPage = (props) => {
 
   const [searchedTrackId, setSearchedTrackId] = useState(undefined);
 
+  const [tracksContent, setTracksContent] = useState(null);
+
+  const [filteredTracks, setFilteredTracks] = useState(null);
+
   const getTracksFromChosenPlaylist = (tracks) => {
     if (tracks) {
       setSourceTracks(tracks);
+    }
+  };
+
+  const getFilteredTracks = (tracks) => {
+    if (tracks) {
+      setFilteredTracks(tracks);
     }
   };
 
@@ -43,7 +54,16 @@ const MainPage = (props) => {
     setSearchedTrackId(id);
   };
 
-  const [tracksContent, setTracksContent] = useState(null);
+  useEffect(() => {
+    if (filteredTracks) {
+      setTracksContent(
+        <FilteredTracksContent 
+          tracks={filteredTracks} 
+          trackId={getTrackId} 
+        />
+      );
+    }
+  }, [filteredTracks]);
 
   useEffect(() => {
     if (id === '1' || id === '2' || id === '3') {
@@ -79,12 +99,17 @@ const MainPage = (props) => {
         <div className="main__centerblock centerblock">
           <Search tracks={allTracks} trackId={getSearchedTrackId} />
           <CenterblockHeader />
-          <CenterblockFilter tracks={allTracks} trackId={getTrackId} filteredTracks={getTracksFromChosenPlaylist} />
+          <CenterblockFilter
+            tracks={allTracks}
+            trackId={getTrackId}
+            filteredTracks={getFilteredTracks}
+          />
           {tracksContent}
         </div>
         <SideBar />
       </main>
       <Player
+        isLoading = {isLoading}
         searchedTracks={allTracks}
         tracks={sourceTracks}
         id={trackId}

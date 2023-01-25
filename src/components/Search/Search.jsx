@@ -1,20 +1,25 @@
 import React from 'react';
 import search from '../../img/icon/search.svg';
 import styles from './Search.module.scss'
-import { useState, useEffect } from 'react';
-import { useGetAllTracksQuery } from '../../services/tracks';
+import { useState, useEffect, useRef } from 'react';
 
 const Search = ({ trackId, tracks }) => {
-
   const [searchInput, setSearchInput] = useState('');
-
   const [searchedTracks, setSearchedTracks] = useState(undefined);
-
   const [allTracks, setAllTracks] = useState(undefined);
-
   const [searchHidden, setSearchHidden] = useState(true);
-
   const [chosenTrack, setChosenTrack] = useState(undefined);
+  const searchBoxRef = useRef();
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (!searchBoxRef.current.contains(e.target)) {
+        setSearchHidden(true);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  });
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -77,6 +82,7 @@ const Search = ({ trackId, tracks }) => {
         value={searchInput}
       />
       <div
+        ref={searchBoxRef}
         className={
           searchHidden === true
             ? `${styles.search__result_box} ${styles.search_hidden}`
