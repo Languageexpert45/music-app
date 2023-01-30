@@ -11,7 +11,7 @@ const App = () => {
 
   const dispatch = useDispatch();
 
-  const loggedIn = localStorage.getItem('isLoggedIn');
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('isLoggedIn'));
 
   useEffect(() => {
     if (window.performance) {

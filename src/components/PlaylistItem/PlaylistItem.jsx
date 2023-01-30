@@ -1,14 +1,10 @@
 import React from 'react';
 import note from '../../img/icon/note.svg';
 import styles from './PlaylistItem.module.scss';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import LikeButton from '../Bar/PlayerUI/PlayerSongInfo/Like/LikeButton';
-import { trackId } from '../../store/slices/tracks';
-import { useDispatch, useSelector } from 'react-redux';
-import { useGetAllTracksQuery } from '../../services/tracks';
+import LikeButton from '../Bar/PlayerUI/PlayerSongInfo/Like/TrackListLike/LikeButton';
 
-const PlaylistItem = ({ id, track, artist, album, time, trackId }) => {
+
+const PlaylistItem = ({ id, track, artist, album, time, trackId, favTracks }) => {
   const handleTrackId = () => {
     trackId(id);
   };
@@ -47,7 +43,7 @@ const PlaylistItem = ({ id, track, artist, album, time, trackId }) => {
           <a className={styles.album_link}>{album}</a>
         </div>
         <div className={styles.track__like_time_box}>
-          <LikeButton id={id} />
+          <LikeButton id={id} favTracks={favTracks} />
           <span className={styles.track__time_text}>
             {fancyTimeFormat(time)}
           </span>

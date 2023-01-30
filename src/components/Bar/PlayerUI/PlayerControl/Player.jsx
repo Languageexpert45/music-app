@@ -22,7 +22,6 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
   const [isMuted, setIsMuted] = useState(false);
   const [volumeProgress, setVolumeProgress] = useState(0.5);
   const [currentTrack, setCurrentTrack] = useState(undefined);
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(undefined);
   const [trackInfo, setTrackInfo] = useState(undefined);
   const [shuffled, setShuffled] = useState(false);
   const [repeated, setRepeated] = useState(false);
@@ -34,17 +33,17 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
   }, [tracks]);
 
   // useEffect(() => {
-  //   if (audioRef.current.ended && repeated) {
-  //     console.log('repeat!');
-  //     setTrackIndex(currentTrackIndex);
-  //   }
-  // });
+  //   console.log(audioRef.current);
+  // }, [audioRef.current]);
 
-  // useEffect(() => {
-  //   if (playlist) {
-  //     setCurrentTrackIndex(playlist.indexOf(currentTrack));
-  //   }
-  // }, [currentTrack]);
+  useEffect(() => {
+    if (repeated) {
+      console.log('repeat!');
+      audioRef.current.loop = true;
+    } else {
+      audioRef.current.loop = false;
+    }
+  }, [repeated]);
 
   useEffect(() => {
     if (currentTrack === undefined && playlist) {
@@ -85,13 +84,6 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
     }
   }, [trackIndex]);
 
-  const onPlayPauseClick = () => {
-    setIsPlaying(!isPlaying);
-  };
-  const handleMuteTrack = () => {
-    setIsMuted(!isMuted);
-  };
-
   useEffect(() => {
     if (isMuted) {
       audioRef.current.volume = 0;
@@ -120,8 +112,8 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
   // Handle setup when changing tracks
 
   useEffect(() => {
+    setRepeated(false);
     if (isReady.current) {
-      audioRef.current.play();
       setIsPlaying(true);
       startTimer();
     } else {
@@ -142,6 +134,14 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
         setTrackProgress(audioRef.current.currentTime);
       }
     }, [1000]);
+  };
+
+  const onPlayPauseClick = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const onMute = () => {
+    setIsMuted(!isMuted);
   };
 
   const onVolumeChange = (value) => {
@@ -165,6 +165,7 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
   };
 
   const toPrevTrack = () => {
+    setRepeated(false);
     if (trackIndex - 1 < 0) {
       setTrackIndex(playlist.length - 1);
     } else {
@@ -173,18 +174,13 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
   };
 
   const toNextTrack = () => {
+    setRepeated(false);
     if (trackIndex < playlist.length - 1) {
       setTrackIndex(trackIndex + 1);
     } else {
       setTrackIndex(0);
     }
   };
-
-  // const repeatTrack = () => {
-  //   if (repeated) {
-  //     audioRef.current = new Audio(currentTrack.track_file);
-  //   }
-  // };
 
   function shuffleTracks(array) {
     array.sort(() => Math.random() - 0.5);
@@ -258,10 +254,16 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
             </div>
 
             {isLoading && <PlayerSongInfoSkeleton />}
-            {!isLoading && <PlayerSongInfo trackInfo={trackInfo} />}
+            {!isLoading && (
+              <PlayerSongInfo
+                trackInfo={trackInfo}
+                id={id}
+                trackIndex={trackIndex}
+              />
+            )}
           </div>
           <Volume
-            mute={handleMuteTrack}
+            mute={onMute}
             isMuted={isMuted}
             onVolumeChange={onVolumeChange}
             volumeProgress={volumeProgress}

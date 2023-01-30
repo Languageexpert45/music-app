@@ -21,17 +21,11 @@ const MainPage = () => {
   };
 
   const { data: allTracks, error, isLoading } = useGetAllTracksQuery();
-
   const { id } = useParams();
-
   const [sourceTracks, setSourceTracks] = useState(undefined);
-
   const [trackId, setTrackId] = useState(undefined);
-
   const [searchedTrackId, setSearchedTrackId] = useState(undefined);
-
   const [tracksContent, setTracksContent] = useState(null);
-
   const [filteredTracks, setFilteredTracks] = useState(null);
 
   const getTracksFromChosenPlaylist = (tracks) => {
