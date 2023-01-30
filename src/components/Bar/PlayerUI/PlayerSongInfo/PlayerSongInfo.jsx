@@ -1,21 +1,21 @@
 import React from 'react'
 import styles from './PlayerSongInfo.module.scss'
 import note from '../../../../img/icon/note.svg';
-import LikeButton from './Like/LikeButton';
+import PlayerLikeButton from './Like/PlayerLike/PlayerLikeButton';
 import { useState, useEffect } from 'react';
+import { useGetFavoritesQuery } from '../../../../services/favorites';
 
-const PlayerSongInfo = ({ trackInfo }) => {
+const PlayerSongInfo = ({ trackInfo, id, trackIndex }) => {
   const [trackAuthor, setTrackAuthor] = useState(undefined);
 
   const [trackName, setTrackName] = useState(undefined);
 
-  const [trackId, setTrackId] = useState(undefined);
+  const { data: favTracks, error, isLoading } = useGetFavoritesQuery();
 
   useEffect(() => {
     if (trackInfo) {
       setTrackAuthor(trackInfo.author);
       setTrackName(trackInfo.name);
-      setTrackId(trackInfo.id);
     }
   });
 
@@ -37,7 +37,11 @@ const PlayerSongInfo = ({ trackInfo }) => {
         </div>
       </div>
       <div className={styles.track_play__like_dis}>
-        <LikeButton id={trackId} />
+        <PlayerLikeButton
+          favTracks={favTracks}
+          id={id}
+          trackIndex={trackIndex}
+        />
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ const FavoritesContent = ({ tracks, trackId }) => {
    }, [favTracks]);
 
    const skeletonArray = [1, 2, 3, 4, 5, 6, 7, 8];
-   const skeletonItems = skeletonArray.map((item, index) => (
+   const skeletonItems = skeletonArray.map(index => (
      <SongsSkeletonLoader key={index} />
    ));
 
@@ -44,6 +44,7 @@ const FavoritesContent = ({ tracks, trackId }) => {
                trackId={trackId}
                id={element.id}
                track={element.name}
+               favTracks={favTracks}
                artist={element.author}
                album={element.album}
                time={element.duration_in_seconds}

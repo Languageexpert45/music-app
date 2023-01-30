@@ -32,6 +32,10 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
     }
   }, [tracks]);
 
+  // useEffect(() => {
+  //   console.log(audioRef.current);
+  // }, [audioRef.current]);
+
   useEffect(() => {
     if (repeated) {
       console.log('repeat!');
@@ -110,7 +114,6 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
   useEffect(() => {
     setRepeated(false);
     if (isReady.current) {
-      audioRef.current.play();
       setIsPlaying(true);
       startTimer();
     } else {
@@ -125,8 +128,8 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
 
     intervalRef.current = setInterval(() => {
       if (audioRef.current.ended) {
-        toNextTrack();
         clearInterval(intervalRef.current);
+        toNextTrack();
       } else {
         setTrackProgress(audioRef.current.currentTime);
       }
@@ -136,7 +139,7 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
   const onPlayPauseClick = () => {
     setIsPlaying(!isPlaying);
   };
-  
+
   const onMute = () => {
     setIsMuted(!isMuted);
   };
@@ -171,7 +174,7 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
   };
 
   const toNextTrack = () => {
-    setRepeated(false)
+    setRepeated(false);
     if (trackIndex < playlist.length - 1) {
       setTrackIndex(trackIndex + 1);
     } else {
@@ -251,7 +254,13 @@ const Player = ({ tracks, id, searchedTrackId, searchedTracks, isLoading }) => {
             </div>
 
             {isLoading && <PlayerSongInfoSkeleton />}
-            {!isLoading && <PlayerSongInfo trackInfo={trackInfo} />}
+            {!isLoading && (
+              <PlayerSongInfo
+                trackInfo={trackInfo}
+                id={id}
+                trackIndex={trackIndex}
+              />
+            )}
           </div>
           <Volume
             mute={onMute}

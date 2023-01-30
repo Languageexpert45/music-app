@@ -2,18 +2,27 @@ import React, { useState, useEffect } from 'react';
 import {
   useAddFavoriteMutation,
   useDeleteFavoriteMutation,
-} from '../../../../../services/favorites';
+} from '../../../../../../services/favorites';
 
-const Like_Dislike_logic_visual = ({
-  likeDislike,
-  setLikeDislike,
+const PlayerLike_Dislike_logic_visual = ({
+  isLiked,
+  setIsLiked,
   hover,
   setHover,
   id,
 }) => {
-  const [count, setCount] = useState(true);
+  const [color, setColor] = useState('transparent');
   const [favId, setFavId] = useState()
 
+  useEffect(() => {
+    if(isLiked) {
+      setColor('#696969');
+    } else {
+      setColor('transparent');
+    }
+  },[isLiked])
+
+  
   const [
     addToFav,
     {
@@ -33,14 +42,14 @@ const Like_Dislike_logic_visual = ({
   ] = useDeleteFavoriteMutation();
 
   const handleLikeDislike = (event) => {
-    setCount(!count);
-    if (count) {
-      setLikeDislike('#696969');
+    setIsLiked(!isLiked);
+    if (!isLiked) {
+      setColor('#696969');
       addToFav(id);
-      event.stopPropagation()
+      event.stopPropagation();
     }
-    if (!count) {
-      setLikeDislike('transparent');
+    if (isLiked) {
+      setColor('transparent');
       deleteFromFav(id);
       event.stopPropagation();
     }
@@ -68,7 +77,7 @@ const Like_Dislike_logic_visual = ({
     >
       <path
         d="M8.02203 12.7031C13.9025 9.20312 16.9678 3.91234 13.6132 1.47046C11.413 -0.13111 8.95392 1.14488 8.02203 1.95884H8.00052H8.00046H7.97895C7.04706 1.14488 4.58794 -0.13111 2.38775 1.47046C-0.966814 3.91234 2.09846 9.20312 7.97895 12.7031H8.00046H8.00052H8.02203Z"
-        fill={likeDislike}
+        fill={color}
       />
       <path
         d="M8.00046 1.95884H8.02203C8.95392 1.14488 11.413 -0.13111 13.6132 1.47046C16.9678 3.91234 13.9025 9.20312 8.02203 12.7031H8.00046M8.00052 1.95884H7.97895C7.04706 1.14488 4.58794 -0.13111 2.38775 1.47046C-0.966814 3.91234 2.09846 9.20312 7.97895 12.7031H8.00052"
@@ -78,4 +87,4 @@ const Like_Dislike_logic_visual = ({
   );
 };
 
-export default Like_Dislike_logic_visual;
+export default PlayerLike_Dislike_logic_visual;
